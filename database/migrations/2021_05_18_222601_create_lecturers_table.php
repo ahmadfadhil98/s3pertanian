@@ -14,9 +14,9 @@ class CreateLecturersTable extends Migration
     public function up()
     {
         Schema::create('lecturers', function (Blueprint $table) {
-            $table->unsignedBigInteger('id');
+            $table->unsignedBigInteger('id')->unique();
             $table->string('nip')->unique();
-            $table->string('faculty');
+            $table->integer('faculty');
             $table->string('name');
             $table->timestamps();
 

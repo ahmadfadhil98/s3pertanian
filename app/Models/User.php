@@ -25,8 +25,10 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'type'
     ];
 
     /**
@@ -72,5 +74,17 @@ class User extends Authenticatable
     public function roles()
     {
         return $this->belongsToMany(Role::class);
+    }
+
+    public function student(){
+        return $this->hasOne(Student::class,'id','id');
+    }
+
+    public function lecturer(){
+        return $this->hasOne(Lecturer::class,'id','id');
+    }
+
+    public function staff(){
+        return $this->hasOne(Staff::class,'id','id');
     }
 }
