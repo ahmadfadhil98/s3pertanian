@@ -16,20 +16,9 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                 </div>
-                @can('task_access')
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('tasks.index') }}" :active="request()->routeIs('tasks.*')">
-                            Tasks
-                        </x-jet-nav-link>
-                    </div>
-                @endcan
-                @can('user_access')
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('users.index') }}" :active="request()->routeIs('users.*')">
-                            Users
-                        </x-jet-nav-link>
-                    </div>
-                @endcan
+
+
+
                 {{-- @can('user_access') --}}
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('lecturer') }}" :active="request()->routeIs('lecturer.*')">
@@ -46,14 +35,22 @@
                 {{-- @endcan --}}
                 {{-- @can('user_access') --}}
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('staff') }}" :active="request()->routeIs('file.*')">
+                        <x-jet-nav-link href="{{ route('staff') }}" :active="request()->routeIs('staff.*')">
                             Staff
+                        </x-jet-nav-link>
+                    </div>
+                {{-- @endcan --}}
+
+                {{-- @can('user_access') --}}
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('proses_disertasi') }}" :active="request()->routeIs('proses_disertasi.*')">
+                            Proses Disertasi
                         </x-jet-nav-link>
                     </div>
                 {{-- @endcan --}}
                 {{-- @can('user_access') --}}
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-jet-nav-link href="{{ route('file') }}" :active="request()->routeIs('file.*')">
+                        <x-jet-nav-link href="{{ route('disertasi') }}" :active="request()->routeIs('disertasi.*')">
                             Disertasi
                         </x-jet-nav-link>
                     </div>

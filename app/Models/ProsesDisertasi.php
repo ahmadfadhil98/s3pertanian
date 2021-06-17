@@ -11,4 +11,12 @@ class ProsesDisertasi extends Model
     protected $table = "proses_disertasis";
     protected $fillable = ['name','upload_lots','link_lots','terms_id'];
 
+    public function terms(){
+        return $this->belongsTo(ProsesDisertasi::class);
+    }
+
+    public function student(){
+        return $this->hasMany(ProsesDisertasi::class,'terms_id','id');
+    }
+
 }

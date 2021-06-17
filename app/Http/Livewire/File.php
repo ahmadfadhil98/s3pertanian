@@ -12,7 +12,7 @@ class File extends Component
 {
     use WithFileUploads;
 
-    public $isOpen,$search,$file,$fileId,$name;
+    public $isOpen,$isDel,$delId,$search,$file,$fileId,$name;
 
     public function render()
     {
@@ -29,6 +29,15 @@ class File extends Component
 
     public function hideModal() {
         $this->isOpen = false;
+    }
+
+    public function showDel($id) {
+        $this->delId = $id;
+        $this->isDel = true;
+    }
+
+    public function hideDel() {
+        $this->isDel = false;
     }
 
     public function store(){
@@ -68,7 +77,19 @@ class File extends Component
 
     public function download($id) {
         $file = ModelsFile::find($id);
-
         return Storage::download($file->path,$file->file);
+    }
+
+    public function delete($id){
+        try{
+            $file = ModelsFile::find($id);
+            Storage::delete($file->path);
+            $file->delete();
+            session()->flash('delete','Dosen Successfully Deleted');
+            $this->hideDel();
+        }catch(QueryException $e){
+            session()->flash('delete', 'Tidak bisa menghapus,coba beberapa saat lagi');
+        }
+
     }
 }

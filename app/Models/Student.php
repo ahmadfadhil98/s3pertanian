@@ -15,4 +15,8 @@ class Student extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function disertasi(){
+        return $this->hasMany(Disertasi::class,'student_id','id');
+    }
+
 }

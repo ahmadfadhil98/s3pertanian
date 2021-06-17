@@ -10,32 +10,36 @@
             <form>
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div>
-                        <h1 class="font-bold text-center mb-4">INPUT DOSEN</h1>
+                        <h1 class="font-bold text-center mb-4">INPUT PROSES DISERTASI</h1>
                     </div>
                 <div>
                 <div class="mb-2">
-                    <input wire:model="lecturerId" type="hidden" class="shadow appearance-none border w-full py-2 px-3 text-blue-900">
-                </div>
-                <div class="mb-2">
-                    <label for="nip" class="block py-1">NIP</label>
-                    <input wire:model="nip" type="number" name="nip" class="shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm" placeholder="Input nip dosen">
-                    @error('nip') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                    <input wire:model="pdId" type="hidden" class="shadow appearance-none border w-full py-2 px-3 text-blue-900">
                 </div>
                 <div class="mb-2">
                     <label for="name" class="block py-1">Nama</label>
                     <input wire:model="name" name="name" class="shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm" placeholder="Input nama dosen">
                     @error('name') <h1 class="text-red-500">{{$message}}</h1>@enderror
                 </div>
+
                 <div class="mb-2">
-                    <label for="email" class="block py-1">Email</label>
-                    <input wire:model="email" type="email" name="email" class="shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm" placeholder="Input email dosen">
-                    @error('email') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                    <label for="upload_lots" class="block py-1">Banyak File</label>
+                    <input wire:model="upload_lots" type="number" name="upload_lots" class="shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm" placeholder="Input upload_lots dosen">
+                    @error('upload_lots') <h1 class="text-red-500">{{$message}}</h1>@enderror
                 </div>
+
                 <div class="mb-2">
-                    <label for="faculty" class="block py-1">Fakultas Asal</label>
-                    {{ Form::select('faculty',$faculties,null,
-                    ['class' => 'shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm','id' => 'faculty','wire:model'=>'faculty','placeholder'=>'- Pilih fakultas asal -'])}}
-                    @error('faculty') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                    <label for="link_lots" class="block py-1">Banyak Link</label>
+                    <input wire:model="link_lots" type="number" name="link_lots" class="shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm" placeholder="Input link_lots dosen">
+                    @error('link_lots') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                </div>
+
+
+                <div class="mb-2">
+                    <label for="terms_id" class="block py-1">Syarat Proses</label>
+                    {{ Form::select('terms_id',$pd,null,
+                    ['class' => 'shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm','id' => 'terms_id','wire:model'=>'terms_id','placeholder'=>'- Pilih Syarat Proses-'])}}
+                    @error('terms_id') <h1 class="text-red-500">{{$message}}</h1>@enderror
                 </div>
             </div>
         </div>
@@ -53,6 +57,5 @@
         </div>
        </form>
       </div>
-
     </div>
   </div>

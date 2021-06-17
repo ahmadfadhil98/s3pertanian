@@ -10,32 +10,27 @@
             <form>
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div>
-                        <h1 class="font-bold text-center mb-4">INPUT DOSEN</h1>
+                        <h1 class="font-bold text-center mb-4">INPUT DISERTASI</h1>
                     </div>
                 <div>
                 <div class="mb-2">
-                    <input wire:model="lecturerId" type="hidden" class="shadow appearance-none border w-full py-2 px-3 text-blue-900">
+                    <input wire:model="disertasiId" type="hidden" class="shadow appearance-none border w-full py-2 px-3 text-blue-900">
                 </div>
+                @if ($user->type!=3)
+                    <div class="mb-2">
+                        <label for="student_id" class="block py-1">Mahasiswa</label>
+                        {{ Form::select('student_id',$students,null,
+                        ['class' => 'shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm','id' => 'student_id','wire:model'=>'student_id','placeholder'=>'- Pilih mahasiswa -'])}}
+                        @error('student_id') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                    </div>
+                @else
+
+                @endif
+
                 <div class="mb-2">
-                    <label for="nip" class="block py-1">NIP</label>
-                    <input wire:model="nip" type="number" name="nip" class="shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm" placeholder="Input nip dosen">
-                    @error('nip') <h1 class="text-red-500">{{$message}}</h1>@enderror
-                </div>
-                <div class="mb-2">
-                    <label for="name" class="block py-1">Nama</label>
-                    <input wire:model="name" name="name" class="shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm" placeholder="Input nama dosen">
-                    @error('name') <h1 class="text-red-500">{{$message}}</h1>@enderror
-                </div>
-                <div class="mb-2">
-                    <label for="email" class="block py-1">Email</label>
-                    <input wire:model="email" type="email" name="email" class="shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm" placeholder="Input email dosen">
-                    @error('email') <h1 class="text-red-500">{{$message}}</h1>@enderror
-                </div>
-                <div class="mb-2">
-                    <label for="faculty" class="block py-1">Fakultas Asal</label>
-                    {{ Form::select('faculty',$faculties,null,
-                    ['class' => 'shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm','id' => 'faculty','wire:model'=>'faculty','placeholder'=>'- Pilih fakultas asal -'])}}
-                    @error('faculty') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                    <label for="title" class="block py-1">Judul Disertasi</label>
+                    <input wire:model="title" name="title" class="shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm" placeholder="Input judul disertasi">
+                    @error('title') <h1 class="text-red-500">{{$message}}</h1>@enderror
                 </div>
             </div>
         </div>

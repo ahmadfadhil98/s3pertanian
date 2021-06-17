@@ -21,5 +21,18 @@ return [
         15 => 'Fakultas Teknologi Pertanian',
     ],
 
+    'position' => [
+        1 => 'Pembimbing 1',
+        2 => 'Pembimbing 2',
+        3 => 'Pembimbing 3',
+        4 => 'Pembimbing 4',
+    ],
+
+    'status' => [
+        1 => 'Diajukan',
+        2 => 'Disetujui',
+        3 => 'Ditolak',
+    ],
+
 
 ];

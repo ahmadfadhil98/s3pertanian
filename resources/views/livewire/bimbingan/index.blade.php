@@ -1,22 +1,24 @@
 <div>
     <div class="max-w-full mx-auto sm:px-6 lg:px-8 mt-12">
         <div class="text-base">
-            Database File
+            Database Bimbingan
         </div>
 
         <div class="mt-3 bg-white dark:bg-gray-800 overflow-hidden shadow px-4 py-4">
             <div class="flex mb-4">
                 <div class="w-full md:w-1/2">
                     <button wire:click="showModal()" class="text-base bg-blue-700 hover:bg-blue-900 text-white py-2 px-6">
-                        Input File
+                        Tambah Pembimbing
                     </button>
                 </div>
-                <div class="w-full md:w-1/2">
-                    <input wire:model="search" type="text" class="shadow appearance-none  w-full py-2 px-3 text-blue-900" placeholder="Cari file...">
-                </div>
             </div>
+
                 @if($isOpen)
-                    @include('livewire.file.form')
+                    @include('livewire.bimbingan.form')
+                @endif
+
+                @if($isDel)
+                    @include('livewire.bimbingan.delete')
                 @endif
 
                 @if(session()->has('info'))
@@ -39,24 +41,25 @@
                     <thead class="bg-blue-900">
                         <tr>
                             <th class="text-base font-normal px-4 py-2 text-white w-20">No</th>
-                            <th class="text-base font-normal px-4 py-2 text-white w-auto">Nama File</th>
+                            <th class="text-base font-normal px-4 py-2 text-white w-auto">NIP</th>
+                            <th class="text-base font-normal px-4 py-2 text-white w-auto">Nama</th>
+                            <th class="text-base font-normal px-4 py-2 text-white w-auto">Fakultas</th>
                             <th class="text-base font-normal px-4 py-2 text-white w-auto"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($files as  $key=>$file)
+                        @foreach($lecturers as  $key=>$lecturer)
                             <tr>
-                                <td class="px-2 py-3">{{ $files->firstitem() + $key }}</td>
-
-                                <td>{{ $file->name }}</td>
+                                <td class="px-2 py-3">{{ $lecturers->firstitem() + $key }}</td>
+                                <td>{{ $lecturer->nip }}</td>
+                                <td>{{ $lecturer->name }}</td>
+                                <td>{{ $faculties[$lecturer->faculty] }}</td>
                                 <td>
-                                    <button wire:click="download({{ $file->id }})" class="text-sm bg-blue-700 hover:bg-blue-900 text-white py-2 px-6">
-                                        Download
-                                    </button>
-                                    <button wire:click="edit({{ $file->id }})" class="text-sm bg-blue-700 hover:bg-blue-900 text-white py-2 px-6">
+                                    <button wire:click="edit({{ $lecturer->id }})" class="text-sm bg-blue-700 hover:bg-blue-900 text-white py-2 px-6">
                                     Edit
                                     </button>
-                                    <button wire:click="showDel({{ $file->id }})" class="text-sm bg-red-700 hover:bg-red-900 text-white py-2 px-6">
+                                    <button wire:click="showDel({{ $lecturer->id }})"
+                                    class="text-sm bg-red-700 hover:bg-red-900 text-white py-2 px-6">
                                     Hapus
                                     </button>
                                 </td>
@@ -65,7 +68,7 @@
                     </tbody>
                 </table>
                 <div class="mt-4">
-                    {{$files->links()}}
+                    {{$lecturers->links()}}
                 </div>
 
         </div>
