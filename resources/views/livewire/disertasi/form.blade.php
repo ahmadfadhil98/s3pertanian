@@ -32,6 +32,34 @@
                     <input wire:model="title" name="title" class="shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm" placeholder="Input judul disertasi">
                     @error('title') <h1 class="text-red-500">{{$message}}</h1>@enderror
                 </div>
+
+                <div class="mb-2">
+                    <label for="lecturer1" class="block py-1">Pembimbing 1</label>
+                    {{ Form::select('lecturer1',$lecturers,null,
+                    ['class' => 'shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm','id' => 'lecturer1','wire:click'=>'onChange()','wire:model'=>'lecturer1','placeholder'=>'- Pilih pembimbing 1 -'])}}
+                    @error('lecturer1') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                </div>
+
+                <div class="mb-2">
+                    <label for="lecturer2" class="block py-1">Pembimbing 2</label>
+                    {{ Form::select('lecturer2',$lecturers2,null,
+                    ['class' => 'shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm','id' => 'lecturer2','wire:click'=>'onChange2()','wire:model'=>'lecturer2','placeholder'=>'- Pilih pembimbing 2 -'])}}
+                    @error('lecturer2') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                </div>
+
+                <div class="mb-2">
+                    <label for="lecturer3" class="block py-1">Pembimbing 3</label>
+                    {{ Form::select('lecturer3',$lecturers3,null,
+                    ['class' => 'shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm','id' => 'lecturer3','wire:click'=>'onChange3()','wire:model'=>'lecturer3','placeholder'=>'- Pilih pembimbing 3 -'])}}
+                    @error('lecturer3') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                </div>
+
+                <div class="mb-2">
+                    <label for="lecturer4" class="block py-1">Pembimbing 4</label>
+                    {{ Form::select('lecturer4',$lecturers4,null,
+                    ['class' => 'shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm','id' => 'lecturer4','wire:model'=>'lecturer4','placeholder'=>'- Pilih pembimbing 4 -'])}}
+                    @error('lecturer4') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                </div>
             </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">

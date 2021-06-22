@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Livewire\Bdisertasi;
 use App\Http\Livewire\Bimbingan;
+use App\Http\Livewire\Ddisertasi;
 use App\Http\Livewire\Disertasi;
 use App\Http\Livewire\File;
 use App\Http\Livewire\Lecturer;
@@ -36,6 +38,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('proses_disertasi', ProsesDisertasi::class)->name('proses_disertasi');
     Route::get('disertasi', Disertasi::class)->name('disertasi');
     Route::get('bimbingan', Bimbingan::class)->name('bimbingan');
+    Route::get('ddisertasi/{id}', Ddisertasi::class)->name('ddisertasi');
+    Route::get('bdisertasi', Bdisertasi::class)->name('bdisertasi');
     Route::get('file', File::class)->name('file');
 
 });

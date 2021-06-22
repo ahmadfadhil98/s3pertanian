@@ -68,7 +68,7 @@
                                     <div>
                                         <div class="ml-3 my-5 bg-green-600 p-1 w-20">
                                             <div class="uppercase text-xs leading-4 font-semibold text-center text-green-100">
-                                                <button onclick="location.href=' {{ route( 'dkelas', [$kelas->id]) }} '">DETAIL</button>
+                                                <button onclick="location.href=' {{ route( 'ddisertasi',[$disertasi->id]) }} '">DETAIL</button>
                                             </div>
                                         </div>
                                     </div>

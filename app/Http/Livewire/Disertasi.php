@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Disertasi as ModelsDisertasi;
+use App\Models\Lecturer;
 use App\Models\ProsesDisertasi;
 use App\Models\Student;
 use Illuminate\Database\QueryException;
@@ -13,6 +14,15 @@ class Disertasi extends Component
 {
     public $isOpen,$isDel,$delId;
     public $disertasiId,$title,$student_id;
+    // public $lecturer1,$lecturer2,$lecturer3,$lecturer4;
+    public $lecturer1 = 0;
+    public $lecturer2 = 0;
+    public $lecturer3 = 0;
+    public $lecturer4 = 0;
+    public $lecturers;
+    public $lecturers2 = [];
+    public $lecturers3 = [];
+    public $lecturers4 = [];
     public $user;
 
     public function render()
@@ -22,12 +32,33 @@ class Disertasi extends Component
         $disertasis = ModelsDisertasi::all();
         $students = Student::pluck('name','id');
         $statuses = config('central.status');
+        // dd($this->lecturer1);
+        $this->lecturers = Lecturer::pluck('name','id');
         return view('livewire.disertasi.index',[
             'disertasis' => $disertasis,
             'students' => $students,
+            'lecturers' => $this->lecturers,
+            'lecturers2' => $this->lecturers2,
+            'lecturers3' => $this->lecturers3,
+            'lecturers4' => $this->lecturers4,
             'user' => $user,
             'statuses' => $statuses
         ]);
+    }
+
+    public function onChange(){
+        $this->lecturers2 = Lecturer::whereNotIn('id',
+        [$this->lecturer1,$this->lecturer2,$this->lecturer3,$this->lecturer4])->pluck('name','id');
+    }
+
+    public function onChange2(){
+        $this->lecturers3 = Lecturer::whereNotIn('id',
+        [$this->lecturer1,$this->lecturer2,$this->lecturer3,$this->lecturer4])->pluck('name','id');
+    }
+
+    public function onChange3(){
+        $this->lecturers4 = Lecturer::whereNotIn('id',
+        [$this->lecturer1,$this->lecturer2,$this->lecturer3,$this->lecturer4])->pluck('name','id');
     }
 
     public function showModal() {
@@ -52,17 +83,19 @@ class Disertasi extends Component
         if($this->user->type==1){
             $this->validate(
                 [
-                    'title' => 'required',
                     'student_id' => 'required'
                 ]
             );
 
             try {
                 // dd($this->disertasiId);
-                ModelsDisertasi::updateOrCreate(['id' => $this->disertasiId], [
+                $disertasi = ModelsDisertasi::updateOrCreate(['id' => $this->disertasiId], [
                     'title' => $this->title,
                     'student_id' => $this->student_id,
                     'status' => 1
+                ]);
+                $disertasi->disertasi_lecturer()->create([
+
                 ]);
 
                 session()->flash('info', $this->disertasiId ? 'Dosen Update Successfully' : 'Dosen Created Successfully' );
@@ -74,12 +107,6 @@ class Disertasi extends Component
                 }
             }
         }elseif($this->user->type==3){
-
-            $this->validate(
-                [
-                    'title' => 'required',
-                ]
-            );
 
             try {
                 // dd($this->disertasiId);
