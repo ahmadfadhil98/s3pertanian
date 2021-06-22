@@ -15,7 +15,7 @@ class Student extends Component
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
-        $students = ModelsStudent::where('name','like',$searchParam)->paginate(7);
+        $students = ModelsStudent::where('name','like',$searchParam)->paginate(6);
         return view('livewire.student.index',[
             'students' => $students
         ]);

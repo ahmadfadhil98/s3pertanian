@@ -1,18 +1,34 @@
 <div>
-    <div class="max-w-full mx-auto sm:px-6 lg:px-8 mt-12">
-        <div class="text-base">
-            Database Staff
-        </div>
+    <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
+            <div class="flex mt-7">
+                <div class="text-xl font-bold text-gray-600 ">
+                    Database Staff
+                </div>
+                <div class="text-xl font-bold text-gray-300 px-2 ">
+                    -
+                </div>
+                <div class="text-base font-bold text-green-500 py-1">
+                    <div class="flex">
+                        <div class="">Universitas Andalas</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
 
-        <div class="mt-3 bg-white dark:bg-gray-800 overflow-hidden shadow px-4 py-4">
-            <div class="flex mb-4">
+            <div class="flex mt-6">
                 <div class="w-full md:w-1/2">
-                    <button wire:click="showModal()" class="text-base bg-blue-700 hover:bg-blue-900 text-white py-2 px-6">
-                        Input Staff
+                    <button wire:click="showModal()" class="rounded-full focus:outline-none py-3 px-7 text-base font-bold bg-green-500 hover:bg-green-700 text-white">
+                        <div class="flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                              </svg>
+                        <div class="ml-2.5">Tambah Staff</div></div>
                     </button>
                 </div>
                 <div class="w-full md:w-1/2">
-                    <input wire:model="search" type="text" class="shadow appearance-none  w-full py-2 px-3 text-blue-900" placeholder="Cari staff...">
+                    <input wire:model="search" type="text" class="w-full focus:outline-none py-3 px-6 rounded-full text-gray-600" placeholder="Ketik nama staff...">
                 </div>
             </div>
                 @if($isOpen)
@@ -24,42 +40,61 @@
                 @endif
 
                 @if(session()->has('info'))
-                    <div class="bg-green-500 mb-4 py-2 px-6">
-                        <div>
-                            <h1 class="text-white text-sm">{{ session('info') }}</h1>
-                        </div>
+                <div class="py-2 px-6 mt-4">
+                    <div>
+                        <h1 class="text-green-500 text-sm">{{ session('info') }}</h1>
                     </div>
+                </div>
                 @endif
 
                 @if(session()->has('delete'))
-                    <div class="bg-red-700 mb-4 py-2 px-6">
+                    <div class="py-2 px-6 mt-4">
                         <div>
-                            <h1 class="text-white text-sm">{{ session('delete') }}</h1>
+                            <h1 class="text-red-500 text-sm">{{ session('delete') }}</h1>
                         </div>
                     </div>
                 @endif
 
-                <table class="table-fixed w-full text-center">
-                    <thead class="bg-blue-900">
+                <table class="table-fixed w-full mt-6">
+                    <thead>
                         <tr>
-                            <th class="text-base font-normal px-4 py-2 text-white w-20">No</th>
-                            <th class="text-base font-normal px-4 py-2 text-white w-auto">NIP</th>
-                            <th class="text-base font-normal px-4 py-2 text-white w-auto">Nama</th>
-                            <th class="text-base font-normal px-4 py-2 text-white w-auto"></th>
+                            <th class="bg-yellow-300 text-base font-bold py-3 text-gray-600 rounded-tl-full rounded-bl-full w-20">No.</th>
+                            <th class="bg-yellow-300 py-3 text-gray-600 w-80">
+                                <div class="flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 ml-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
+                                    </svg>
+                                    <div class="ml-3">Nomor Induk Pegawai</div>
+                                </div>
+                            </th>
+                            <th class="bg-yellow-300 py-3 text-gray-600 rounded-tr-full rounded-br-full w-80 ">
+                                <div class="flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                      </svg>
+                                    <div class="ml-3">Nama Staff</div>
+                                </div>
+                            </th>
+                            <th class="w-100"></th>
                         </tr>
                     </thead>
+
                     <tbody>
                         @foreach($staffs as  $key=>$staff)
                             <tr>
-                                <td class="px-2 py-3">{{ $staffs->firstitem() + $key }}</td>
-                                <td>{{ $staff->nip }}</td>
-                                <td>{{ $staff->name }}</td>
-                                <td>
-                                    <button wire:click="edit({{ $staff->id }})" class="text-sm bg-blue-700 hover:bg-blue-900 text-white py-2 px-6">
-                                    Edit
+                                <td class="text-center text-base text-gray-600 py-4">{{ $staffs->firstitem() + $key }}.</td>
+                                <td class="text-left text-base text-gray-600 px-6">{{ $staff->nip }}</td>
+                                <td class="text-left text-base text-gray-600 font-bold">{{ $staff->name }}</td>
+                                <td class="text-right">
+                                    <button wire:click="edit({{ $staff->id }})" class="rounded-full text-sm font-bold bg-green-500 hover:bg-green-700 text-white py-2.5 px-7">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
                                     </button>
-                                    <button wire:click="showDel({{ $staff->id }})" class="text-sm bg-red-700 hover:bg-red-900 text-white py-2 px-6">
-                                    Hapus
+                                    <button wire:click="showDel({{ $staff->id }})" class="ml-1.5 rounded-full text-sm font-bold bg-red-500 hover:bg-red-700 text-white py-2.5 px-7">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                        </svg>
                                     </button>
                                 </td>
                             </tr>
@@ -67,10 +102,8 @@
                     </tbody>
                 </table>
                 <div class="mt-4">
+                    {{$staffs->links()}}
                 </div>
-
-        </div>
-
     </div>
 </div>
 

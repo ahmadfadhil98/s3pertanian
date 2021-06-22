@@ -14,7 +14,7 @@ class ProsesDisertasi extends Component
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
-        $proses_disertasis = ModelsProsesDisertasi::where('name','like',$searchParam)->paginate(7);
+        $proses_disertasis = ModelsProsesDisertasi::where('name','like',$searchParam)->paginate(6);
         $pd = ModelsProsesDisertasi::pluck('name','id');
         return view('livewire.proses_disertasi.index',[
             'proses_disertasis' => $proses_disertasis,
