@@ -19,4 +19,7 @@ class ProsesDisertasi extends Model
         return $this->hasMany(ProsesDisertasi::class,'terms_id','id');
     }
 
+    public function academic(){
+        return $this->hasMany(Academic::class,'academic_id','id');
+    }
 }

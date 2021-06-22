@@ -2,7 +2,14 @@
     <div class="max-w-full mx-auto sm:px-6 lg:px-8 mt-12">
         <div class="text-base">
             Detail Disertasi
+            @if ($this->user->type==1)
+                {{ $students[$disertasi->student_id] }}
+            @endif
         </div>
+
+        @if($isOpen)
+            @include('livewire.disertasi.form2')
+        @endif
 
         <div class="mt-3 bg-white dark:bg-gray-800 overflow-hidden shadow px-4 py-4">
             <div class="grid grid-cols-3 grid-rows-2 gap-4">
@@ -12,16 +19,22 @@
                             September 20, 10:30 AM
                         </section>
                         <section class="text-3xl font-bold">
-                            {{ $disertasi->title }}
+                            @if ($disertasi->title)
+                                {{ $disertasi->title }}
+                            @else
+                                Belum ada judul
+                            @endif
                         </section>
                         <section class="font-normal text-md text-gray-700">
-                            Engagement is the term used for likes, shares, comments, and other interactions with a business’ social media presence.
+                            @if ($disertasi->topic_id)
+                                {{ $topics[$disertasi->topic_id] }}
+                            @endif
                         </section>
                         <section class="font-bold text-lg text-blue-900">
                             Belum ada
                         </section>
                         <section class="flex justify-end">
-                            <button type="button" class="bg-yellow-600 text-white px-3 py-1 rounded-md">Read more</button>
+                            <button type="button" wire:click="editdisertasi()" class="bg-yellow-600 text-white px-3 py-1 rounded-md">Manage</button>
                         </section>
                     </div>
                     @foreach ($proses_disertasis as $proses_disertasi)

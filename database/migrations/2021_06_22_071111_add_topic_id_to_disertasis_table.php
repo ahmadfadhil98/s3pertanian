@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddAcademicIdToPenilaiansTable extends Migration
+class AddTopicIdToDisertasisTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class AddAcademicIdToPenilaiansTable extends Migration
      */
     public function up()
     {
-        Schema::table('penilaians', function (Blueprint $table) {
-            $table->unsignedBigInteger('academic_id')
-                    ->after('lecturer_id')
+        Schema::table('disertasis', function (Blueprint $table) {
+            $table->unsignedBigInteger('topic_id')
+                    ->after('student_id')
                     ->nullable();
 
-            $table->foreign('academic_id')->references('id')->on('academics');
+            $table->foreign('topic_id')->references('id')->on('disertasi_topics');
         });
     }
 
@@ -29,8 +29,8 @@ class AddAcademicIdToPenilaiansTable extends Migration
      */
     public function down()
     {
-        Schema::table('penilaians',function (Blueprint $table) {
-            $table->dropColumn('academic_id');
+        Schema::table('disertasis', function (Blueprint $table) {
+            $table->dropColumn('topic_id');
         });
     }
 }

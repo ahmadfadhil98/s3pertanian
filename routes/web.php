@@ -9,6 +9,7 @@ use App\Http\Livewire\Lecturer;
 use App\Http\Livewire\ProsesDisertasi;
 use App\Http\Livewire\Staff;
 use App\Http\Livewire\Student;
+use App\Http\Livewire\Topic;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('bimbingan', Bimbingan::class)->name('bimbingan');
     Route::get('ddisertasi/{id}', Ddisertasi::class)->name('ddisertasi');
     Route::get('bdisertasi', Bdisertasi::class)->name('bdisertasi');
+    Route::get('topic', Topic::class)->name('topic');
     Route::get('file', File::class)->name('file');
 
 });

@@ -40,7 +40,13 @@
                         </x-jet-nav-link>
                     </div>
                 {{-- @endcan --}}
-
+                {{-- @can('user_access') --}}
+                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                        <x-jet-nav-link href="{{ route('topic') }}" :active="request()->routeIs('topic.*')">
+                            Topik Disertasi
+                        </x-jet-nav-link>
+                    </div>
+                {{-- @endcan --}}
                 {{-- @can('user_access') --}}
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-jet-nav-link href="{{ route('proses_disertasi') }}" :active="request()->routeIs('proses_disertasi.*')">
