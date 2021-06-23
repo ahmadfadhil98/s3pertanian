@@ -71,6 +71,7 @@ class Topic extends Component
         $topic = DisertasiTopic::findOrFail($id);
         $this->topicId = $id;
         $this->name = $topic->name;
+        $this->showModal();
     }
 
     public function delete($id){

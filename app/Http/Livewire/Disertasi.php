@@ -33,8 +33,8 @@ class Disertasi extends Component
         $students = Student::pluck('name','id');
         $topics = DisertasiTopic::pluck('name','id');
         $statuses = config('central.status');
-        // dd($this->lecturer1);
         $this->lecturers = Lecturer::pluck('name','id');
+
         return view('livewire.disertasi.index',[
             'disertasis' => $disertasis,
             'students' => $students,
@@ -94,19 +94,21 @@ class Disertasi extends Component
                 $disertasi = ModelsDisertasi::updateOrCreate(['id' => $this->disertasiId], [
                     'title' => $this->title,
                     'student_id' => $this->student_id,
+                    'topic_id' => $this->topic_id,
                     'status' => 1
                 ]);
+
                 foreach($dosens as $dosen){
-                    dd($dosen);
+                    // dd($dosen);
                     if($dosen!=0){
                         $disertasi->disertasi_lecturer()->create([
                             'lecturer_id' => $dosen,
-                            'position' => $no
+                            'position' => $no,
+                            'approve' => 1
                         ]);
                         $no++;
                     }
                 }
-
 
                 $disertasi->disertasi_lecturer()->create([
                     'lecturer_id' => $this->lecturer1,

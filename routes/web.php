@@ -38,7 +38,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('staff', Staff::class)->name('staff');
     Route::get('proses_disertasi', ProsesDisertasi::class)->name('proses_disertasi');
     Route::get('disertasi', Disertasi::class)->name('disertasi');
-    Route::get('bimbingan', Bimbingan::class)->name('bimbingan');
+    Route::get('bimbingan/{id}', Bimbingan::class)->name('bimbingan');
     Route::get('ddisertasi/{id}', Ddisertasi::class)->name('ddisertasi');
     Route::get('bdisertasi', Bdisertasi::class)->name('bdisertasi');
     Route::get('topic', Topic::class)->name('topic');

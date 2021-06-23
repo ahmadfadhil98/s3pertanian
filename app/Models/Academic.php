@@ -9,7 +9,7 @@ class Academic extends Model
 {
     use HasFactory;
     protected $table = "academics";
-    protected $fillable = ['proses_disertasi_id','kode_proses_disertasi','disertasi_id','link/upload'];
+    protected $fillable = ['proses_disertasi_id','kode_proses_disertasi','disertasi_id','link_upload'];
 
     public function proses_disertasi(){
         return $this->belongsTo(ProsesDisertasi::class);

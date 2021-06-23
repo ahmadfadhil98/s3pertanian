@@ -18,7 +18,7 @@ class CreateDisertasiLecturersTable extends Migration
             $table->unsignedBigInteger('disertasi_id');
             $table->unsignedBigInteger('lecturer_id');
             $table->integer('position');
-            $table->integer('approve');
+            $table->integer('approve')->default(1);
             $table->timestamps();
 
             $table->foreign('disertasi_id')->references('id')->on('disertasis');

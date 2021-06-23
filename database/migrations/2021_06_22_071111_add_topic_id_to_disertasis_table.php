@@ -30,6 +30,7 @@ class AddTopicIdToDisertasisTable extends Migration
     public function down()
     {
         Schema::table('disertasis', function (Blueprint $table) {
+            $table->dropForeign('topic_id');
             $table->dropColumn('topic_id');
         });
     }

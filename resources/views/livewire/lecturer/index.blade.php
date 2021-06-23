@@ -40,7 +40,7 @@
                 @endif
 
                 @if(session()->has('info'))
-                    <div class="py-2 px-6 mt-4">
+                    <div class="py-2 px-6 mt-4" id="alert">
                         <div>
                             <h1 class="text-green-500 text-sm">{{ session('info') }}</h1>
                         </div>
@@ -48,7 +48,7 @@
                 @endif
 
                 @if(session()->has('delete'))
-                    <div class="py-2 px-6 mt-4">
+                    <div class="py-2 px-6 mt-4" id="alert">
                         <div>
                             <h1 class="text-red-500 text-sm">{{ session('delete') }}</h1>
                         </div>
@@ -116,4 +116,5 @@
                 </div>
     </div>
 </div>
+
 

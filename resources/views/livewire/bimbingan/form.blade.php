@@ -18,12 +18,12 @@
                 </div>
                 <div class="mb-2">
                     <label for="lecturer_id" class="block py-1">Dosen</label>
-                    {{ Form::select('lecturer_id',$lecturer,null,
+                    {{ Form::select('lecturer_id',$name,null,
                     ['class' => 'shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm','id' => 'lecturer_id','wire:model'=>'lecturer_id','placeholder'=>'- Pilih dosen -'])}}
                     @error('lecturer_id') <h1 class="text-red-500">{{$message}}</h1>@enderror
                 </div>
                 <div class="mb-2">
-                    <label for="position" class="block py-1">Dosen</label>
+                    <label for="position" class="block py-1">Posisi</label>
                     {{ Form::select('position',$positions,null,
                     ['class' => 'shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm','id' => 'position','wire:model'=>'position','placeholder'=>'- Pilih posisi -'])}}
                     @error('position') <h1 class="text-red-500">{{$message}}</h1>@enderror

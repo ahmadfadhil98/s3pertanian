@@ -4,21 +4,32 @@ namespace App\Http\Livewire;
 
 use App\Models\DisertasiLecturer;
 use App\Models\Lecturer;
+use Illuminate\Database\QueryException;
 use Livewire\Component;
 
 class Bimbingan extends Component
 {
     public $isOpen,$isDel,$delId;
     public $lecturerId,$lecturer_id,$position;
+    public $disertasiId;
+
+    public function mount($id){
+        $this->disertasiId = $id;
+    }
 
     public function render()
     {
-        $lecturers = DisertasiLecturer::paginate(4);
-        $lecturer = Lecturer::pluck('name','id');
+        $lecturers = DisertasiLecturer::where('disertasi_id',$this->disertasiId)->paginate(4);
+        $name = Lecturer::pluck('name','id');
+        $faculties = config('central.faculties');
         $positions = config('central.position');
+        $nip = Lecturer::pluck('nip','id');
+
         return view('livewire.bimbingan.index',[
             'lecturers' => $lecturers,
-            'lecturer' => $lecturer,
+            'faculties' => $faculties,
+            'name' => $name,
+            'nip' => $nip,
             'positions' => $positions
         ]);
     }
@@ -45,36 +56,18 @@ class Bimbingan extends Component
         $this->validate(
             [
                 'lecturer_id' => 'required',
-                'email' => 'required',
-                'faculty' => 'required'
+                'position' => 'required',
             ]
         );
 
         try {
             // dd($this->lecturerId);
-            $lecturer = DisertasiLecturer::updateOrCreate(['id' => $this->lecturerId], [
-                'name' => $this->name,
-                'username' => $this->nip,
-                'email' => $this->email,
-                'password' => bcrypt($this->nip),
-                'type' => 2,
-                'remember_token' => null,
+            DisertasiLecturer::updateOrCreate(['id' => $this->lecturerId], [
+                'disertasi_id' => $this->disertasiId,
+                'lecturer_id' => $this->lecturer_id,
+                'position' => $this->position,
+                'approve' => 1,
             ]);
-
-            if($this->lecturerId){
-                $user->lecturer()->update([
-                    'name' => $this->name,
-                    'nip' => $this->nip,
-                    'faculty' => $this->faculty
-                ]);
-            }else{
-                $user->lecturer()->create([
-                    'name' => $this->name,
-                    'nip' => $this->nip,
-                    'faculty' => $this->faculty
-                ]);
-            }
-
 
             session()->flash('info', $this->lecturerId ? 'Dosen Update Successfully' : 'Dosen Created Successfully' );
 
@@ -88,27 +81,21 @@ class Bimbingan extends Component
         $this->hideModal();
 
         $this->lecturerId = '';
-        $this->name = '';
-        $this->nip = '';
-        $this->email = '';
-        $this->faculty = '';
+        $this->lecturer_id = '';
+        $this->position = '';
     }
 
     public function edit($id){
-        $user = User::findOrFail($id);
-        $lecturer = ModelsLecturer::findOrFail($id);
+        $lecturer = DisertasiLecturer::findOrFail($id);
         $this->lecturerId = $id;
-        $this->name = $user->name;
-        $this->email = $user->email;
-        $this->nip = $lecturer->nip;
-        $this->faculty = $lecturer->faculty;
+        $this->lecturer_id = $lecturer->lecturer_id;
+        $this->position = $lecturer->position;
         $this->showModal();
     }
 
     public function delete($id){
         try{
-            ModelsLecturer::find($id)->delete();
-            User::find($id)->delete();
+            DisertasiLecturer::find($id)->delete();
             session()->flash('delete','Dosen Successfully Deleted');
             $this->hideDel();
         }catch(QueryException $e){
