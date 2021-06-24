@@ -1,11 +1,23 @@
 <div>
-    <div class="max-w-full mx-auto sm:px-6 lg:px-8 mt-12">
-        <div class="text-base">
-            Database Disertasi
-        </div>
+    <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
+            <div class="flex mt-7">
+                <div class="text-xl font-bold text-gray-600 ">
+                    Database Dosen
+                </div>
+                <div class="text-xl font-bold text-gray-300 px-2 ">
+                    -
+                </div>
+                <div class="text-base font-bold text-green-500 py-1">
+                    <div class="flex">
+                        <div class="">Universitas Andalas</div>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
 
-        <div class="mt-3 bg-white dark:bg-gray-800 overflow-hidden shadow px-4 py-4">
-            <div class="flex mb-4">
+            <div class="flex mt-6">
                 <div class="w-full md:w-1/2">
                     <button wire:click="showModal()" class="text-base bg-blue-700 hover:bg-blue-900 text-white py-2 px-6">
                         Ajukan Disertasi
@@ -19,30 +31,27 @@
                 @if($isDel)
                     @include('livewire.disertasi.delete')
                 @endif
-
                 @if(session()->has('info'))
-                    <div class="bg-green-500 mb-4 py-2 px-6">
+                    <div class="py-2 px-6 mt-4" id="alert">
                         <div>
-                            <h1 class="text-white text-sm">{{ session('info') }}</h1>
+                            <h1 class="text-green-500 text-sm">{{ session('info') }}</h1>
                         </div>
                     </div>
                 @endif
 
                 @if(session()->has('delete'))
-                    <div class="bg-red-700 mb-4 py-2 px-6">
+                    <div class="py-2 px-6 mt-4" id="alert">
                         <div>
-                            <h1 class="text-white text-sm">{{ session('delete') }}</h1>
+                            <h1 class="text-red-500 text-sm">{{ session('delete') }}</h1>
                         </div>
                     </div>
                 @endif
-                <!-- component -->
-                <div class="container mx-auto bg-gray-50 min-h-screen p-8 antialiased">
-                    <div>
-                        @foreach ($disertasis as $key=>$disertasi)
+
+                @foreach ($disertasis as $key=>$disertasi)
                             <!-- start  -->
                             <div class="bg-gray-100 mx-auto border-gray-500 border rounded-sm text-gray-700 mb-0.5 h-30">
                                 <div class="flex p-3 border-l-8 border-yellow-600">
-                                    {{-- <div class="space-y-1 border-r-2 pr-3">
+                                    <div class="space-y-1 border-r-2 pr-3">
                                         <div class="text-sm leading-5 font-semibold"><span class="text-xs leading-4 font-normal text-gray-500"> Release #</span> LTC08762304</div>
                                         <div class="text-sm leading-5 font-semibold"><span class="text-xs leading-4 font-normal text-gray-500 pr"> BOL #</span> 10937</div>
                                         <div class="text-sm leading-5 font-semibold">JUN 14. 9:30 PM</div>
@@ -92,12 +101,11 @@
                                 </div>
                             </div>
                             <!-- end -->
-                        @endforeach
-
-                    </div>
-                </div>
-        </div>
+                @endforeach
 
     </div>
 </div>
+
+
+
 

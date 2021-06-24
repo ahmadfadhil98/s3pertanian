@@ -13,7 +13,7 @@ class PermissionRoleTableSeeder extends Seeder
         $super_admin_permission = Permission::all();
 
         $admin_permission = $super_admin_permission->filter(function ($permission) {
-            return substr($permission->title, 0, 6) != 'admin_';
+            return substr($permission->title, 0, 6) == 'admin_';
         });
 
         $lecturer_permission = $super_admin_permission->filter(function ($permission) {
