@@ -16,11 +16,13 @@ class CreateDisertasisTable extends Migration
         Schema::create('disertasis', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('student_id');
+            $table->unsignedBigInteger('topic_id');
             $table->string('title')->nullable();
             $table->integer('status');
             $table->timestamps();
 
             $table->foreign('student_id')->references('id')->on('students');
+            $table->foreign('topic_id')->references('id')->on('disertasi_topics');
         });
     }
 

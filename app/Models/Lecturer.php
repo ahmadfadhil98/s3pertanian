@@ -18,4 +18,8 @@ class Lecturer extends Model
     public function disertasi_lecturer(){
         return $this->hasMany(DisertasiLecturer::class,'lecturer_id','id');
     }
+
+    public function marking(){
+        return $this->hasMany(Marking::class,'lecturer_id','id');
+    }
 }

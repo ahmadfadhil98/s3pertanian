@@ -19,7 +19,7 @@ class Academic extends Model
         return $this->belongsTo(Disertasi::class);
     }
 
-    public function penilaian(){
-        return $this->hasMany(Penilaian::class,'academic_id','id');
+    public function marking(){
+        return $this->hasMany(Marking::class,'academic_id','id');
     }
 }
