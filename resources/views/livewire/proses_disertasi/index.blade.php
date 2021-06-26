@@ -116,7 +116,7 @@
                     </tbody>
                 </table>
                 <div class="mt-4">
-                    {{$proses_disertasis->links()}}
+                    {{$proses_disertasis->links('pagination_section')}}
                 </div>
     </div>
 </div>

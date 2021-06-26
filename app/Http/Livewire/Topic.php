@@ -2,19 +2,21 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\WithPagination;
 use App\Models\DisertasiTopic;
 use Illuminate\Database\QueryException;
 use Livewire\Component;
 
 class Topic extends Component
 {
+    use WithPagination;
     public $isOpen,$isDel,$delId,$search;
     public $name,$topicId;
 
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
-        $topics = DisertasiTopic::where('name','like',$searchParam)->paginate(6);
+        $topics = DisertasiTopic::where('name','like',$searchParam)->paginate(5);
         return view('livewire.topic.index',[
             'topics' => $topics
         ]);

@@ -105,7 +105,7 @@
                     </tbody>
                 </table>
                 <div class="mt-4">
-                    {{$students->links()}}
+                    {{$students->links('pagination_section')}}
                 </div>
     </div>
 </div>

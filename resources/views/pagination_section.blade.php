@@ -1,11 +1,13 @@
 <div>
     @if ($paginator->hasPages())
-    <div class="py-4 flex items-center border-t-2 border-gray-200">
+    <div class="py-3 flex items-center border-t-2 border-gray-200">
         <div class="mt-1 hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
           <div>
             <p class="text-sm text-gray-600">
               Ditemukan
-              <span class="font-medium font-semibold text-green-500">1</span>
+              <span class="font-medium font-semibold text-green-500">
+                  {{$paginator->total()}}
+              </span>
               hasil
             </p>
           </div>
@@ -44,7 +46,6 @@
                 @endforeach
                 </ul>
 
-
                 <span>
                     {{-- Next Page Link --}}
                     @if ($paginator->hasMorePages())
@@ -66,7 +67,9 @@
         </div>
     </div>
     <div class="text-sm text-gray-300 text-center">
-        Sistem Informasi Universitas Andalas
+        Sistem Informasi S3 Pertanian
+        <div class="">Universitas Andalas</div>
+        </div>
     </div>
     @endif
 </div>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\WithPagination;
 use App\Models\Staff as ModelsStaff;
 use App\Models\User;
 use Illuminate\Database\QueryException;
@@ -9,13 +10,14 @@ use Livewire\Component;
 
 class Staff extends Component
 {
+    use WithPagination;
     public $isOpen,$isDel,$delId,$search;
     public $staffId,$nip,$name,$email;
 
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
-        $staffs = ModelsStaff::where('name','like',$searchParam)->paginate(6);
+        $staffs = ModelsStaff::where('name','like',$searchParam)->paginate(5);
         return view('livewire.staff.index',[
             'staffs' => $staffs
         ]);

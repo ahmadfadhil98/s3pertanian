@@ -2,19 +2,21 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\WithPagination;
 use App\Models\ProsesDisertasi as ModelsProsesDisertasi;
 use Illuminate\Database\QueryException;
 use Livewire\Component;
 
 class ProsesDisertasi extends Component
 {
+    use WithPagination;
     public $isOpen,$isDel,$delId,$search;
     public $pdId,$name,$upload_lots,$link_lots,$terms_id;
 
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
-        $proses_disertasis = ModelsProsesDisertasi::where('name','like',$searchParam)->paginate(6);
+        $proses_disertasis = ModelsProsesDisertasi::where('name','like',$searchParam)->paginate(5);
         $pd = ModelsProsesDisertasi::pluck('name','id');
         return view('livewire.proses_disertasi.index',[
             'proses_disertasis' => $proses_disertasis,

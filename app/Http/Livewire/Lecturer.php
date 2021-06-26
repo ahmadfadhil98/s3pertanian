@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\WithPagination;
 use App\Models\Lecturer as ModelsLecturer;
 use App\Models\User;
 use Illuminate\Database\QueryException;
@@ -9,13 +10,14 @@ use Livewire\Component;
 
 class Lecturer extends Component
 {
+    use WithPagination;
     public $isOpen,$isDel,$delId,$search;
     public $lecturerId,$nip,$faculty,$name,$email;
 
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
-        $lecturers = ModelsLecturer::where('name','like',$searchParam)->paginate(6);
+        $lecturers = ModelsLecturer::where('name','like',$searchParam)->paginate(5);
         $faculties = config('central.faculties');
         return view('livewire.lecturer.index',[
             'faculties' => $faculties,

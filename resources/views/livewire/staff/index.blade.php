@@ -105,7 +105,7 @@
                     </tbody>
                 </table>
                 <div class="mt-4">
-                    {{$staffs->links()}}
+                    {{$staffs->links('pagination_section')}}
                 </div>
     </div>
 </div>

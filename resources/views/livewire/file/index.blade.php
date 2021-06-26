@@ -97,7 +97,7 @@
                     </tbody>
                 </table>
                 <div class="mt-4">
-                    {{$files->links()}}
+                    {{$files->links('pagination_section')}}
                 </div>
     </div>
 </div>

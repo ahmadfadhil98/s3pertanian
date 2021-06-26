@@ -96,7 +96,7 @@
                     </tbody>
                 </table>
                 <div class="mt-4">
-                    {{$topics->links()}}
+                    {{$topics->links('pagination_section')}}
                 </div>
     </div>
 </div>

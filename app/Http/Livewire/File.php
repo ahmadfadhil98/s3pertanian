@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Livewire\WithPagination;
 use App\Models\File as ModelsFile;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Storage;
@@ -11,13 +12,13 @@ use Livewire\WithFileUploads;
 class File extends Component
 {
     use WithFileUploads;
-
+    use WithPagination;
     public $isOpen,$isDel,$delId,$search,$file,$fileId,$name;
 
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
-        $files = ModelsFile::where('name','like',$searchParam)->paginate(6);
+        $files = ModelsFile::where('name','like',$searchParam)->paginate(5);
         return view('livewire.file.index',[
             'files' => $files
         ]);
