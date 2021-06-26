@@ -60,7 +60,7 @@
                                     <div class="px-7 py-7 flex-1 bg-white rounded-xl mr-5 text-gray-600">
                                         <div class="">
                                             <div class="text-sm font-normal pb-1.5">
-                                                Mahasiwa : (Sesuai Nama Mahasiswa)
+                                                Mahasiwa : {{ $students[$disertasi->student_id] }}
                                             </div>
                                             @if ($disertasi->title)
                                                 <div class="font-bold text-xl">{{ $disertasi->title }}</div>
@@ -73,18 +73,15 @@
                                         <div class="text-lg font-bold pb-1.5">
                                             Tim Pembimbing
                                         </div>
-                                            <div class="text-sm pb-1.5">
-                                                Pembimbing 1: (Nama Dosen Pembimbing 1)
-                                            </div>
-                                            <div class="text-sm pb-1.5">
-                                                Pembimbing 2: (Nama Dosen Pembimbing 2)
-                                            </div>
-                                            <div class="text-sm pb-1.5">
-                                                Pembimbing 3: (Nama Dosen Pembimbing 3)
-                                            </div>
-                                            <div class="text-sm pb-1.5">
-                                                Pembimbing 4: (Nama Dosen Pembimbing 4)
-                                            </div>
+                                        @foreach ($lecturer as $lectur)
+                                            @if($lectur->disertasi_id==$disertasi->id)
+                                                <div class="text-sm pb-1.5">
+                                                    Pembimbing
+                                                    {{ $lectur->position }}
+                                                    {{ $lecturers[$lectur->lecturer_id] }}
+                                                </div>
+                                            @endif
+                                        @endforeach
                                     </div>
                                     <div class="">
                                         <div>
@@ -98,7 +95,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div>
+                                    {{-- <div>
                                         <div>
                                             <div class="flex rounded-xl text-base bg-green-500 hover:bg-green-700 text-white py-2.5 px-7 mr-3">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -108,7 +105,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                     <div>
                                         <div x-data="{ dropdownOpen: false }" class="relative py-2.5">
                                             <button @click="dropdownOpen = !dropdownOpen" class="focus:outline-none">
@@ -120,9 +117,20 @@
                                             <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
 
                                             <div x-show="dropdownOpen" class="absolute right-0 mt-2 w-48 bg-white rounded-md overflow-hidden shadow-xl z-20">
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">small <span class="text-gray-600">(640x426)</span></a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">medium <span class="text-gray-600">(1920x1280)</span></a>
-                                            <a href="#" class="block px-4 py-2 text-sm text-gray-800 border-b hover:bg-gray-200">large <span class="text-gray-600">(2400x1600)</span></a>
+                                                <div class="flex rounded-xl text-base bg-green-500 hover:bg-green-700 text-white py-2.5 px-7 mr-3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                    </svg>
+                                                    <button class="pl-2 font-bold"onclick="location.href=' {{ route( 'ddisertasi',[$disertasi->id]) }} '">Detail
+                                                    </button>
+                                                </div>
+                                                <div class="flex rounded-xl text-base bg-red-500 hover:bg-red-700 text-white py-2.5 px-7 mr-3">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                    </svg>
+                                                    <button class="pl-2 font-bold" wire:click="showDel({{ $disertasi->id }})">Delete
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

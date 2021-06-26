@@ -20,6 +20,7 @@ class DatabaseSeeder extends Seeder
             UsersTableSeeder::class,
             RoleUserTableSeeder::class,
             TopikDisertasiTableSeeder::class,
+            FileTableSeeder::class,
             // ProsesDisertasiTableSeeder::class,
         ]);
     }

@@ -5,8 +5,8 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                    <img href="{{ route('dashboard') }}">
+                        <img src="https://pelajarinfo.id/wp-content/uploads/2021/03/Universitas-Andalas-Logo.png" width="50" height="60">
                     </a>
                 </div>
 

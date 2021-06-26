@@ -38,6 +38,10 @@
                     @include('livewire.file.form')
                 @endif
 
+                @if($isDel)
+                    @include('livewire.file.delete')
+                @endif
+
                 @if(session()->has('info'))
                     <div class="py-2 px-6 mt-4">
                         <div>

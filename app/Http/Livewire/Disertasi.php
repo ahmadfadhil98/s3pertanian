@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Disertasi as ModelsDisertasi;
+use App\Models\DisertasiLecturer;
 use App\Models\DisertasiTopic;
 use App\Models\Lecturer;
 use App\Models\ProsesDisertasi;
@@ -34,11 +35,13 @@ class Disertasi extends Component
         $topics = DisertasiTopic::pluck('name','id');
         $statuses = config('central.status');
         $this->lecturers = Lecturer::pluck('name','id');
-
+        $lecturer = DisertasiLecturer::get();
+        // dd($lecturer);
         return view('livewire.disertasi.index',[
             'disertasis' => $disertasis,
             'students' => $students,
             'topics' => $topics,
+            'lecturer' => $lecturer,
             'lecturers' => $this->lecturers,
             'lecturers2' => $this->lecturers2,
             'lecturers3' => $this->lecturers3,

@@ -16,14 +16,16 @@ class CreateAcademicsTable extends Migration
         Schema::create('academics', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('proses_disertasi_id');
-            $table->string('kode_proses_disertasi');
+            $table->integer('type');
+            $table->integer('no');
             $table->unsignedBigInteger('disertasi_id');
-            $table->text('link/upload');
+            $table->text('link_upload');
             $table->timestamps();
 
             $table->foreign('proses_disertasi_id')->references('id')->on('proses_disertasis');
             $table->foreign('disertasi_id')->references('id')->on('disertasis');
-            $table->unique(['proses_disertasi_id', 'kode_proses_disertasi']);
+            $table->unique(['proses_disertasi_id', 'type','no']);
+
         });
     }
 

@@ -53,33 +53,37 @@
                             <section class="text-3xl font-bold">
                                 {{ $proses_disertasi->name }}
                             </section>
-                            @if($c_file!=0)
-                            @foreach ($academics as $academic)
-                                @if($academic->proses_disertasi_id == $proses_disertasi->id)
-                                    <section class="font-bold text-lg text-blue-900">
+                            @if ($proses_disertasi->upload_lots!=null)
+                                <section class="font-bold text-lg text-blue-900">
                                     File
-                                    </section>
+                                </section>
+                            @endif
+
+                            @foreach ($academics as $academic)
+                                @if($academic->type==1&&$academic->proses_disertasi_id==$proses_disertasi->id)
                                     <section class="font-normal text-md text-gray-700">
-                                        {{$academic->link_upload}}
-                                    </section>
+                                    {{$academic->link_upload}}
+                                </section>
                                 @else
-                                    Belum ada Link atau File yang di tautkan
+                                    Belum ada file yang di upload
                                 @endif
                             @endforeach
-                            @elseif($c_link!=0)
-                                @foreach ($academics as $academic)
-                                    @if($academic->proses_disertasi_id == $proses_disertasi->id)
-                                        <section class="font-bold text-lg text-blue-900">
-                                        Link
-                                        </section>
-                                        <section class="font-normal text-md text-gray-700">
-                                            {{$academic->link_upload}}
-                                        </section>
-                                    @else
-                                        Belum ada Link atau File yang di tautkan
-                                    @endif
-                                @endforeach
+
+                            @if ($proses_disertasi->link_lots!=null)
+                                <section class="font-bold text-lg text-blue-900">
+                                    Link
+                                </section>
                             @endif
+
+                            @foreach ($academics as $academic)
+                                @if($academic->type==2&&$academic->proses_disertasi_id==$proses_disertasi->id)
+                                    <section class="font-normal text-md text-gray-700">
+                                    {{$academic->link_upload}}
+                                </section>
+                                @else
+                                    Belum ada link yang di tautkan
+                                @endif
+                            @endforeach
 
                             <section class="flex justify-end">
                                 <button type="button"

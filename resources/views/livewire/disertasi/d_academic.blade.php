@@ -17,35 +17,45 @@
                 <div>
                     @foreach ($proses_disertasis as $proses_disertasi)
                         @if ($proses_disertasi->id==$this->prodis)
-                            <div class="flex flex-col p-3 space-y-5 rounded-xl border border-black bg-white shadow-md">
-                                @if($c_file!=0)
-                                    @foreach ($academics as $academic)
-                                        @if($academic->proses_disertasi_id == $this->prodis)
-                                            <section class="font-bold text-lg text-blue-900">
-                                            File
-                                            </section>
-                                            <section class="font-normal text-md text-gray-700">
-                                                {{$academic->link_upload}}
-                                            </section>
-                                        @else
-                                            Belum ada Link atau File yang di tautkan
-                                        @endif
-                                    @endforeach
-                                @elseif($c_link!=0)
-                                    @foreach ($academics as $academic)
-                                        @if($academic->proses_disertasi_id == $this->prodis)
-                                            <section class="font-bold text-lg text-blue-900">
-                                                Link
-                                            </section>
-                                            <section class="font-normal text-md text-gray-700">
-                                                {{$academic->link_upload}}
-                                            </section>
-                                        @else
-                                            Belum ada Link atau File yang di tautkan
-                                        @endif
-                                    @endforeach
+                        <div class="flex flex-col p-3 space-y-5 rounded-xl border border-black bg-white shadow-md">
+                            <section class="text-sm font-thin text-orange-400">
+                                September 20, 10:30 AM
+                            </section>
+                            <section class="text-3xl font-bold">
+                                {{ $proses_disertasi->name }}
+                            </section>
+                            @if ($proses_disertasi->upload_lots!=null)
+                                <section class="font-bold text-lg text-blue-900">
+                                    File
+                                </section>
+                            @endif
+
+                            @foreach ($academics as $academic)
+                                @if($academic->type==1&&$academic->proses_disertasi_id==$proses_disertasi->id)
+                                    <section class="font-normal text-md text-gray-700">
+                                    {{$academic->link_upload}}
+                                </section>
+                                @else
+                                    Belum ada file yang di upload
                                 @endif
-                            </div>
+                            @endforeach
+
+                            @if ($proses_disertasi->link_lots!=null)
+                                <section class="font-bold text-lg text-blue-900">
+                                    Link
+                                </section>
+                            @endif
+
+                            @foreach ($academics as $academic)
+                                @if($academic->type==2&&$academic->proses_disertasi_id==$proses_disertasi->id)
+                                    <section class="font-normal text-md text-gray-700">
+                                    {{$academic->link_upload}}
+                                </section>
+                                @else
+                                    Belum ada link yang di tautkan
+                                @endif
+                            @endforeach
+                        </div>
                         @endif
 
                     @endforeach
