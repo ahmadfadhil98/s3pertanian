@@ -17,7 +17,7 @@ class PermissionRoleTableSeeder extends Seeder
         });
 
         $lecturer_permission = $super_admin_permission->filter(function ($permission) {
-            return substr($permission->title, 0, 9) != 'lecturer_';
+            return substr($permission->title, 0, 9) == 'lecturer_';
         });
 
         $student_permission = $super_admin_permission->filter(function ($permission) {

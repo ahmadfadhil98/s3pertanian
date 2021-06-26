@@ -38,6 +38,14 @@ class PermissionsTableSeeder extends Seeder
                 'id'    => 7,
                 'title' => 'admin_manage_file',
             ],
+            [
+                'id'    => 8,
+                'title' => 'lecturer_manage_bimbingan',
+            ],
+            [
+                'id'    => 9,
+                'title' => 'student_manage_disertasi',
+            ],
         ];
 
         Permission::insert($permissions);
