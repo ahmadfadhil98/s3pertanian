@@ -9,6 +9,7 @@ use App\Models\DisertasiTopic;
 use App\Models\Lecturer;
 use App\Models\ProsesDisertasi;
 use App\Models\Student;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
@@ -22,7 +23,7 @@ class Ddisertasi extends Component
     public $disertasiId;
     public $title,$student_id,$topic_id;
     public $user;
-    public $pd,$type;
+    public $pd,$type,$keterangan;
     public $types='text';
     public $disabled = 'disabled';
     public $content,$academicId,$prodis;
@@ -78,6 +79,8 @@ class Ddisertasi extends Component
 
     public function hideModal2() {
         $this->isOpenAcademic = false;
+        $this->content = '';
+        $this->keterangan = '';
     }
 
     public function editdisertasi(){
@@ -88,8 +91,9 @@ class Ddisertasi extends Component
         $this->showModal();
     }
 
-    public function academic($id){
+    public function academic($id,$di){
         $this->pd = ProsesDisertasi::find($id);
+        $this->type = $di;
         $this->showModal2();
 
     }
@@ -118,18 +122,42 @@ class Ddisertasi extends Component
     }
 
     public function storeacademic(){
+        // dd($this->content);
+        $this->validate(
+            [
+                'type' => 'required',
+                'content' => 'required',
+            ]
+        );
 
         $countprodis = Academic::where('proses_disertasi_id',$this->pd->id)->where('disertasi_id',$this->disertasiId)->where('type',$this->type)->count();
 
         try {
-            // dd($this->topic_id);
-            Academic::updateOrCreate(['id' => $this->academicId], [
-                'proses_disertasi_id' => $this->pd->id,
-                'type' => $this->type,
-                'no'   => $countprodis+1,
-                'disertasi_id' => $this->disertasiId,
-                'link_upload' => $this->content
-            ]);
+
+            if($this->type==1){
+
+                $file = $this->content->store('files/prodis');
+                $filename = $this->content->getClientOriginalName();
+                Academic::updateOrCreate(['id' => $this->academicId], [
+                    'proses_disertasi_id' => $this->pd->id,
+                    'type' => $this->type,
+                    'no'   => $countprodis+1,
+                    'disertasi_id' => $this->disertasiId,
+                    'link_upload' => $file,
+                    'keterangan' => $filename,
+                ]);
+            }
+            else{
+                Academic::updateOrCreate(['id' => $this->academicId], [
+                    'proses_disertasi_id' => $this->pd->id,
+                    'type' => $this->type,
+                    'no'   => $countprodis+1,
+                    'disertasi_id' => $this->disertasiId,
+                    'link_upload' => $this->content,
+                    'keterangan' => $this->keterangan,
+                ]);
+            }
+
 
             session()->flash('info', $this->academicId ? $this->pd->name.'Update Successfully' : $this->pd->name.' Created Successfully' );
 
@@ -143,19 +171,8 @@ class Ddisertasi extends Component
         return redirect()->to('/ddisertasi/'.$this->disertasiId);
     }
 
-    public function type(){
-        // dd($this->type);
-        if($this->type==0){
-            $this->disabled = 'disabled';
-        }elseif($this->type==1){
-            $this->types = 'file';
-            $this->disabled = 'enabled';
-
-        }else{
-            $this->types = 'text';
-            $this->disabled = 'enabled';
-        }
-
+    public function download($id) {
+        $file = Academic::find($id);
+        return Storage::download($file->link_upload,$file->keterangan);
     }
-
 }

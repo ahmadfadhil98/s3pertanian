@@ -12,8 +12,12 @@
             @include('livewire.disertasi.edit_form')
         @endif
 
-        @if($isOpenAcademic)
-            @include('livewire.disertasi.academic_form')
+        @if($isOpenAcademic&&$this->type==1)
+            @include('livewire.disertasi.academic_form_file')
+        @endif
+
+        @if($isOpenAcademic&&$this->type==2)
+            @include('livewire.disertasi.academic_form_link')
         @endif
 
         <div class="mt-3 bg-white dark:bg-gray-800 overflow-hidden shadow px-4 py-4">
@@ -72,7 +76,7 @@
                                         <section class="font-normal text-md text-gray-700">
                                             <table>
                                                 <tr>
-                                                    <td>{{$academic->link_upload}}</td>
+                                                    <td>{{$academic->keterangan}}</td>
                                                     <td>
                                                         <button wire:click="download({{ $academic->id }})" class="">
                                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -113,22 +117,26 @@
                             @can('admin_manage')
                                 <section class="flex justify-end">
                                     <button type="button"
-                                    wire:click="academic({{$proses_disertasi->id}})"
+                                    wire:click="academic({{$proses_disertasi->id}},1)"
                                     {{-- onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '"  --}}
-                                    class="bg-yellow-600 text-white mx-1 px-3 py-1 rounded-md">Input File/Tautkan Link</button>
+                                    class="bg-yellow-600 text-white mx-1 px-3 py-1 rounded-md">Input File</button>
+                                    <button type="button"
+                                    wire:click="academic({{$proses_disertasi->id}},2)"
+                                    {{-- onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '"  --}}
+                                    class="bg-yellow-600 text-white mx-1 px-3 py-1 rounded-md">Tautkan Link</button>
                                 </section>
                             @endcan
 
                             @can('student_manage_disertasi')
                                 <section class="flex justify-end">
                                     <button type="button"
-                                    wire:click="academic({{$proses_disertasi->id}})"
+                                    wire:click="academic({{$proses_disertasi->id}},1)"
                                     {{-- onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '"  --}}
-                                    class="bg-yellow-600 text-white mx-1 px-3 py-1 rounded-md">Input File/Tautkan Link</button>
+                                    class="bg-yellow-600 text-white mx-1 px-3 py-1 rounded-md">Input File</button>
                                     <button type="button"
-                                    wire:click="dprodis({{$proses_disertasi->id}})"
+                                    wire:click="academic({{$proses_disertasi->id}},2)"
                                     {{-- onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '"  --}}
-                                    class="bg-yellow-600 text-white mx-1 px-3 py-1 rounded-md">Liat Detail</button>
+                                    class="bg-yellow-600 text-white mx-1 px-3 py-1 rounded-md">Tautkan Link</button>
                                 </section>
                             @endcan
 

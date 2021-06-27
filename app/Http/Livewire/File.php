@@ -51,6 +51,7 @@ class File extends Component
         );
 
         try {
+            // dd($this->file);
             $file = $this->file->store('files');
             $filename = $this->file->getClientOriginalName();
 

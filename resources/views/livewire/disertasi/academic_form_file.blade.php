@@ -11,14 +11,8 @@
                 <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                     <div>
                         <h1 class="font-bold text-center mb-4">
-                            INPUT DATA
-                            @if ($this->type==1)
-                                File
-                            @else
-                                Link
-                            @endif
+                            INPUT DATA FILE
                             {{ $pd->name }}
-
                         </h1>
                     </div>
                 <div>
@@ -26,17 +20,12 @@
                     <input wire:model="academicId" type="hidden" class="shadow appearance-none border w-full py-2 px-3 text-blue-900">
                 </div>
                     <div class="mb-2">
-                        <label for="type" class="block py-1">Tipe</label>
-                        {{ Form::select('type',[1 => 'File',2 => 'Link'],null,
-                        ['class' => 'shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm','id' => 'type','wire:model'=>'type','wire:change'=>'type()','placeholder'=>'- Pilih tipe -'])}}
-                        @error('type') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                        <label for="content" class="block py-1">
+                        File
+                        </label>
+                        <input wire:model="content" type="file" name="content" class="shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm" placeholder="Input judul disertasi">
+                        @error('content') <h1 class="text-red-500">{{$message}}</h1>@enderror
                     </div>
-                <div class="mb-2">
-                    <label for="content" class="block py-1">{{$this->title}}</label>
-                    <input wire:model="content" type="{{$this->types}}"
-                    {{$this->disabled}} name="content" class="shadow appearance-none border w-full py-2 px-3 text-blue-900 text-sm" placeholder="Input judul disertasi">
-                    @error('content') <h1 class="text-red-500">{{$message}}</h1>@enderror
-                </div>
             </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
