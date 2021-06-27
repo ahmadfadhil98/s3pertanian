@@ -7,8 +7,10 @@ use App\Models\DisertasiLecturer;
 use App\Models\Lecturer;
 use App\Models\Student;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Gate;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Symfony\Component\HttpFoundation\Response;
 
 class Bdisertasi extends Component
 {
@@ -18,8 +20,10 @@ class Bdisertasi extends Component
 
     public function render()
     {
+        abort_if(Gate::denies('lecturer_manage_bimbingan'), Response::HTTP_FORBIDDEN, '403 Forbidden');
+
         $this->user = Auth::user();
-        $students = DisertasiLecturer::select('disertasi_id','approve')->distinct()->paginate(3);
+        $students = DisertasiLecturer::where('lecturer_id',$this->user->id)->select('disertasi_id','approve')->distinct()->paginate(3);
         $stu_name = Student::pluck('name','id');
         $stu_nim = Student::pluck('nim','id');
         $lecturer = Lecturer::pluck('name','id');

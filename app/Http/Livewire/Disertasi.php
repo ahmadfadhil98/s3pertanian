@@ -84,15 +84,15 @@ class Disertasi extends Component
     }
 
     public function store(){
-
+        $dosens = [$this->lecturer1,$this->lecturer2,$this->lecturer3,$this->lecturer4];
+        $no = 1;
         if($this->user->type==1){
             $this->validate(
                 [
                     'student_id' => 'required',
                 ]
             );
-            $dosens = [$this->lecturer1,$this->lecturer2,$this->lecturer3,$this->lecturer4];
-            $no = 1;
+
             try {
                 $disertasi = ModelsDisertasi::updateOrCreate(['id' => $this->disertasiId], [
                     'title' => $this->title,
@@ -113,11 +113,6 @@ class Disertasi extends Component
                     }
                 }
 
-                $disertasi->disertasi_lecturer()->create([
-                    'lecturer_id' => $this->lecturer1,
-                    'position' => 1
-                ]);
-
                 session()->flash('info', $this->disertasiId ? 'Dosen Update Successfully' : 'Dosen Created Successfully' );
 
             } catch (QueryException $e){
@@ -136,10 +131,24 @@ class Disertasi extends Component
 
             try {
                 // dd($this->disertasiId);
-                ModelsDisertasi::updateOrCreate(['id' => $this->disertasiId], [
+                $disertasi = ModelsDisertasi::updateOrCreate(['id' => $this->disertasiId], [
                     'title' => $this->title,
-                    'student_id' => $this->user->id
+                    'student_id' => $this->user->id,
+                    'topic_id' => $this->topic_id,
+                    'status' => 1
                 ]);
+
+                foreach($dosens as $dosen){
+                    // dd($dosen);
+                    if($dosen!=0){
+                        $disertasi->disertasi_lecturer()->create([
+                            'lecturer_id' => $dosen,
+                            'position' => $no,
+                            'approve' => 1
+                        ]);
+                        $no++;
+                    }
+                }
 
                 session()->flash('info', $this->disertasiId ? 'Dosen Update Successfully' : 'Dosen Created Successfully' );
 

@@ -18,7 +18,7 @@ class Ddisertasi extends Component
 {
     use WithFileUploads;
 
-    public $isOpen,$isOpen2,$isDProdis;
+    public $isOpen,$isOpenAcademic,$isDProdis;
     public $disertasiId;
     public $title,$student_id,$topic_id;
     public $user;
@@ -42,6 +42,8 @@ class Ddisertasi extends Component
 
         $proses_disertasis = ProsesDisertasi::all();
         $academics = Academic::where('disertasi_id',$this->disertasiId)->get();
+        $c_link = Academic::where('disertasi_id',$this->disertasiId)->where('type',2);
+        $c_file = Academic::where('disertasi_id',$this->disertasiId)->where('type',1);
 
         $lecturers = DisertasiLecturer::where('disertasi_id',$this->disertasiId)->get();
         $name = Lecturer::pluck('name','id');
@@ -51,8 +53,12 @@ class Ddisertasi extends Component
             'students' => $students,
             'topics' => $topics,
             'statuses' => $statuses,
+
             'proses_disertasis' => $proses_disertasis,
             'academics' => $academics,
+            'c_link' => $c_link,
+            'c_file' => $c_file,
+
             'lecturers' => $lecturers,
             'name' => $name
         ]);
@@ -67,19 +73,11 @@ class Ddisertasi extends Component
     }
 
     public function showModal2() {
-        $this->isOpen2 = true;
+        $this->isOpenAcademic = true;
     }
 
     public function hideModal2() {
-        $this->isOpen2 = false;
-    }
-
-    public function showDProdis() {
-        $this->isDProdis = true;
-    }
-
-    public function hideDProdis() {
-        $this->isDProdis = false;
+        $this->isOpenAcademic = false;
     }
 
     public function editdisertasi(){
@@ -160,8 +158,4 @@ class Ddisertasi extends Component
 
     }
 
-    public function dprodis($id){
-        $this->prodis = $id;
-        $this->showDProdis();
-    }
 }

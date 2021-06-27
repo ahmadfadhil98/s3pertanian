@@ -12,39 +12,23 @@ class PermissionsTableSeeder extends Seeder
         $permissions = [
             [
                 'id'    => 1,
-                'title' => 'admin_manage_dosen',
+                'title' => 'admin_manage',
             ],
             [
                 'id'    => 2,
-                'title' => 'admin_manage_mahasiswa',
-            ],
-            [
-                'id'    => 3,
-                'title' => 'admin_manage_staff',
-            ],
-            [
-                'id'    => 4,
-                'title' => 'admin_manage_todis',
-            ],
-            [
-                'id'    => 5,
-                'title' => 'admin_manage_prodis',
-            ],
-            [
-                'id'    => 6,
-                'title' => 'admin_manage_disertasi',
-            ],
-            [
-                'id'    => 7,
-                'title' => 'admin_manage_file',
-            ],
-            [
-                'id'    => 8,
                 'title' => 'lecturer_manage_bimbingan',
             ],
             [
-                'id'    => 9,
+                'id'    => 3,
                 'title' => 'student_manage_disertasi',
+            ],
+            [
+                'id'    => 4,
+                'title' => 'admin_manage_file',
+            ],
+            [
+                'id'    => 5,
+                'title' => 'student_manage_file',
             ],
         ];
 
