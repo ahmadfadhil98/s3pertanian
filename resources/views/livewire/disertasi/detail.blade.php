@@ -162,9 +162,16 @@
                                 Belum ada pembimbing
                             @endif
                         </table>
+                        @can('admin_manage')
                         <section class="flex justify-end">
                             <button onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '" type="button" class="bg-yellow-600 text-white px-3 py-1 rounded-md">Manage</button>
                         </section>
+                        @endcan
+                        @can('student_manage_disertasi')
+                        <section class="flex justify-end">
+                            <button onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '" type="button" class="bg-yellow-600 text-white px-3 py-1 rounded-md">Manage</button>
+                        </section>
+                        @endcan
 
                     </div>
                 </div>

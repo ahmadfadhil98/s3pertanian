@@ -30,7 +30,7 @@
                     <thead>
                         <tr>
                             <th class="bg-yellow-300 text-base font-bold py-3 text-gray-600 rounded-tl-full rounded-bl-full w-20">No.</th>
-                            <th class="bg-yellow-300 py-3 text-gray-600 w-80">
+                            <th class="bg-yellow-300 py-3 text-gray-600 w-auto">
                                 <div class="flex">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 ml-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
@@ -39,7 +39,7 @@
                                 </div>
                             </th>
 
-                            <th class="bg-yellow-300 py-3 text-gray-600 w-80 ">
+                            <th class="bg-yellow-300 py-3 text-gray-600 w-auto ">
                                 <div class="flex">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -47,7 +47,17 @@
                                     <div class="ml-3">Nama Mahasiswa</div>
                                 </div>
                             </th>
-                            <th class="bg-yellow-300 py-3 text-gray-600 rounded-tr-full rounded-br-full w-80 ">
+
+                            <th class="bg-yellow-300 py-3 text-gray-600 w-auto ">
+                                <div class="flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                      </svg>
+                                    <div class="ml-3">Judul Disertasi</div>
+                                </div>
+                            </th>
+
+                            <th class="bg-yellow-300 py-3 text-gray-600 rounded-tr-full rounded-br-full w-auto ">
                                 <div class="flex">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -65,23 +75,32 @@
                                 <td class="text-center text-base text-gray-600 py-4">{{ $students->firstitem() + $key }}.</td>
                                 <td class="text-left text-base text-gray-600 px-6">{{ $stu_nim[$dis_stu[$student->disertasi_id]] }}</td>
                                 <td class="text-left text-base text-gray-600 font-bold">{{ $stu_name[$dis_stu[$student->disertasi_id]] }}</td>
+                                <td class="text-left text-base text-gray-600 font-bold">{{ $disertasi[$student->disertasi_id] }}</td>
                                 <td class="text-left text-base text-gray-600 font-bold">{{ $statuses[$student->approve] }}</td>
-                                <td class="text-right">
-                                    @if ($student->approve==1)
-                                        <button wire:click="edit({{ $student->id }})" class="rounded-full text-sm font-bold bg-green-500 hover:bg-green-700 text-white py-2.5 px-7"> Detail
+                                    @if($student->approve==1)
+                                    <td class="text-right">
+                                        <button wire:click="agree({{ $student->id }})" class="rounded-full text-sm font-bold bg-green-500 hover:bg-green-700 text-white py-2.5 px-7"> Setuju
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                             </svg>
                                         </button>
-                                    @elseif($student->approved)
-                                        <button wire:click="edit({{ $student->id }})" class="rounded-full text-sm font-bold bg-green-500 hover:bg-green-700 text-white py-2.5 px-7"> Detail
+                                        <button wire:click="reject({{ $student->id }})" class="rounded-full text-sm font-bold bg-red-500 hover:bg-red-700 text-white py-2.5 px-7"> Tolak
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                             </svg>
                                         </button>
+                                    </td>
+                                    @else
+                                    <td class="text-right">
+                                        <button onclick="location.href=' {{ route( 'ddisertasi',[$student->disertasi_id]) }} '" class="rounded-full text-sm font-bold bg-green-500 hover:bg-green-700 text-white py-2.5 px-7"> Detail
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                            </svg>
+                                        </button>
+                                    </td>
                                     @endif
 
-                                </td>
+
                             </tr>
                         @endforeach
                     </tbody>

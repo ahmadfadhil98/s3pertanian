@@ -23,10 +23,11 @@ class Bdisertasi extends Component
         abort_if(Gate::denies('lecturer_manage_bimbingan'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $this->user = Auth::user();
-        $students = DisertasiLecturer::where('lecturer_id',$this->user->id)->select('disertasi_id','approve')->distinct()->paginate(3);
+        $students = DisertasiLecturer::where('lecturer_id',$this->user->id)->select('id','disertasi_id','approve')->distinct()->paginate(3);
         $stu_name = Student::pluck('name','id');
         $stu_nim = Student::pluck('nim','id');
         $lecturer = Lecturer::pluck('name','id');
+        $disertasi = Disertasi::pluck('title','id');
         $dis_stu = Disertasi::pluck('student_id','id');
         $statuses = config('central.status');
 
@@ -34,9 +35,26 @@ class Bdisertasi extends Component
             'students' => $students,
             'stu_name' => $stu_name,
             'stu_nim' => $stu_nim,
+            'disertasi' => $disertasi,
             'statuses' => $statuses,
             'lecturer' => $lecturer,
             'dis_stu' => $dis_stu
         ]);
     }
+
+    public function agree($id){
+        // dd($id);
+        $disertasi = DisertasiLecturer::find($id);
+        $disertasi->update([
+            'approve' => 2
+        ]);
+    }
+
+    public function reject($id){
+        $disertasi = DisertasiLecturer::find($id);
+        $disertasi->update([
+            'approve' => 3
+        ]);
+    }
+
 }
