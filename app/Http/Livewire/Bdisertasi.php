@@ -20,8 +20,6 @@ class Bdisertasi extends Component
 
     public function render()
     {
-        abort_if(Gate::denies('lecturer_manage_bimbingan'), Response::HTTP_FORBIDDEN, '403 Forbidden');
-
         $this->user = Auth::user();
         $students = DisertasiLecturer::where('lecturer_id',$this->user->id)->select('id','disertasi_id','approve')->distinct()->paginate(3);
         $stu_name = Student::pluck('name','id');
