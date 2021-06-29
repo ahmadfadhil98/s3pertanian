@@ -6,14 +6,14 @@
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
 
 
-        <div class="inline-block align-bottom bg-gray-100 rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+        <div class="inline-block align-bottom bg-gray-100 rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:align-middle w-2/3" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <form>
                 <div class="sm:py-8 sm:px-6">
                     <div>
                         <h1 class="text-center text-sm text-gray-600">Database</h1>
                         <h2 class="text-center text-xl font-bold mb-4 text-gray-600">TAMBAH DISERTASI</h2>
                     </div>
-                    <div class="grid grid-cols-2 gap-4">
+                    <div class="grid grid-cols-2 gap-5">
                         <div>
                             <div>
                                 <input wire:model="disertasiId" type="hidden" class="shadow appearance-none w-full py-2 px-3 text-blue-900">
@@ -109,13 +109,13 @@
                     </div>
                 </div>
 
-                <div class="px-6 mb-10">
-                    <span class="flex w-full mb-3">
-                      <button wire:click.prevent="store()" type="button" class="inline-flex justify-center w-full px-4 py-2.5 bg-green-500 hover:bg-green-700 text-sm font-bold leading-6 text-white focus:outline-none rounded-xl">
+                <div class="px-6 mb-10 w-full">
+                    <span class="flex w-1/2 mb-3">
+                      <button wire:click.prevent="store()" type="button" class="inline-flex justify-center w-full px-4 py-2.5 bg-green-500 hover:bg-green-700 text-sm font-bold leading-6 text-white focus:outline-none rounded-xl justify-center text-center">
                         Simpan
                       </button>
                     </span>
-                    <span class="flex w-full">
+                    <span class="flex w-1/2">
                       <button wire:click="hideModal()" type="button" class="inline-flex justify-center w-full px-4 py-2.5 bg-red-500 hover:bg-red-700 text-sm font-bold leading-6 text-white focus:outline-none rounded-xl">
                         Kembali
                       </button>
