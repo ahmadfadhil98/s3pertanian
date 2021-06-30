@@ -98,58 +98,123 @@
                                 {{ $proses_disertasi->name }}
                             </section>
 
-                            @if ($proses_disertasi->upload_lots!=null&&$academics->count()!=0)
-                                <section class="text-sm pb-8">
-                                    File
-                                </section>
-                            @else
-                                Belum ada file yang di upload atau link yang di tautkan
-                            @endif
-
-                            @foreach ($academics as $academic)
-                                @if ($c_file->where('proses_disertasi_id',$proses_disertasi->id)->count()!=0)
-                                    @if($academic->type==1&&$academic->proses_disertasi_id==$proses_disertasi->id)
-                                        <section class="text-sm pb-8">
-                                            <table>
-                                                <tr>
-                                                    <td>{{$academic->keterangan}}</td>
-                                                    <td>
-                                                        <button wire:click="download({{ $academic->id }})" class="">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                                            </svg>
-                                                        </button>
-                                                    </td>
-                                                </tr>
-                                            </table>
-
-                                    </section>
-                                    @endif
+                            @foreach ($c_academic as $count)
+                                @if ($count->proses_disertasi_id==$proses_disertasi->id&&$count->type==1)
+                                    <table class="border-2">
+                                        <tr>
+                                            <td>Nama File</td>
+                                            <td>Aksi</td>
+                                        </tr>
                                 @else
+                                    @if($hashtag=0)
+                                    Belum ada file yang di upload atau link yang di tautkan
+                                    @endif
+                                @endif
+                                @php
+                                    $hashtag=1;
+                                @endphp
+                            @endforeach
+
+                            @php
+                                $hashtag=0;
+                            @endphp
+
+                            @foreach ($c_academic as $count)
+                                @if ($count->proses_disertasi_id==$proses_disertasi->id&&$count->type==1)
+                                    @foreach ($academics as $academic)
+                                        @if($academic->type==1&&$academic->proses_disertasi_id==$proses_disertasi->id)
+                                            {{-- <section class="text-sm pb-8"> --}}
+                                                {{-- <table> --}}
+                                                    <tr>
+                                                        <td>{{$academic->keterangan}}</td>
+                                                        <td>
+                                                            <button wire:click="download({{ $academic->id }})" class="">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                                                </svg>
+                                                            </button>
+                                                        </td>
+                                                    </tr>
+                                                {{-- </table> --}}
+
+                                        {{-- </section> --}}
+                                        @endif
+                                    @endforeach
+                                @else
+                                    @if($hashtag=0)
                                     Belum ada file yang di upload
-                                @endif
-                            @endforeach
-
-                            @if ($proses_disertasi->link_lots!=null&&$academics->count()!=0)
-                                <section class="text-sm pb-8">
-                                    Link
-                                </section>
-                            @else
-                                Belum ada file yang di upload atau link yang di tautkan
-                            @endif
-
-                            @foreach ($academics as $academic)
-                                @if($c_link->where('proses_disertasi_id',$proses_disertasi->id)->count()!=0)
-                                    @if($academic->type==2&&$academic->proses_disertasi_id==$proses_disertasi->id)
-                                        <section class="text-sm pb-8">
-                                            <a href="{{$academic->link_upload}}">{{$academic->link_upload}}</a>
-                                        </section>
                                     @endif
-                                @else
-                                    Belum ada link yang di tautkan
                                 @endif
+                                @php
+                                    $hashtag=1;
+                                @endphp
                             @endforeach
 
+                            @php
+                                $hashtag=0;
+                            @endphp
+                                    </table>
+
+
+                            @foreach ($c_academic as $count)
+                                @if ($count->proses_disertasi_id==$proses_disertasi->id&&$count->type==2)
+                                    <table class="border-2">
+                                        <tr>
+                                            <td>Link</td>
+                                            <td>Aksi</td>
+                                        </tr>
+                                @else
+                                    @if($hashtag=0)
+                                    Belum ada file yang di upload atau link yang di tautkan
+                                    @endif
+                                @endif
+                                @php
+                                    $hashtag=1;
+                                @endphp
+                            @endforeach
+                            @php
+                                $hashtag=0;
+                            @endphp
+
+                            @foreach ($c_academic as $count)
+                                @if ($count->proses_disertasi_id==$proses_disertasi->id&&$count->type==2)
+                                    @foreach ($academics as $academic)
+                                        @if($academic->type==2&&$academic->proses_disertasi_id==$proses_disertasi->id)
+                                            {{-- <section class="text-sm pb-8"> --}}
+                                                <tr>
+                                                    <td><a href="{{$academic->link_upload}}">{{$academic->link_upload}}</a></td>
+                                                    <td><a href="{{$academic->link_upload}}">O</a></td>
+                                                </tr>
+
+                                            </section>
+                                        @endif
+                                    @endforeach
+                                @else
+                                    @if($hashtag=0)
+                                    Belum ada link yang di tautkan
+                                    @endif
+                                    @php
+                                        $hashtag=1;
+                                    @endphp
+                                @endif
+                                @php
+                                    $hashtag=0;
+                                @endphp
+                            @endforeach
+                                    </table>
+                            @php
+                                $hashtag=0;
+                            @endphp
+
+                                <button type="button"
+                                    wire:click="d_academic({{$proses_disertasi->id}})"
+                                    {{-- onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '"  --}}
+                                    class="flex bg-green-500 hover:bg-green-700 text-white text-sm font-bold px-4 py-3 rounded-xl mr-2 focus:outline-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
+                                      </svg>
+                                    <div class="flex pl-2 pt-0.5">Detail</div>
+                                </button>
                             @can('admin_manage')
                                 <section class="flex justify-end">
                                     <button type="button"

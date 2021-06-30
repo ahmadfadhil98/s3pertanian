@@ -12,6 +12,7 @@ use App\Models\Student;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -41,8 +42,12 @@ class Ddisertasi extends Component
         $topics = DisertasiTopic::pluck('name','id');
         $statuses = config('central.status');
 
+        $hashtag = 0;
         $proses_disertasis = ProsesDisertasi::all();
         $academics = Academic::where('disertasi_id',$this->disertasiId)->get();
+        $c_academic = DB::table('academics')->select(DB::raw('count(*) as count,type, proses_disertasi_id'))->groupBy('proses_disertasi_id','type')
+        ->get();
+        // dd($c_academic);
         $c_link = Academic::where('disertasi_id',$this->disertasiId)->where('type',2);
         $c_file = Academic::where('disertasi_id',$this->disertasiId)->where('type',1);
 
@@ -57,7 +62,9 @@ class Ddisertasi extends Component
 
             'proses_disertasis' => $proses_disertasis,
             'academics' => $academics,
+            'c_academic' => $c_academic,
             'c_link' => $c_link,
+            'hashtag' => $hashtag,
             'c_file' => $c_file,
 
             'lecturers' => $lecturers,
@@ -123,18 +130,18 @@ class Ddisertasi extends Component
 
     public function storeacademic(){
         // dd($this->content);
-        $this->validate(
-            [
-                'type' => 'required',
-                'content' => 'required',
-            ]
-        );
 
         $countprodis = Academic::where('proses_disertasi_id',$this->pd->id)->where('disertasi_id',$this->disertasiId)->where('type',$this->type)->count();
 
         try {
 
             if($this->type==1){
+
+                $this->validate(
+                    [
+                        'content' => 'required',
+                    ]
+                );
 
                 $file = $this->content->store('files/prodis');
                 $filename = $this->content->getClientOriginalName();
@@ -148,6 +155,13 @@ class Ddisertasi extends Component
                 ]);
             }
             else{
+
+                $this->validate(
+                    [
+                        'content' => 'required',
+                        'keterangan' => 'required'
+                    ]
+                );
                 Academic::updateOrCreate(['id' => $this->academicId], [
                     'proses_disertasi_id' => $this->pd->id,
                     'type' => $this->type,
@@ -174,5 +188,10 @@ class Ddisertasi extends Component
     public function download($id) {
         $file = Academic::find($id);
         return Storage::download($file->link_upload,$file->keterangan);
+    }
+
+    public function d_academic($id){
+        $this->prodis = $id;
+
     }
 }
