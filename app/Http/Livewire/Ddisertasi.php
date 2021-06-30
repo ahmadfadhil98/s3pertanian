@@ -27,7 +27,9 @@ class Ddisertasi extends Component
     public $pd,$type,$keterangan;
     public $types='text';
     public $disabled = 'disabled';
-    public $content,$academicId,$prodis,$isAC,$isMark,$isDel,$delId,$idDel;
+    public $content,$academicId,$prodis,$isAC;
+    public $isMark,$filup,$fillink;
+    public $isDel,$delId,$idDel;
 
     public function mount($id){
         $this->disertasiId = $id;
@@ -47,9 +49,8 @@ class Ddisertasi extends Component
         $academics = Academic::where('disertasi_id',$this->disertasiId)->get();
         $c_academic = DB::table('academics')->select(DB::raw('count(*) as count,type, proses_disertasi_id'))->groupBy('proses_disertasi_id','type')
         ->get();
-        // dd($c_academic);
-        $c_link = Academic::where('disertasi_id',$this->disertasiId)->where('type',2);
-        $c_file = Academic::where('disertasi_id',$this->disertasiId)->where('type',1);
+
+        $ketac = Academic::pluck('keterangan','id');
 
         $lecturers = DisertasiLecturer::where('disertasi_id',$this->disertasiId)->get();
         $name = Lecturer::pluck('name','id');
@@ -63,9 +64,9 @@ class Ddisertasi extends Component
             'proses_disertasis' => $proses_disertasis,
             'academics' => $academics,
             'c_academic' => $c_academic,
-            'c_link' => $c_link,
             'hashtag' => $hashtag,
-            'c_file' => $c_file,
+
+            'ketac' => $ketac,
 
             'lecturers' => $lecturers,
             'name' => $name
@@ -224,10 +225,15 @@ class Ddisertasi extends Component
         $this->showAC();
     }
 
-    public function marking($id) {
+    public function marking($id,$di) {
         $this->filup = $id;
+        $this->fillink = $di;
         $this->hideAC();
         $this->showMark();
+    }
+
+    public function storeMark(){
+
     }
 
     public function delete($id,$di){

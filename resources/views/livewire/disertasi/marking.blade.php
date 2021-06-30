@@ -1,33 +1,43 @@
 <div class="fixed z-10 inset-0 overflow-y-auto">
-    <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+    <div class="flex items-end justify-center min-h-screen text-center sm:block">
         <div class="fixed inset-0 transition-opacity">
-            <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+            <div class="absolute inset-0 bg-gray-500 opacity-50"></div>
         </div>
-        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>&#8203;
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
 
 
-        <div class="inline-block align-bottom bg-white text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+        <div class="inline-block align-bottom bg-gray-100 rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:align-middle w-2/3" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <form>
-                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                <div class="sm:py-6 sm:px-6">
                     <div>
-                        <h1 class="font-bold text-center mb-4">
-                            Penilaian
-                        </h1>
+                        <h2 class="text-center text-xl font-bold mb-4 text-gray-600">PENILAIAN </h2>
+                        <h3 class="text-center font-bold mb-4 text-gray-600">{{ $ketac[$this->filup] }}</h3>
                     </div>
-                <div>
 
+                    <div class="grid justify-items-center mt-6">
+                        <div class="flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                              </svg>
+                            <div class="ml-2 text-xs text-gray-400">Data Tersimpan dengan Aman</div>
+                        </div>
+                    </div>
 
-            </div>
+                </div>
+
+                <div class="px-6 mb-10 w-full grid justify-items-center">
+                    <span class="flex w-1/2 mb-3">
+                      <button wire:click.prevent="storeMark()" type="button" class="inline-flex justify-center w-full px-4 py-2.5 bg-green-500 hover:bg-green-700 text-sm font-bold leading-6 text-white focus:outline-none rounded-xl justify-center text-center shadow-md">
+                        Simpan
+                      </button>
+                    </span>
+                    <span class="flex w-1/2">
+                      <button wire:click="hideMark()" type="button" class="inline-flex justify-center w-full px-4 py-2.5 bg-red-500 hover:bg-red-700 text-sm font-bold leading-6 text-white focus:outline-none rounded-xl shadow-md">
+                        Kembali
+                      </button>
+                    </span>
+                </div>
+            </form>
         </div>
-        <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-            <span class="mt-3 flex w-full shadow-sm sm:mt-0 sm:w-auto">
-                <button wire:click="hideMark()" type="button" class="inline-flex justify-center w-full border border-gray-300 px-4 py-2 bg-white text-base leading-6 font-medium text-gray-700 shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 transition ease-in-out duration-150 sm:text-sm sm:leading-5">
-                    Batal
-                </button>
-            </span>
-        </div>
-       </form>
-      </div>
-
     </div>
-  </div>
+</div>
