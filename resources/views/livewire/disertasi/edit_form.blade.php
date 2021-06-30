@@ -8,8 +8,7 @@
             <form>
                 <div class="sm:py-8 sm:px-6">
                     <div>
-                        <h1 class="text-center text-sm text-gray-600">Database</h1>
-                        <h2 class="text-center text-xl font-bold mb-4 text-gray-600">EDIT DISERTASI</h2>
+                        <h1 class="text-center text-xl font-bold mb-4 text-gray-600">Edit Disertasi</h1>
                     </div>
                     <div>
                         <div>

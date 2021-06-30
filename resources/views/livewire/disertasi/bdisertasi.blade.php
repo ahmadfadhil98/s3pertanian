@@ -2,7 +2,7 @@
     <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
             <div class="flex mt-7">
                 <div class="text-xl font-bold text-gray-600 ">
-                    Database Mahasiswa Bimbingan
+                    Database Dosen
                 </div>
                 <div class="text-xl font-bold text-gray-300 px-2 ">
                     -

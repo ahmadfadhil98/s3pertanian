@@ -8,9 +8,8 @@
             <form>
                 <div class="sm:py-8 sm:px-6">
                     <div>
-                        <h1 class="text-center text-sm text-gray-600">Database</h1>
-                        <h2 class="text-center text-xl font-bold mb-4 text-gray-600">TAMBAH DATA FILE
-                            {{ $pd->name }}</h2>
+                        <h1 class="text-center text-sm text-gray-600">Input File</h1>
+                        <h2 class="text-center text-xl font-bold text-gray-600 uppercase">DATA {{ $pd->name }}</h2>
                     </div>
                     <div>
                         <div class="mb-2">
