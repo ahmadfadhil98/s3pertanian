@@ -26,6 +26,18 @@
             @include('livewire.disertasi.edit_form')
         @endif
 
+        @if($isAC)
+            @include('livewire.disertasi.d_academic')
+        @endif
+
+        @if($isDel)
+            @include('livewire.disertasi.delfilup')
+        @endif
+
+        @if($isMark)
+            @include('livewire.disertasi.marking')
+        @endif
+
         @if($isOpenAcademic&&$this->type==1)
             @include('livewire.disertasi.academic_form_file')
         @endif

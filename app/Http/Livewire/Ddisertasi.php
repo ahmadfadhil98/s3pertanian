@@ -27,7 +27,7 @@ class Ddisertasi extends Component
     public $pd,$type,$keterangan;
     public $types='text';
     public $disabled = 'disabled';
-    public $content,$academicId,$prodis;
+    public $content,$academicId,$prodis,$isAC,$isMark,$isDel,$delId,$idDel;
 
     public function mount($id){
         $this->disertasiId = $id;
@@ -103,6 +103,35 @@ class Ddisertasi extends Component
         $this->type = $di;
         $this->showModal2();
 
+    }
+
+    public function showAC(){
+        $this->isAC = true;
+    }
+
+    public function hideAC(){
+        $this->isAC = false;
+    }
+
+    public function showMark(){
+        $this->isMark = true;
+    }
+
+    public function hideMark(){
+        $this->isMark = false;
+        $this->showAC();
+    }
+
+    public function showDel($id,$di) {
+        $this->hideAC();
+        $this->delId = $id;
+        $this->idDel = $di;
+        $this->isDel = true;
+    }
+
+    public function hideDel() {
+        $this->showAC();
+        $this->isDel = false;
     }
 
     public function store(){
@@ -192,6 +221,28 @@ class Ddisertasi extends Component
 
     public function d_academic($id){
         $this->prodis = $id;
+        $this->showAC();
+    }
 
+    public function marking($id) {
+        $this->filup = $id;
+        $this->hideAC();
+        $this->showMark();
+    }
+
+    public function delete($id,$di){
+        try{
+            if($di==1){
+                $file = Academic::find($id);
+                Storage::delete($file->keterangan);
+                $file->delete();
+            }else{
+                Academic::find($id)->delete();
+            }
+            session()->flash('delete','Dosen Successfully Deleted');
+            $this->hideDel();
+        }catch(QueryException $e){
+            session()->flash('delete', 'Tidak bisa menghapus,coba beberapa saat lagi');
+        }
     }
 }

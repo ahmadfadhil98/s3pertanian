@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Disertasi;
 use App\Models\DisertasiLecturer;
 use App\Models\Lecturer;
+use App\Models\Student;
 use Illuminate\Database\QueryException;
 use Livewire\Component;
 
@@ -20,7 +22,9 @@ class Bimbingan extends Component
     public function render()
     {
         $lecturers = DisertasiLecturer::where('disertasi_id',$this->disertasiId)->paginate(4);
+        $disertasi = Disertasi::find($this->disertasiId);
         $name = Lecturer::pluck('name','id');
+        $student = Student::pluck('name','id');
         $faculties = config('central.faculties');
         $positions = config('central.position');
         $nip = Lecturer::pluck('nip','id');
@@ -28,6 +32,8 @@ class Bimbingan extends Component
         return view('livewire.bimbingan.index',[
             'lecturers' => $lecturers,
             'faculties' => $faculties,
+            'disertasi' => $disertasi,
+            'student' => $student,
             'name' => $name,
             'nip' => $nip,
             'positions' => $positions
