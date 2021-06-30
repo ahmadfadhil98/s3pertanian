@@ -22,7 +22,21 @@
                                 </svg>
                                 <div class="ml-3">File</div>
                             </div>
-                            <input type="file" wire:model="" name="content" class="bg-white w-full py-2.5 px-4 text-sm text-gray-400 rounded-xl focus:outline-none">
+                            <div class="relative h-40 rounded-lg border-dashed border-2 border-gray-200 bg-white flex justify-center items-center hover:cursor-pointer" x-data="{photoName: null}">
+                                <div class="absolute" x-show="! photoName">
+                                    <div class="flex flex-col items-center "> <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> <span class="block text-gray-400 font-normal">Attach you files here</span> <span class="block text-gray-400 font-normal">or</span> <span class="block text-blue-400 font-normal">Browse files</span> </div>
+                                </div>
+                                <div class="absolute" x-show="photoName">
+                                    <div class="flex flex-col items-center ">
+                                        <p x-text="photoName"></p>
+                                    </div>
+                                </div>
+                                <input type="file" class="h-full w-full opacity-0" name="" wire:model="content"
+                                x-ref="content"
+                                x-on:change="
+                                        photoName = $refs.content.files[0].name;" >
+                            </div>
+                            <div class="flex justify-between items-center text-gray-400"> <span>Accepted file type:.doc only</span> <span class="flex items-center "><i class="fa fa-lock mr-1"></i> secure</span> </div>
                             @error('content') <h1 class="text-red-500">{{$message}}</h1>@enderror
                             </div>
                     </div>
