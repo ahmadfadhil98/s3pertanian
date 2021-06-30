@@ -109,7 +109,7 @@
                     </div>
                 </div>
 
-                <div class="px-6 mb-10 w-full">
+                <div class="px-6 mb-10 w-full grid justify-items-center">
                     <span class="flex w-1/2 mb-3">
                       <button wire:click.prevent="store()" type="button" class="inline-flex justify-center w-full px-4 py-2.5 bg-green-500 hover:bg-green-700 text-sm font-bold leading-6 text-white focus:outline-none rounded-xl justify-center text-center">
                         Simpan

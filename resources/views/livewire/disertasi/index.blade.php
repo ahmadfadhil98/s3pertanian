@@ -57,7 +57,7 @@
                         <!-- start  -->
                             <div class="mx-auto">
                                 <div class="flex mb-5">
-                                    <div class="px-7 py-7 flex-1 bg-white rounded-xl mr-5 text-gray-600">
+                                    <div class="px-7 py-7 flex-1 bg-white shadow-md rounded-xl mr-5 text-gray-600">
                                         <div>
                                             <div class="text-sm font-normal pb-1.5">
                                                 Mahasiwa:
@@ -70,7 +70,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="px-7 py-7 flex-2 bg-white rounded-xl text-gray-600 mr-5">
+                                    <div class="px-7 py-7 flex-2 bg-white shadow-md rounded-xl text-gray-600 mr-5">
                                         <div class="text-lg font-bold pb-1.5">
                                             Tim Pembimbing:
                                         </div>
@@ -93,9 +93,9 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                 </svg>
-                                                <button class="pl-2 font-bold text-gray-600 focus:outline-none">
+                                                <button class="pl-2 font-bold focus:outline-none">
                                                     {{ $statuses [$disertasi->status] }}
-                                                </button class="">
+                                                </button>
                                             </div>
                                         </div>
                                     </div>

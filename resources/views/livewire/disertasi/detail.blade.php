@@ -1,12 +1,26 @@
 <div>
-    <div class="max-w-full mx-auto sm:px-6 lg:px-8 mt-12">
-        <div class="text-base">
-
-            Detail Disertasi
-            @if ($this->user->type==1)
-                {{ $students[$disertasis->student_id] }}
-            @endif
+    <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
+        <div class="flex mt-7">
+            <div class="text-xl font-bold text-gray-600 ">
+                Detail Disertasi
+            </div>
+            <div class="text-xl font-bold text-gray-300 px-2 ">
+                -
+            </div>
+            <div class="text-base font-bold text-green-500 py-0.5">
+                <div class="flex">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    <div>
+                        @if ($this->user->type==1)
+                            {{ $students[$disertasis->student_id] }}
+                        @endif
+                    </div>
+                </div>
+            </div>
         </div>
+
 
         @if($isOpen)
             @include('livewire.disertasi.edit_form')
@@ -20,38 +34,57 @@
             @include('livewire.disertasi.academic_form_link')
         @endif
 
-        <div class="mt-3 bg-white dark:bg-gray-800 overflow-hidden shadow px-4 py-4">
+        <div class="mt-6">
             <div class="grid grid-cols-3 grid-rows-2 gap-4">
                 <div class="col-span-2">
-                    <div class="flex flex-col p-3 space-y-5 rounded-xl border border-black bg-white shadow-md">
-                        <section class="text-sm font-thin text-orange-400">
-                            September 20, 10:30 AM
+                    <div class="px-7 py-7 rounded-xl bg-white shadow-md mb-5">
+                        <section class="text-sm text-green-500 pb-5">
+                               September 20, 10:30 AM
                         </section>
-                        <section class="text-3xl font-bold">
+                        <section class="text-xl font-bold text-gray-600">
                             @if ($disertasis->title)
                                 {{ $disertasis->title }}
                             @else
                                 Belum ada judul
                             @endif
                         </section>
-                        <section class="font-normal text-md text-gray-700">
+                        <section class="text-sm text-gray-600 pb-8">
                             @if ($disertasis->topic_id)
-                                {{ $topics[$disertasis->topic_id] }}
+                                Topik:
+                                <span class="text-green-500 font-bold">{{ $topics[$disertasis->topic_id] }}</span>
                             @endif
                         </section>
-                        <section class="font-bold text-lg text-blue-900">
-                            {{ $statuses[$disertasis->status] }}
-                        </section>
-                        @can('student_manage_disertasi')
-                            <section class="flex justify-end">
-                                <button type="button" wire:click="editdisertasi()" class="bg-yellow-600 text-white px-3 py-1 rounded-md">Manage</button>
+
+                        <div class="flex w-full">
+                            <div class="w-full flex">
+                                    <section class="flex rounded-xl text-sm border-2 border-green-500 text-green-500 font-bold py-2.5 px-7 focus:outline-none w-36">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <span class="pl-2 pt-0.5 focus:outline-none">
+                                    {{ $statuses[$disertasis->status] }}</span>
+                                </section>
+                            </div>
+
+                            @can('student_manage_disertasi')
+                            <section class="">
+                                <button wire:click="showModal()" class="flex justify-end rounded-xl focus:outline-none py-3 px-7 text-sm font-bold bg-green-500 hover:bg-green-700 text-white">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
+                                </button>
                             </section>
-                        @endcan
-                        @can('admin_manage')
-                            <section class="flex justify-end">
-                                <button type="button" wire:click="editdisertasi()" class="bg-yellow-600 text-white px-3 py-1 rounded-md">Manage</button>
-                            </section>
-                        @endcan
+                            @endcan
+                            @can('admin_manage')
+                                <section class="">
+                                    <button wire:click="showModal()" class="rounded-xl text-sm font-bold bg-green-500 hover:bg-green-700 text-white py-3 px-7">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
+                                    </button>
+                                </section>
+                            @endcan
+                        </div>
 
                     </div>
                     @foreach ($proses_disertasis as $proses_disertasi)
@@ -143,28 +176,38 @@
                         </div>
                     @endforeach
                 </div>
+
                 <div class="row-span-2">
-                    <div class="flex flex-col p-3 space-y-5 rounded-xl border border-black bg-white shadow-md">
-                        <section class="text-3xl font-bold">
-                            Dosen Pembimbing
+                    <div class="flex flex-col px-7 py-7 rounded-xl bg-white shadow-md">
+                        <section class="text-lg font-bold pb-1.5 text-gray-600">
+                            Tim Pembimbing:
                         </section>
-                        <table class="text-left">
+                        <table class="text-left text-sm text-gray-600">
                             @if ($lecturers->count()!=0)
                                 @foreach ($lecturers as $lecturer)
                                     <tr>
-                                        <th
-                                        class="w-auto">Pembimbing {{$lecturer->position}}</th>
-                                        <td>:</td>
-                                        <td> {{ $name[$lecturer->lecturer_id] }}</td>
+                                        <th class="w-5 text-gray-600 pb-1">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-600 h-5 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                            </svg></th>
+                                        <th class="font-normal text-gray-600 pb-1">
+                                            Pembimbing {{$lecturer->position}}:
+                                            <span class="font-bold text-green-500">{{ $name[$lecturer->lecturer_id] }}</th></span>
                                     </tr>
                                 @endforeach
                             @else
                                 Belum ada pembimbing
                             @endif
                         </table>
+
                         @can('admin_manage')
                         <section class="flex justify-end">
-                            <button onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '" type="button" class="bg-yellow-600 text-white px-3 py-1 rounded-md">Manage</button>
+                            <button onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '" type="button" class="flex justify-end rounded-xl focus:outline-none py-3 px-7 text-sm font-bold bg-green-500 hover:bg-green-700 text-white">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                </svg>
+                            </button>
+
                         </section>
                         @endcan
                         @can('student_manage_disertasi')
@@ -172,7 +215,6 @@
                             <button onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '" type="button" class="bg-yellow-600 text-white px-3 py-1 rounded-md">Manage</button>
                         </section>
                         @endcan
-
                     </div>
                 </div>
             </div>
