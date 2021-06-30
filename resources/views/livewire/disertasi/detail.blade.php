@@ -51,17 +51,17 @@
                         <section class="text-sm text-gray-600 pb-8">
                             @if ($disertasis->topic_id)
                                 Topik:
-                                <span class="text-green-500 font-bold">{{ $topics[$disertasis->topic_id] }}</span>
+                                <span class="text-gray-600 font-bold">{{ $topics[$disertasis->topic_id] }}</span>
                             @endif
                         </section>
 
                         <div class="flex w-full">
                             <div class="w-full flex">
-                                    <section class="flex rounded-xl text-sm border-2 border-green-500 text-green-500 font-bold py-2.5 px-7 focus:outline-none w-36">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                    </svg>
-                                    <span class="pl-2 pt-0.5 focus:outline-none">
+                                    <section class="flex rounded-xl text-sm border-2 border-green-500 text-green-500 font-bold py-3 px-5 focus:outline-none w-30">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                          </svg>
+                                    <span class="pl-2 text-gray-600 focus:outline-none">
                                     {{ $statuses[$disertasis->status] }}</span>
                                 </section>
                             </div>
@@ -192,27 +192,40 @@
                 </div>
 
                 <div class="row-span-2">
-                    <div class="flex flex-col px-7 py-7 rounded-xl bg-white shadow-md">
-                        <section class="text-lg font-bold pb-1.5 text-gray-600">
+                    <div class="flex text-green-500 mb-4">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                            </svg>
+                        <div class="text-sm font-bold text-gray-600 ml-3">
                             Tim Pembimbing:
-                        </section>
-                        <table class="text-left text-sm text-gray-600">
-                            @if ($lecturers->count()!=0)
-                                @foreach ($lecturers as $lecturer)
-                                    <tr>
-                                        <th class="w-5 text-gray-600 pb-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-600 h-5 w-4 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg></th>
-                                        <th class="font-normal text-gray-600 pb-1">
-                                            Pembimbing {{$lecturer->position}}:
-                                            <span class="font-bold text-green-500">{{ $name[$lecturer->lecturer_id] }}</th></span>
-                                    </tr>
-                                @endforeach
-                            @else
-                                Belum ada pembimbing
-                            @endif
-                        </table>
+                        </div>
+                    </div>
+                    <div class="flex flex-col px-7 py-7 rounded-xl bg-white shadow-md">
+                        <div>
+                            <table class="text-left text-sm text-gray-600">
+                                @if ($lecturers->count()!=0)
+                                    @foreach ($lecturers as $lecturer)
+                                        <tr class=" align-top">
+                                            <th class="w-5 text-gray-600 py-1">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-600 h-5 w-4 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                </svg>
+                                            </th>
+                                            <th class=" font-normal text-gray-600 py-1">
+                                                Pembimbing
+                                            </th>
+                                            <th class="w-5 text-gray-600 font-normal py-1">
+                                                {{$lecturer->position}}:
+                                            </th>
+                                            <th class="font-bold text-gray-600 py-1">{{ $name[$lecturer->lecturer_id] }}
+                                            </th>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    Belum ada pembimbing
+                                @endif
+                            </table>
+                        </div>
 
                         @can('admin_manage')
                         <section class="flex justify-end">
