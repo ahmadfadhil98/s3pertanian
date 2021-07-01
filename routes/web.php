@@ -3,6 +3,7 @@
 use App\Http\Livewire\Bdisertasi;
 use App\Http\Livewire\Bimbingan;
 use App\Http\Livewire\Ddisertasi;
+use App\Http\Livewire\DetailAcademic;
 use App\Http\Livewire\Disertasi;
 use App\Http\Livewire\File;
 use App\Http\Livewire\Lecturer;
@@ -10,6 +11,7 @@ use App\Http\Livewire\ProsesDisertasi;
 use App\Http\Livewire\Staff;
 use App\Http\Livewire\Student;
 use App\Http\Livewire\Topic;
+use App\Models\Academic;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,7 +43,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('bimbingan/{id}', Bimbingan::class)->name('bimbingan');
     Route::get('ddisertasi/{id}', Ddisertasi::class)->name('ddisertasi');
     Route::get('bdisertasi', Bdisertasi::class)->name('bdisertasi');
+    Route::get('dacademic/{di}/{id}',DetailAcademic::class)->name('dacademic');
     Route::get('topic', Topic::class)->name('topic');
     Route::get('file', File::class)->name('file');
+
+    Route::get('/show-pdf/{id}', function($id) {
+        $file = Academic::find($id);
+        return response()->file(storage_path('app/'.$file->link_upload));
+    })->name('show-pdf');
 
 });

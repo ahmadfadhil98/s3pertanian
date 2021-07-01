@@ -27,9 +27,8 @@ class Ddisertasi extends Component
     public $pd,$type,$keterangan;
     public $types='text';
     public $disabled = 'disabled';
-    public $content,$academicId,$prodis,$isAC;
-    public $isMark,$filup,$fillink;
-    public $isDel,$delId,$idDel;
+    public $content,$academicId;
+    public $isDel,$delId,$idDel,$filup;
 
     public function mount($id){
         $this->disertasiId = $id;
@@ -44,6 +43,7 @@ class Ddisertasi extends Component
         $topics = DisertasiTopic::pluck('name','id');
         $statuses = config('central.status');
 
+        $dateac = Academic::orderByDesc('updated_at')->first();
         $hashtag = 0;
         $proses_disertasis = ProsesDisertasi::all();
         $academics = Academic::where('disertasi_id',$this->disertasiId)->get();
@@ -55,7 +55,7 @@ class Ddisertasi extends Component
         $lecturers = DisertasiLecturer::where('disertasi_id',$this->disertasiId)->get();
         $name = Lecturer::pluck('name','id');
 
-        return view('livewire.disertasi.detail',[
+        return view('livewire.disertasi.detail.index',[
             'disertasis' => $disertasis,
             'students' => $students,
             'topics' => $topics,
@@ -65,6 +65,7 @@ class Ddisertasi extends Component
             'academics' => $academics,
             'c_academic' => $c_academic,
             'hashtag' => $hashtag,
+            'dateac' => $dateac,
 
             'ketac' => $ketac,
 
@@ -106,32 +107,13 @@ class Ddisertasi extends Component
 
     }
 
-    public function showAC(){
-        $this->isAC = true;
-    }
-
-    public function hideAC(){
-        $this->isAC = false;
-    }
-
-    public function showMark(){
-        $this->isMark = true;
-    }
-
-    public function hideMark(){
-        $this->isMark = false;
-        $this->showAC();
-    }
-
     public function showDel($id,$di) {
-        $this->hideAC();
         $this->delId = $id;
         $this->idDel = $di;
         $this->isDel = true;
     }
 
     public function hideDel() {
-        $this->showAC();
         $this->isDel = false;
     }
 
@@ -218,22 +200,6 @@ class Ddisertasi extends Component
     public function download($id) {
         $file = Academic::find($id);
         return Storage::download($file->link_upload,$file->keterangan);
-    }
-
-    public function d_academic($id){
-        $this->prodis = $id;
-        $this->showAC();
-    }
-
-    public function marking($id,$di) {
-        $this->filup = $id;
-        $this->fillink = $di;
-        $this->hideAC();
-        $this->showMark();
-    }
-
-    public function storeMark(){
-
     }
 
     public function delete($id,$di){

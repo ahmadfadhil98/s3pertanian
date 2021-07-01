@@ -19,29 +19,20 @@
             </div>
         </div>
 
-
         @if($isOpen)
-            @include('livewire.disertasi.edit_form')
-        @endif
-
-        @if($isAC)
-            @include('livewire.disertasi.d_academic')
+            @include('livewire.disertasi.edit')
         @endif
 
         @if($isDel)
-            @include('livewire.disertasi.delfilup')
-        @endif
-
-        @if($isMark)
-            @include('livewire.disertasi.marking')
+            @include('livewire.disertasi.detail.delete')
         @endif
 
         @if($isOpenAcademic&&$this->type==1)
-            @include('livewire.disertasi.academic_form_file')
+            @include('livewire.disertasi.detail.academic_form_file')
         @endif
 
         @if($isOpenAcademic&&$this->type==2)
-            @include('livewire.disertasi.academic_form_link')
+            @include('livewire.disertasi.detail.academic_form_link')
         @endif
 
         <div class="mt-6">
@@ -107,12 +98,16 @@
                         <div class="flex flex-col px-7 py-7 rounded-xl bg-white shadow-md mb-5 text-gray-600">
 
                             <section class="text-sm text-green-500 pb-5">
-                                September 20, 10:30 AM
+                                {{ date('d F Y, h:m A', strtotime($dateac->updated_at)) }}
                             </section>
 
                             <section class="text-xl font-bold pb-3">
                                 {{ $proses_disertasi->name }}
                             </section>
+
+                            @if ($c_academic->count()==0)
+                            Belum ada file yang di upload atau link yang di tautkan
+                            @endif
 
                             @foreach ($c_academic as $count)
                                 @if ($count->proses_disertasi_id==$proses_disertasi->id&&$count->type==1)
@@ -126,73 +121,56 @@
                                                     <div class="ml-3">File</div>
                                                 </div>
                                             </td>
-
                                             <td class="w-20"></td>
                                         </tr>
-                                @else
-                                    @if($hashtag=0)
-                                    Belum ada file yang di upload atau link yang di tautkan
-                                    @endif
                                 @endif
-                                @php
-                                    $hashtag=1;
-                                @endphp
                             @endforeach
-
-                            @php
-                                $hashtag=0;
-                            @endphp
 
                             @foreach ($c_academic as $count)
                                 @if ($count->proses_disertasi_id==$proses_disertasi->id&&$count->type==1)
                                     @foreach ($academics as $academic)
                                         @if($academic->type==1&&$academic->proses_disertasi_id==$proses_disertasi->id)
-                                            {{-- <section class="text-sm pb-8"> --}}
-                                                {{-- <table> --}}
-                                                    <tr>
-                                                        <td class="text-left text-sm text-gray-600 py-1.5 rounded-xl">
-                                                            <div class="flex bg-gradient-to-r from-gray-50 to-white text-gray-600 rounded-xl py-3 px-7">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                                                                  </svg>
-                                                                <div class="ml-3">
-                                                                    {{$academic->keterangan}}
-                                                                </div>
-                                                            </div>
-                                                        </td>
+                                            <tr>
+                                                <td class="text-left text-sm text-gray-600 py-1.5 rounded-xl">
+                                                    <div class="flex bg-gradient-to-r from-gray-50 to-white text-gray-600 rounded-xl py-3 px-7">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                                        </svg>
+                                                        <div class="ml-3">
+                                                            {{$academic->keterangan}}
+                                                        </div>
+                                                    </div>
+                                                </td>
 
-                                                        <td class="text-right">
-                                                            <button wire:click="download({{ $academic->id }})" class="rounded-xl text-sm font-bold bg-yellow-300 hover:bg-yellow-400 text-gray-600 py-2.5 px-7 focus:outline-none shadow-md">
-                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                                                </svg>
-                                                            </button>
-                                                        </td>
-                                                    </tr>
-                                                {{-- </table> --}}
-
-                                        {{-- </section> --}}
+                                                <td class="text-right">
+                                                    <button wire:click="showDel({{ $academic->id }},1)" class="rounded-xl text-sm font-bold bg-red-300 hover:bg-red-400 text-gray-600 py-2.5 px-7 focus:outline-none shadow-md">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                        </svg>
+                                                    </button>
+                                                    <button wire:click="download({{ $academic->id }})" class="rounded-xl text-sm font-bold bg-green-300 hover:bg-green-400 text-gray-600 py-2.5 px-7 focus:outline-none shadow-md">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                                        </svg>
+                                                    </button>
+                                                    <button onclick="location.href=' {{ route( 'dacademic',[1,$academic->id]) }} '" class="rounded-xl text-sm font-bold bg-yellow-300 hover:bg-yellow-400 text-gray-600 py-2.5 px-7 focus:outline-none shadow-md">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    </button>
+                                                </td>
+                                            </tr>
                                         @endif
                                     @endforeach
-                                @else
-                                    @if($hashtag=0)
-                                    Belum ada file yang di upload
-                                    @endif
                                 @endif
-                                @php
-                                    $hashtag=1;
-                                @endphp
                             @endforeach
-
-                            @php
-                                $hashtag=0;
-                            @endphp
                                     </table>
 
 
                             @foreach ($c_academic as $count)
                                 @if ($count->proses_disertasi_id==$proses_disertasi->id&&$count->type==2)
-                                    <table class="table-fixed w-full mb-5">
+
+                                <table class="table-fixed w-full mb-5">
                                         <tr>
                                             <td class="text-base font-bold py-3 text-gray-600 rounded-xl w-auto">
                                                 <div class="flex">
@@ -200,81 +178,61 @@
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                                                       </svg>
                                                     <div class="ml-3">Link</div>
+                                                    <button onclick="location.href=' {{ route( 'dacademic',[2,$academic->id]) }} '" class="rounded-xl text-sm font-bold bg-yellow-300 hover:bg-yellow-400 text-gray-600 py-2.5 px-7 focus:outline-none shadow-md">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                        </svg>
+                                                    </button>
                                                 </div>
+
                                             </td>
 
                                             <td class="w-20"></td>
                                         </tr>
-                                @else
-                                    @if($hashtag=0)
-                                    Belum ada file yang di upload atau link yang di tautkan
-                                    @endif
                                 @endif
-                                @php
-                                    $hashtag=1;
-                                @endphp
                             @endforeach
-                            @php
-                                $hashtag=0;
-                            @endphp
 
                             @foreach ($c_academic as $count)
                                 @if ($count->proses_disertasi_id==$proses_disertasi->id&&$count->type==2)
                                     @foreach ($academics as $academic)
                                         @if($academic->type==2&&$academic->proses_disertasi_id==$proses_disertasi->id)
-                                            {{-- <section class="text-sm pb-8"> --}}
-                                                <tr>
-                                                    <td class="text-left text-sm text-gray-600 py-1.5">
-                                                        <div class="flex bg-gradient-to-r from-gray-50 to-white rounded-xl py-3 px-7">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                                              </svg>
-                                                            <div class="ml-3">
-                                                                <a href="{{$academic->link_upload}}">
-                                                                {{$academic->link_upload}}</a>
-                                                            </div>
+                                            <tr>
+                                                <td class="text-left text-sm text-gray-600 py-1.5">
+                                                    <div class="flex bg-gradient-to-r from-gray-50 to-white rounded-xl py-3 px-7">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                        </svg>
+                                                        <div class="ml-3">
+                                                            <a href="{{$academic->link_upload}}">
+                                                            {{$academic->link_upload}}</a>
                                                         </div>
-                                                    </td>
+                                                    </div>
+                                                </td>
 
-                                                    <td class="text-right">
-                                                        <button wire:click="download({{ $academic->id }})" class="rounded-xl text-sm font-bold bg-yellow-300 hover:bg-yellow-400 text-gray-600 py-2.5 px-7 focus:outline-none shadow-md">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                                                              </svg>
-                                                        </button>
-                                                    </td>
-                                                </tr>
+                                                <td class="text-right">
+                                                    <button wire:click="download({{ $academic->id }})" class="rounded-xl text-sm font-bold bg-yellow-300 hover:bg-yellow-400 text-gray-600 py-2.5 px-7 focus:outline-none shadow-md">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                        </svg>
+                                                    </button>
+                                                    <button wire:click="showDel({{ $academic->id }},2)" class="rounded-xl text-sm font-bold bg-red-300 hover:bg-red-400 text-gray-600 py-2.5 px-7 focus:outline-none shadow-md">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
+                                                        </svg>
+                                                    </button>
+                                                </td>
+                                            </tr>
 
                                             </section>
                                         @endif
                                     @endforeach
-                                @else
-                                    @if($hashtag=0)
-                                    Belum ada link yang di tautkan
-                                    @endif
-                                    @php
-                                        $hashtag=1;
-                                    @endphp
                                 @endif
-                                @php
-                                    $hashtag=0;
-                                @endphp
+
                             @endforeach
                                     </table>
-                            @php
-                                $hashtag=0;
-                            @endphp
 
                                 <section class="flex justify-end">
-                                    <button type="button"
-                                    wire:click="d_academic({{$proses_disertasi->id}})"
-                                    {{-- onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '"  --}}
-                                    class="flex bg-yellow-300 hover:bg-yellow-500 text-gray-600 text-sm font-bold px-4 py-3 rounded-xl mr-2 focus:outline-none shadow-md">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                      </svg>
-                                    <div class="flex pl-2 pt-0.5">Detail</div>
-                                    </button>
+
                              @can('admin_manage')
 
                                     <button type="button"

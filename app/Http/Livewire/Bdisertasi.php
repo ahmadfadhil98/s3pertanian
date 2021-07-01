@@ -29,7 +29,7 @@ class Bdisertasi extends Component
         $dis_stu = Disertasi::pluck('student_id','id');
         $statuses = config('central.status');
 
-        return view('livewire.disertasi.bdisertasi',[
+        return view('livewire.disertasi.bimbingan.index',[
             'students' => $students,
             'stu_name' => $stu_name,
             'stu_nim' => $stu_nim,
