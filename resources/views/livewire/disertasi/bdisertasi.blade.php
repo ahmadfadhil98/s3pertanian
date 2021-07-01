@@ -2,7 +2,7 @@
     <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
             <div class="flex mt-7">
                 <div class="text-xl font-bold text-gray-600 ">
-                    Database Dosen
+                   Data Disertasi Mahasiswa S3 Pertanian
                 </div>
                 <div class="text-xl font-bold text-gray-300 px-2 ">
                     -
@@ -30,17 +30,17 @@
                     <thead>
                         <tr>
                             <th class="bg-yellow-300 text-base font-bold py-3 text-gray-600 rounded-tl-xl rounded-bl-xl w-20">No.</th>
-                            <th class="bg-yellow-300 py-3 text-gray-600 w-60">
+                            <th class="bg-yellow-300 py-3 text-gray-600 w-20">
                                 <div class="flex">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V8a2 2 0 00-2-2h-5m-4 0V5a2 2 0 114 0v1m-4 0a2 2 0 104 0m-5 8a2 2 0 100-4 2 2 0 000 4zm0 0c1.306 0 2.417.835 2.83 2M9 14a3.001 3.001 0 00-2.83 2M15 11h3m-3 4h2" />
                                     </svg>
-                                    <div class="ml-3">Nomor Induk Mahasiswa</div>
+                                    <div class="ml-3">NIM</div>
                                 </div>
                             </th>
 
                             <th class="bg-yellow-300 py-3 text-gray-600 w-45">
-                                <div class="flex">
+                                <div class="flex ml-12">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                       </svg>
@@ -48,8 +48,8 @@
                                 </div>
                             </th>
 
-                            <th class="bg-yellow-300 py-3 text-gray-600 w-80">
-                                <div class="flex ml-10">
+                            <th class="bg-yellow-300 py-3 text-gray-600 w-96">
+                                <div class="flex">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                       </svg>
@@ -57,8 +57,8 @@
                                 </div>
                             </th>
 
-                            <th class="bg-yellow-300 py-3 text-gray-600 rounded-tr-xl rounded-br-xl w-auto">
-                                <div class="flex">
+                            <th class="bg-yellow-300 py-3 text-gray-600 rounded-tr-xl rounded-br-xl w-40">
+                                <div class="flex ml-10">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                       </svg>
@@ -72,13 +72,13 @@
                     <tbody>
                         @foreach($students as  $key=>$student)
                             <tr>
-                                <td class="text-center text-base text-gray-600 py-4">{{ $students->firstitem() + $key }}.</td>
+                                <td class="text-center text-base text-gray-600">{{ $students->firstitem() + $key }}.</td>
                                 <td class="text-left text-base text-gray-600">{{ $stu_nim[$dis_stu[$student->disertasi_id]] }}</td>
-                                <td class="text-left text-base text-gray-600 font-bold">{{ $stu_name[$dis_stu[$student->disertasi_id]] }}</td>
-                                <td class="text-left text-base text-gray-600 font-bold px-10">{{ $disertasi[$student->disertasi_id] }}</td>
-                                <td class="text-left text-base text-gray-600 font-bold">{{ $statuses[$student->approve] }}</td>
+                                <td class="text-left text-base text-gray-600 font-bold px-12">{{ $stu_name[$dis_stu[$student->disertasi_id]] }}</td>
+                                <td class="text-left text-base text-gray-600 font-bold py-2">{{ $disertasi[$student->disertasi_id] }}</td>
+                                <td class="text-left text-base text-gray-600 font-bold px-11">{{ $statuses[$student->approve] }}</td>
                                     @if($student->approve==1)
-                                    <td class="flex justify-end">
+                                <td class="flex">
                                         <button wire:click="agree({{ $student->id }})" class="flex rounded-xl text-sm font-bold bg-green-500 hover:bg-green-700 text-white py-3 px-5 focus:outline-none shadow-md mr-2.5">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -98,8 +98,8 @@
                                         </button>
                                     </td>
                                     @else
-                                    <td class="grid justify-end">
-                                        <button onclick="location.href=' {{ route( 'ddisertasi',[$student->disertasi_id]) }} '" class="flex rounded-xl text-sm font-bold bg-yellow-300 hover:bg-yellow-400 text-gray-600 py-3 px-4 focus:outline-none shadow-md">
+                                    <td class="pl-16">
+                                        <button onclick="location.href=' {{ route( 'ddisertasi',[$student->disertasi_id]) }} '" class="flex rounded-xl text-sm font-bold bg-yellow-300 hover:bg-yellow-400 text-gray-600 py-3 px-5 focus:outline-none shadow-md">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                               </svg>

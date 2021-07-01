@@ -106,12 +106,12 @@
                                                 Status:
                                             </div>
                                         </div>
-                                            <div class="flex rounded-xl text-sm bg-white text-green-500 border-2 border-green-500 py-2.5 px-5 mr-5 focus:outline-none">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                            <div class="flex rounded-xl text-sm bg-white text-green-500 py-3 px-5 mr-5 focus:outline-none">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                   </svg>
                                                 <button class="pl-2 font-bold text-gray-600 focus:outline-none">
-                                                    {{ $statuses [$disertasi->status] }}
+                                                    {{ $statuses [$disertasi->status] }}...
                                                 </button>
                                             </div>
                                         </div>
@@ -128,7 +128,7 @@
                                         </div>
                                     </div> --}}
                                     <div>
-                                        <div x-data="{ dropdownOpen: false }" class="relative py-2.5">
+                                        <div x-data="{ dropdownOpen: false }" class="relative">
                                             <button @click="dropdownOpen = !dropdownOpen" class="focus:outline-none">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 text-gray-600 hover:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
@@ -137,8 +137,8 @@
 
                                             <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
 
-                                            <div x-show="dropdownOpen" class="absolute right-0 pt-14 mr-10 w-30 rounded-md overflow-hidden z-20 pb-10">
-                                                <div class="flex rounded-xl text-sm bg-yellow-300 hover:bg-yellow-400 text-gray-600 py-2.5 px-7 mb-2 shadow-md">
+                                            <div x-show="dropdownOpen" class="absolute right-0 pt-15 mr-10 w-30 rounded-md overflow-hidden z-20 pb-10">
+                                                <div class="flex rounded-xl text-sm bg-yellow-300 hover:bg-yellow-400 text-gray-600 py-2.5 px-8 mb-2 shadow-md">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>
@@ -146,7 +146,7 @@
                                                     </button>
                                                 </div>
 
-                                                <div class="flex rounded-xl text-sm bg-red-500 hover:bg-red-700 text-white py-2.5 px-7 shadow-md">
+                                                <div class="flex rounded-xl text-sm bg-red-500 hover:bg-red-700 text-white py-2.5 px-8 shadow-md">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                     </svg>
