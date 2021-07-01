@@ -38,6 +38,7 @@ class Ddisertasi extends Component
     {
         $this->user = Auth::user();
 
+        $icons = config('central.icon');
         $disertasis = Disertasi::find($this->disertasiId);
         $students = Student::pluck('name','id');
         $topics = DisertasiTopic::pluck('name','id');
@@ -60,6 +61,7 @@ class Ddisertasi extends Component
             'students' => $students,
             'topics' => $topics,
             'statuses' => $statuses,
+            'icons' => $icons,
 
             'proses_disertasis' => $proses_disertasis,
             'academics' => $academics,

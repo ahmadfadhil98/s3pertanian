@@ -68,6 +68,10 @@
                                             @else
                                                 <div class="text-base leading-6 font-normal">Belum ada judul</div>
                                             @endif
+                                            <div class="text-sm font-normal pb-1.5">
+                                                Topik:
+                                                <span class="font-bold text-gray-600">{{ $topics[$disertasi->topic_id] }}</span>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -107,9 +111,9 @@
                                             </div>
                                         </div>
                                             <div class="flex rounded-xl text-sm bg-white text-green-500 py-3 px-5 mr-5 focus:outline-none">
-                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                                  </svg>
+                                                @php
+                                                    echo $icons [$disertasi->status];
+                                                @endphp
                                                 <button class="pl-2 font-bold text-gray-600 focus:outline-none">
                                                     {{ $statuses [$disertasi->status] }}...
                                                 </button>

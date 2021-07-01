@@ -7,10 +7,20 @@ use Livewire\Component;
 
 class DetailAcademic extends Component
 {
-    public $academicId,$isDel,$delId;
+    public $academicId,$isDel,$delId,$score,$isMark;
+    public $disabled = 'disabled';
 
     public function mount($id){
         $this->academicId = $id;
+    }
+
+    public function render()
+    {
+        // dd($this->academicId);
+        $academic = Academic::find($this->academicId);
+        return view('livewire.detail_academic.index',[
+            'academic' => $academic
+        ]);
     }
 
     public function showDel() {
@@ -22,13 +32,12 @@ class DetailAcademic extends Component
         $this->isDel = false;
     }
 
-    public function render()
+    public function openMark()
     {
-        // dd($this->academicId);
-        $academic = Academic::find($this->academicId);
+        $this->disabled = "enabled";
+    }
 
-        return view('livewire.detail_academic.index',[
-            'academic' => $academic
-        ]);
+    public function store(){
+        dd($this->score);
     }
 }

@@ -1,5 +1,5 @@
-<div>
-    <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
+<div class="h-screen">
+    <div class="max-w-screen-xl h-4/5 mx-auto sm:px-6 lg:px-8">
         <div class="flex mt-7">
             <div class="text-xl font-bold text-gray-600 ">
                 Database File
@@ -21,30 +21,14 @@
 
                 <div class="w-full md:w-1/2">
                     @can('admin_manage_file')
-                        <button onclick="myFunction()" class="rounded-xl focus:outline-none py-3 px-7 text-base font-bold bg-green-500 hover:bg-green-700 text-white shadow-md">
+                        <button wire:click="openMark()" class="rounded-xl focus:outline-none py-3 px-7 text-base font-bold bg-green-500 hover:bg-green-700 text-white shadow-md">
                             <div class="flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                 </svg>
-                            <div class="ml-2.5">Tambah File</div></div>
+                            <div class="ml-2.5">Beri Nilai</div></div>
                         </button>
                     @endcan
-                </div>
-                <div class="w-full md:w-1/2 flex text-gray-300 bg-white pl-5 rounded-xl shadow-md">
-                    <button wire:click="openMark()" class="rounded-xl focus:outline-none py-3 px-7 text-base font-bold bg-green-500 hover:bg-green-700 text-white shadow-md">
-                        <div class="flex">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                        <div class="ml-2.5">Beri Nilai</div></div>
-                    </button>
-                    <button wire:click="showDel()" class="rounded-xl focus:outline-none py-3 px-7 text-base font-bold bg-red-500 hover:bg-red-700 text-white shadow-md">
-                        <div class="flex">
-                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
-                        <div class="ml-2.5">Hapus</div></div>
-                    </button>
                 </div>
             </div>
                 {{-- @if($isOpen)
@@ -70,8 +54,8 @@
                         </div>
                     </div>
                 @endif
-
-                <div class="h-96 border-8" id="pdf-viewer">Silahkan di refresh dahulu</div>
+                <div class="h-full border-8" id="pdf-viewer">Silahkan di refresh dahulu</div>
+                    <div>
     </div>
 </div>
 
