@@ -110,24 +110,24 @@
                                 September 20, 10:30 AM
                             </section>
 
-                            <section class="text-xl font-bold pb-5">
+                            <section class="text-xl font-bold pb-3">
                                 {{ $proses_disertasi->name }}
                             </section>
 
                             @foreach ($c_academic as $count)
                                 @if ($count->proses_disertasi_id==$proses_disertasi->id&&$count->type==1)
-                                    <table class="table-fixed w-full mb-5">
+                                    <table class="table-fixed w-full mb-4">
                                         <tr>
-                                            <td class="bg-gray-100 text-base font-bold py-3 text-gray-600 rounded-xl w-auto">
+                                            <td class="text-base font-bold py-3 text-gray-600 rounded-xl w-auto">
                                                 <div class="flex">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 ml-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                                       </svg>
-                                                    <div class="ml-3">Nama File</div>
+                                                    <div class="ml-3">File</div>
                                                 </div>
                                             </td>
 
-                                            <td class="w-40"></td>
+                                            <td class="w-20"></td>
                                         </tr>
                                 @else
                                     @if($hashtag=0)
@@ -150,7 +150,17 @@
                                             {{-- <section class="text-sm pb-8"> --}}
                                                 {{-- <table> --}}
                                                     <tr>
-                                                        <td class="text-left text-base text-gray-600 px-7 py-4">{{$academic->keterangan}}</td>
+                                                        <td class="text-left text-sm text-gray-600 py-1.5 rounded-xl">
+                                                            <div class="flex bg-gradient-to-r from-gray-50 to-white text-gray-600 rounded-xl py-3 px-7">
+                                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                                                                  </svg>
+                                                                <div class="ml-3">
+                                                                    {{$academic->keterangan}}
+                                                                </div>
+                                                            </div>
+                                                        </td>
+
                                                         <td class="text-right">
                                                             <button wire:click="download({{ $academic->id }})" class="rounded-xl text-sm font-bold bg-yellow-300 hover:bg-yellow-400 text-gray-600 py-2.5 px-7 focus:outline-none shadow-md">
                                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -184,16 +194,16 @@
                                 @if ($count->proses_disertasi_id==$proses_disertasi->id&&$count->type==2)
                                     <table class="table-fixed w-full mb-5">
                                         <tr>
-                                            <td class="bg-gray-100 text-base font-bold py-3 text-gray-600 rounded-xl w-auto">
+                                            <td class="text-base font-bold py-3 text-gray-600 rounded-xl w-auto">
                                                 <div class="flex">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 ml-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                                                       </svg>
                                                     <div class="ml-3">Link</div>
                                                 </div>
                                             </td>
 
-                                            <td class="w-40"></td>
+                                            <td class="w-20"></td>
                                         </tr>
                                 @else
                                     @if($hashtag=0)
@@ -214,7 +224,17 @@
                                         @if($academic->type==2&&$academic->proses_disertasi_id==$proses_disertasi->id)
                                             {{-- <section class="text-sm pb-8"> --}}
                                                 <tr>
-                                                    <td class="text-left text-base text-gray-600 px-7 py-4"><a href="{{$academic->link_upload}}">{{$academic->link_upload}}</a></td>
+                                                    <td class="text-left text-sm text-gray-600 py-1.5">
+                                                        <div class="flex bg-gradient-to-r from-gray-50 to-white rounded-xl py-3 px-7">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                                                              </svg>
+                                                            <div class="ml-3">
+                                                                <a href="{{$academic->link_upload}}">
+                                                                {{$academic->link_upload}}</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
 
                                                     <td class="text-right">
                                                         <button wire:click="download({{ $academic->id }})" class="rounded-xl text-sm font-bold bg-yellow-300 hover:bg-yellow-400 text-gray-600 py-2.5 px-7 focus:outline-none shadow-md">
@@ -249,7 +269,7 @@
                                     <button type="button"
                                     wire:click="d_academic({{$proses_disertasi->id}})"
                                     {{-- onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '"  --}}
-                                    class="flex bg-yellow-300 hover:bg-yellow-500 text-gray-600 text-sm font-bold px-4 py-3 rounded-xl mr-2 focus:outline-none">
+                                    class="flex bg-yellow-300 hover:bg-yellow-500 text-gray-600 text-sm font-bold px-4 py-3 rounded-xl mr-2 focus:outline-none shadow-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                       </svg>
