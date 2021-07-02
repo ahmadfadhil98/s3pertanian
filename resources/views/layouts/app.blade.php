@@ -30,15 +30,18 @@
                 {{ $slot }}
             </main>
 
-            <div class="text-sm text-gray-300 text-center">
-                Sistem Informasi S3 Pertanian
-                <div class="">Universitas Andalas</div>
-                </div>
-            </div>
+
         </div>
 
         @stack('modals')
 
         @livewireScripts
     </body>
+    <footer class="bg-gradient-to-r from-green-600 to-green-900 shadow-inner">
+        <div class="text-xs text-gray-200 text-center py-3.5">
+            <div class="">Sistem Informasi S3 Pertanian</div>
+            <div class="">Universitas Andalas</div>
+            </div>
+        </div>
+    </footer>
 </html>
