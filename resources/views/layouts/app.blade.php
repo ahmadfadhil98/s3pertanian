@@ -29,6 +29,12 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <div class="text-sm text-gray-300 text-center">
+                Sistem Informasi S3 Pertanian
+                <div class="">Universitas Andalas</div>
+                </div>
+            </div>
         </div>
 
         @stack('modals')

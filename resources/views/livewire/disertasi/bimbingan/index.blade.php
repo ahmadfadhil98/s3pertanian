@@ -78,24 +78,27 @@
                                 <td class="text-left text-base text-gray-600 font-bold py-2">{{ $disertasi[$student->disertasi_id] }}</td>
                                 <td class="text-left text-base text-gray-600 font-bold px-11">{{ $statuses[$student->approve] }}</td>
                                     @if($student->approve==1)
-                                <td class="flex">
-                                        <button wire:click="agree({{ $student->id }})" class="flex rounded-xl text-sm font-bold bg-green-500 hover:bg-green-700 text-white py-3 px-5 focus:outline-none shadow-md mr-2.5">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                              </svg>
-                                            <div class="ml-2.5">
-                                                Setujui
-                                            </div>
-                                        </button>
+                                <td>
+                                        <div class="flex">
+                                            <button wire:click="agree({{ $student->id }})" class="flex rounded-xl text-sm font-bold bg-green-500 hover:bg-green-700 text-white py-3 px-5 focus:outline-none shadow-md mr-2.5">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                  </svg>
+                                                <div class="ml-2.5">
+                                                    Setujui
+                                                </div>
+                                            </button>
 
-                                        <button wire:click="reject({{ $student->id }})" class="flex rounded-xl text-sm font-bold bg-red-500 hover:bg-red-700 text-white py-3 px-5 focus:outline-none shadow-md">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                              </svg>
-                                            <div class="ml-2.5">
-                                                Tolak
-                                            </div>
-                                        </button>
+                                            <button wire:click="reject({{ $student->id }})" class="flex rounded-xl text-sm font-bold bg-red-500 hover:bg-red-700 text-white py-3 px-5 focus:outline-none shadow-md">
+                                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                                  </svg>
+                                                <div class="ml-2.5">
+                                                    Tolak
+                                                </div>
+                                            </button>
+                                        </div>
+
                                     </td>
                                     @else
                                     <td class="pl-16">
