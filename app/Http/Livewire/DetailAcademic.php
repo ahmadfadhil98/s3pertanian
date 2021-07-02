@@ -10,11 +10,12 @@ use Livewire\Component;
 
 class DetailAcademic extends Component
 {
-    public $user,$academicId,$type,$prodisId,$isOpen;
+    public $user,$markingId,$disertasiId,$academicId,$type,$prodisId,$isOpen;
     public $keterangan,$grade,$score;
 
-    public function mount($di,$id){
+    public function mount($di,$did,$id){
         $this->type = $di;
+        $this->disertasiId = $did;
         if($di==1){
             $this->academicId = $id;
         }else{
@@ -34,10 +35,12 @@ class DetailAcademic extends Component
         }
 
         if($this->prodisId){
-            $academics = Academic::where('proses_disertasi_id',$this->prodisId)->paginate(6);
-
+            $academics = Academic::where('proses_disertasi_id',$this->prodisId)->where('disertasi_id',$this->disertasiId)->where('type',2)->paginate(6);
+            $mark = Marking::where('lecturer_id',$this->user->id)->get();
+            // dd($this->prodisId);
             return view('livewire.detail_academic.index_link',[
-                'academics' => $academics
+                'academics' => $academics,
+                'mark' => $mark
             ]);
         }
 
@@ -61,6 +64,7 @@ class DetailAcademic extends Component
         );
 
         $this->grade();
+        dd($this->keterangan);
 
         try {
             // dd($this->topicId);

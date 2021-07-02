@@ -10,7 +10,7 @@ class Marking extends Model
     use HasFactory;
 
     protected $table = "markings";
-    protected $fillable = ['lecturer_id','academic_id','score','grade','revisi'];
+    protected $fillable = ['lecturer_id','academic_id','score','grade','keterangan'];
 
     public function lecturer_id(){
         return $this->belongsTo(Lecturer::class);
