@@ -18,10 +18,20 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
-                            <div class="ml-3">File</div>
+                            <div class="ml-3">Nilai</div>
                         </div>
-                        <input type="file" wire:model="file" name="file" class="bg-white w-full py-2.5 px-4 text-sm text-gray-400 rounded-xl focus:outline-none shadow-md">
-                        @error('file') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                        <input type="number" wire:model="score" name="score" class="bg-white w-full py-2.5 px-4 text-sm text-gray-400 rounded-xl focus:outline-none shadow-md">
+                        @error('score') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                    </div>
+                    <div>
+                        <div class="flex text-sm text-gray-600 font-bold mb-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                              </svg>
+                            <div class="ml-3">Keterangan</div>
+                        </div>
+                        <textarea wire:model="keterangan" name="keterangan"class="w-full py-2.5 px-4 text-sm text-gray-400 rounded-xl focus:outline-none shadow-md" rows="4" placeholder="Input keterangan link"></textarea>
+                        @error('keterangan') <h1 class="text-red-500">{{$message}}</h1>@enderror
                     </div>
                 </div>
 

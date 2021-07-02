@@ -21,7 +21,7 @@
 
                 <div class="w-full md:w-1/2">
                     @can('admin_manage_file')
-                        <button wire:click="openMark()" class="rounded-xl focus:outline-none py-3 px-7 text-base font-bold bg-green-500 hover:bg-green-700 text-white shadow-md">
+                        <button wire:click="showModal()" class="rounded-xl focus:outline-none py-3 px-7 text-base font-bold bg-green-500 hover:bg-green-700 text-white shadow-md">
                             <div class="flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -31,13 +31,13 @@
                     @endcan
                 </div>
             </div>
-                {{-- @if($isOpen)
-                    @include('livewire.file.form')
-                @endif --}}
-
-                @if($isDel)
-                    @include('livewire.file.delete')
+                @if($isOpen)
+                    @include('livewire.detail_academic.form')
                 @endif
+
+                {{-- @if($isDel)
+                    @include('livewire.file.delete')
+                @endif --}}
 
                 @if(session()->has('info'))
                     <div class="py-2 px-6 mt-4">
