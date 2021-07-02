@@ -19,7 +19,7 @@ class CreateMarkingsTable extends Migration
             $table->unsignedBigInteger('academic_id');
             $table->double('score');
             $table->string('grade');
-            $table->text('revisi');
+            $table->text('keterangan');
             $table->timestamps();
 
             $table->foreign('lecturer_id')->references('id')->on('lecturers');

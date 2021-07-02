@@ -27,15 +27,20 @@ class DetailAcademic extends Component
         $this->user = Auth::user();
         if($this->academicId){
             $academic = Academic::find($this->academicId);
+
+            return view('livewire.detail_academic.index',[
+                'academic' => $academic
+            ]);
         }
 
         if($this->prodisId){
-            $academic = Academic::where('proses_disertasi_id',$this->prodisId)->paginate(6);
+            $academics = Academic::where('proses_disertasi_id',$this->prodisId)->paginate(6);
+
+            return view('livewire.detail_academic.index_link',[
+                'academics' => $academics
+            ]);
         }
 
-        return view('livewire.detail_academic.index',[
-            'academic' => $academic
-        ]);
     }
 
     public function showModal() {

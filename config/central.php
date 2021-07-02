@@ -46,5 +46,11 @@ return [
       </svg>',
     ],
 
+    'colorIcon' => [
+        1 => 'yellow-300',
+        2 => 'green-500',
+        3 => 'red-500'
+    ]
+
 
 ];

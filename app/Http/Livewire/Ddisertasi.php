@@ -43,6 +43,7 @@ class Ddisertasi extends Component
         $students = Student::pluck('name','id');
         $topics = DisertasiTopic::pluck('name','id');
         $statuses = config('central.status');
+        $colors = config('central.colorIcon');
 
         $dateac = Academic::orderByDesc('updated_at')->first();
         $hashtag = 0;
@@ -62,6 +63,7 @@ class Ddisertasi extends Component
             'topics' => $topics,
             'statuses' => $statuses,
             'icons' => $icons,
+            'colors' => $colors,
 
             'proses_disertasis' => $proses_disertasis,
             'academics' => $academics,
