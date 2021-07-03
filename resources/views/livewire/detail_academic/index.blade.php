@@ -2,7 +2,7 @@
     <div class="max-w-screen-xl h-4/5 mx-auto sm:px-6 lg:px-8">
         <div class="flex mt-7">
             <div class="text-xl font-bold text-gray-600 ">
-                Database File
+                Preview File
             </div>
             <div class="text-xl font-bold text-gray-300 px-2 ">
                 -
@@ -19,7 +19,7 @@
 
             <div class="flex mt-6">
 
-                <div class="w-full md:w-1/2">
+                <div class="w-full md:w-1/2 mb-5">
                     @can('admin_manage_file')
                         <button wire:click="showModal()" class="rounded-xl focus:outline-none py-3 px-7 text-base font-bold bg-green-500 hover:bg-green-700 text-white shadow-md">
                             <div class="flex">
@@ -54,9 +54,10 @@
                         </div>
                     </div>
                 @endif
-                <div class="h-full border-8" id="pdf-viewer">Silahkan di refresh dahulu</div>
-                    <div>
-    </div>
+                <div class="border-4 border-gray-600 rounded-xl shadow-md h-full">
+                    <div class="rounded-xl h-full" id="pdf-viewer">Silahkan refresh terlebih dahulu</div>
+                </div>
+
 </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.5/pdfobject.min.js" integrity="sha512-K4UtqDEi6MR5oZo0YJieEqqsPMsrWa9rGDWMK2ygySdRQ+DtwmuBXAllehaopjKpbxrmXmeBo77vjA2ylTYhRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

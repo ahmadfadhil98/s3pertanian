@@ -24,7 +24,7 @@
                                 </svg>
                                 <div class="ml-3">Nomor Induk Pegawai</div>
                             </div>
-                            <input wire:model="nip" type="number" name="nip" class="w-full py-2.5 px-4 text-sm text-gray-400 rounded-xl focus:outline-none mb-2 shadow-md" placeholder="Input NIP">
+                            <input wire:model="nip" type="number" name="nip" class="w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none mb-2 shadow-md" placeholder="Input NIP">
                             @error('nip') <h1 class="text-red-500">{{$message}}</h1>@enderror
                         </div>
 
@@ -35,7 +35,7 @@
                                 </svg>
                                 <div class="ml-3">Nama Dosen</div>
                             </div>
-                            <input wire:model="name" name="name" class="w-full py-2.5 px-4 text-sm text-gray-400 rounded-xl focus:outline-none mb-2 shadow-md" placeholder="Input nama dosen">
+                            <input wire:model="name" name="name" class="w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none mb-2 shadow-md" placeholder="Input nama dosen">
                             @error('name') <h1 class="text-red-500">{{$message}}</h1>@enderror
                         </div>
 
@@ -46,7 +46,7 @@
                                 </svg>
                                 <div class="ml-3">Email</div>
                             </div>
-                            <input wire:model="email" type="email" name="email" class="w-full py-2.5 px-4 text-sm text-gray-400 rounded-xl focus:outline-none mb-2 shadow-md" placeholder="Input email dosen">
+                            <input wire:model="email" type="email" name="email" class="w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none mb-2 shadow-md" placeholder="Input email dosen">
                             @error('email') <h1 class="text-red-500">{{$message}}</h1>@enderror
                         </div>
 
@@ -55,10 +55,10 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                 </svg>
-                                <div class="ml-3">Fakultas</div>
+                                <div class="ml-3">Fakultas Asal</div>
                             </div>
                             {{ Form::select('faculty',$faculties,null,
-                            ['class' => 'w-full py-2.5 px-4 text-sm text-gray-400 rounded-xl focus:outline-none shadow-md','id' => 'faculty','wire:model'=>'faculty','placeholder'=>'- Pilih fakultas -'])}}
+                            ['class' => 'w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none shadow-md','id' => 'faculty','wire:model'=>'faculty','placeholder'=>'- Pilih fakultas -'])}}
                             @error('faculty') <h1 class="text-red-500">{{$message}}</h1>@enderror
                         </div>
                     </div>
@@ -76,12 +76,12 @@
 
         <div class="px-6 mb-10">
           <span class="flex w-full mb-3">
-            <button wire:click.prevent="store()" type="button" class="inline-flex justify-center w-full px-4 py-2.5 bg-green-500 hover:bg-green-700 text-sm font-bold leading-6 text-white focus:outline-none rounded-xl shadow-md">
+            <button style="background-color: #057954;" wire:click.prevent="store()" type="button" class="transform hover:scale-95 duration-300 inline-flex justify-center w-full py-2.5 text-sm leading-6 text-white focus:outline-none rounded-xl shadow-md">
               Simpan
             </button>
           </span>
           <span class="flex w-full">
-            <button wire:click="hideModal()" type="button" class="inline-flex justify-center w-full px-4 py-2.5 bg-red-500 hover:bg-red-700 text-sm font-bold leading-6 text-white focus:outline-none rounded-xl shadow-md">
+            <button style="background-color: #79052a;" wire:click="hideModal()" type="button" class="transform hover:scale-95 duration-300 inline-flex justify-center w-full py-2.5 text-sm leading-6 text-white focus:outline-none rounded-xl shadow-md">
               Kembali
             </button>
           </span>
