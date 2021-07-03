@@ -110,7 +110,7 @@
                                                 Status:
                                             </div>
                                         </div>
-                                            <div class="flex rounded-xl text-sm bg-white text-green-500 py-3 px-5 mr-5 focus:outline-none">
+                                            <div class="flex rounded-xl text-sm bg-white text-{{ $colors[$disertasi->status]}} py-3 px-5 mr-5 focus:outline-none">
                                                 @php
                                                     echo $icons [$disertasi->status];
                                                 @endphp

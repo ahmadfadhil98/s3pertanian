@@ -34,6 +34,7 @@ class Disertasi extends Component
         $students = Student::pluck('name','id');
         $topics = DisertasiTopic::pluck('name','id');
         $icons = config('central.icon');
+        $colors = config('central.colorIcon');
         $statuses = config('central.status');
         $this->lecturers = Lecturer::pluck('name','id');
         $lecturer = DisertasiLecturer::get();
@@ -43,6 +44,7 @@ class Disertasi extends Component
             'students' => $students,
             'topics' => $topics,
             'icons' => $icons,
+            'colors' => $colors,
             'lecturer' => $lecturer,
             'lecturers' => $this->lecturers,
             'lecturers2' => $this->lecturers2,

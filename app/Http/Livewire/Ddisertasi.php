@@ -49,14 +49,14 @@ class Ddisertasi extends Component
         $hashtag = 0;
         $proses_disertasis = ProsesDisertasi::all();
         $academics = Academic::where('disertasi_id',$this->disertasiId)->get();
-        $c_academic = DB::table('academics')->select(DB::raw('count(*) as count,type, proses_disertasi_id'))->groupBy('proses_disertasi_id','type')
+        $c_academic = DB::table('academics')->where('disertasi_id',$this->disertasiId)->select(DB::raw('count(*) as count,type, proses_disertasi_id'))->groupBy('proses_disertasi_id','type')
         ->get();
 
         $ketac = Academic::pluck('keterangan','id');
 
         $lecturers = DisertasiLecturer::where('disertasi_id',$this->disertasiId)->get();
         $name = Lecturer::pluck('name','id');
-
+        $approved = DisertasiLecturer::where('disertasi_id',$this->disertasiId)->where('approve',1)->get();
         return view('livewire.disertasi.detail.index',[
             'disertasis' => $disertasis,
             'students' => $students,
@@ -74,7 +74,8 @@ class Ddisertasi extends Component
             'ketac' => $ketac,
 
             'lecturers' => $lecturers,
-            'name' => $name
+            'name' => $name,
+            'approved' => $approved
         ]);
     }
 

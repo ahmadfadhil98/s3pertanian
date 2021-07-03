@@ -42,10 +42,18 @@ class Bdisertasi extends Component
 
     public function agree($id){
         // dd($id);
+
         $disertasi = DisertasiLecturer::find($id);
         $disertasi->update([
             'approve' => 2
         ]);
+        $approved = DisertasiLecturer::where('disertasi_id',$disertasi->disertasi_id)->where('approve',1)->get();
+        if($approved->count()==0){
+            Disertasi::where('id',$disertasi->disertasi_id)->update([
+                'status' => 2
+            ]);
+        }
+
     }
 
     public function reject($id){
