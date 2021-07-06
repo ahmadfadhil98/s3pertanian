@@ -67,7 +67,7 @@
                                         <div class="">
                                             <div class="text-sm font-normal pb-3.5 text-gray-400">
                                                 Mahasiwa:
-                                                <button style="background-color: #057954;" class="transform hover:scale-95 duration-300 ml-1 px-5 py-1.5 text-sm text-white rounded-lg shadow-md">{{ $students[$disertasi->student_id] }} (12345678)</button>
+                                                <button style="background-color: #057954;" class="transform hover:scale-95 duration-300 ml-1 px-5 py-1.5 text-sm text-white rounded-lg shadow-md focus:outline-none">{{ $students[$disertasi->student_id] }} (12345678)</button>
                                             </div>
                                             @if ($disertasi->title)
                                                 <div class="text-xl">{{ $disertasi->title }}</div>
@@ -121,7 +121,7 @@
                                                     echo $icons [$disertasi->status];
                                                 @endphp
                                                 <button class="pl-2 text-gray-600 focus:outline-none">
-                                                    {{ $statuses [$disertasi->status] }}...
+                                                    {{ $statuses [$disertasi->status] }}
                                                 </button>
                                             </div>
                                         </div>
@@ -148,7 +148,7 @@
                                             <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
 
                                             <div x-show="dropdownOpen" class="absolute right-0 pt-16 mr-10 rounded-md overflow-hidden z-20 pb-10">
-                                                <button style="background-color: #9E8235;" class="transform hover:scale-95 duration-300 flex rounded-xl text-sm text-white py-3 px-8 mb-2 shadow-md focus:outline-none">
+                                                <button style="background-color: #9E8235;" class="transform hover:scale-95 duration-300 flex rounded-xl text-sm text-white py-3 pl-5 pr-8 mb-2 shadow-md focus:outline-none">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>
@@ -156,7 +156,7 @@
                                                     </div>
                                                 </button>
 
-                                                <button style="background-color: #AA073B;" class="transform hover:scale-95 duration-300 flex rounded-xl text-sm text-white py-3 px-8 shadow-md focus:outline-none">
+                                                <button style="background-color: #AA073B;" class="transform hover:scale-95 duration-300 flex rounded-xl text-sm text-white py-3 pl-5 pr-8 shadow-md focus:outline-none">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                     </svg>

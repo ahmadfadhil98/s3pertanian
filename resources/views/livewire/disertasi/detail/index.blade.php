@@ -50,7 +50,7 @@
                                 Belum ada judul
                             @endif
                         </section>
-                        <section class="pb-8">
+                        <section class="pb-6">
                             @if ($disertasis->topic_id)
                                 <span class="text-sm text-gray-400">Topik:</span>
                                 <span class="text-sm text-gray-600 italic">{{ $topics[$disertasis->topic_id] }}</span>
@@ -59,12 +59,12 @@
 
                         <div class="flex w-full">
                             <div class="w-full flex">
-                                    <section class="flex rounded-xl text-sm text-green-500 font-bold py-3 focus:outline-none w-30">
+                                    <section class="flex rounded-xl py-3 focus:outline-none w-30">
                                         @php
                                             echo $icons [$disertasis->status];
                                         @endphp
-                                    <span class="pl-2 text-gray-600 focus:outline-none">
-                                    {{ $statuses[$disertasis->status] }}...</span>
+                                    <span class="pl-2 text-sm text-gray-600 focus:outline-none">
+                                    {{ $statuses[$disertasis->status] }}</span>
                                 </section>
                             </div>
 
