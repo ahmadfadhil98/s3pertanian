@@ -41,6 +41,7 @@ class Ddisertasi extends Component
         $icons = config('central.icon');
         $disertasis = Disertasi::find($this->disertasiId);
         $students = Student::pluck('name','id');
+        $nim = Student::pluck('nim','id');
         $topics = DisertasiTopic::pluck('name','id');
         $statuses = config('central.status');
         $colors = config('central.colorIcon');
@@ -61,6 +62,7 @@ class Ddisertasi extends Component
             'disertasis' => $disertasis,
             'students' => $students,
             'topics' => $topics,
+            'nim' => $nim,
             'statuses' => $statuses,
             'icons' => $icons,
             'colors' => $colors,

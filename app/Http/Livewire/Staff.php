@@ -17,7 +17,7 @@ class Staff extends Component
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
-        $staffs = ModelsStaff::where('name','like',$searchParam)->paginate(5);
+        $staffs = ModelsStaff::where('name','like',$searchParam)->orWhere('nip','like',$searchParam)->paginate(5);
         return view('livewire.staff.index',[
             'staffs' => $staffs
         ]);

@@ -67,10 +67,16 @@
                                         <div class="">
                                             <div class="text-sm font-normal pb-3.5 text-gray-400">
                                                 Mahasiwa:
-                                                <button style="background-color: #057954;" class="transform hover:scale-95 duration-300 ml-1 px-5 py-1.5 text-sm text-white rounded-lg shadow-md focus:outline-none">{{ $students[$disertasi->student_id] }} (12345678)</button>
+                                                <a href="{{route('ddisertasi',[$disertasi->id])}}"class="font-bold">
+                                                    {{ $disertasi->name }} ({{ $disertasi->nim }})
+                                                </a>
                                             </div>
                                             @if ($disertasi->title)
-                                                <div class="text-xl">{{ $disertasi->title }}</div>
+                                                <div class="text-xl">
+                                                    <a href="{{route('ddisertasi',[$disertasi->id])}}">
+                                                    {{ $disertasi->title }}
+                                                    </a>
+                                                </div>
                                             @else
                                                 <div class="text-base leading-6 font-normal">Belum ada judul</div>
                                             @endif

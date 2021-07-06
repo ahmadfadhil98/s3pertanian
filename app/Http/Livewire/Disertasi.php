@@ -10,11 +10,12 @@ use App\Models\ProsesDisertasi;
 use App\Models\Student;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class Disertasi extends Component
 {
-    public $isOpen,$isOpen2,$isDel,$delId;
+    public $isOpen,$isOpen2,$isDel,$delId,$search;
     public $disertasiId,$title,$student_id,$topic_id;
     public $lecturer1 = 0;
     public $lecturer2 = 0;
@@ -30,14 +31,15 @@ class Disertasi extends Component
     {
         $this->user = Auth::user();
         $user = $this->user;
-        $disertasis = ModelsDisertasi::all();
+        $searchParam = '%'.$this->search.'%';
+        $disertasis = DB::table('disertasis')->join('students','students.id','=','disertasis.student_id')->select('disertasis.id','student_id','name','nim','topic_id','title','status')->where('name','like',$searchParam)->orWhere('nim','like',$searchParam)->orWhere('title','like',$searchParam)->get();
         $students = Student::pluck('name','id');
         $topics = DisertasiTopic::pluck('name','id');
         $icons = config('central.icon');
         $colors = config('central.colorIcon');
         $statuses = config('central.status');
         $this->lecturers = Lecturer::pluck('name','id');
-        $lecturer = DisertasiLecturer::get();
+        $lecturer = DisertasiLecturer::orderBy('position')->get();
         // dd($lecturer);
         return view('livewire.disertasi.index',[
             'disertasis' => $disertasis,
