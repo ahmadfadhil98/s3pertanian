@@ -67,7 +67,7 @@
                                         <div class="">
                                             <div class="text-sm font-normal pb-3.5 text-gray-400">
                                                 Mahasiwa:
-                                                <button style="background-color: #057954;" class="ml-1 px-5 py-1.5 text-sm text-white rounded-lg shadow-md">{{ $students[$disertasi->student_id] }} (12345678)</button>
+                                                <button style="background-color: #057954;" class="transform hover:scale-95 duration-300 ml-1 px-5 py-1.5 text-sm text-white rounded-lg shadow-md">{{ $students[$disertasi->student_id] }} (12345678)</button>
                                             </div>
                                             @if ($disertasi->title)
                                                 <div class="text-xl">{{ $disertasi->title }}</div>
