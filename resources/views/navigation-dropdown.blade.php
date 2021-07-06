@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <img href="{{ route('dashboard') }}">
-                        <img src="https://pelajarinfo.id/wp-content/uploads/2021/03/Universitas-Andalas-Logo.png" width="50" height="60">
+                        <img src="{{url('/img/logo_unand.png')}}" width="75">
                     </a>
                 </div>
 
