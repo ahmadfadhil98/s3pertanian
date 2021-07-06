@@ -1,8 +1,8 @@
 <div>
-    <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
+    <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8 pb-1">
             <div class="flex mt-7">
                 <div class="text-xl font-bold text-gray-600 ">
-                    Database Disertasi
+                    Disertasi
                 </div>
                 <div class="text-xl font-bold text-gray-300 px-2 ">
                     -
@@ -18,14 +18,20 @@
             </div>
 
             <div class="flex mt-6">
-                <div class="w-full md:w-1/2">
-                    <button wire:click="showModal()" class="rounded-xl focus:outline-none py-3 px-7 text-base font-bold bg-green-500 hover:bg-green-700 text-white shadow-md">
-                        <div class="flex ">
+                <div class="w-full md:w-2/3">
+                    <button style="background-color: #9E8235;" wire:click="showModal()" class="transform hover:scale-95 duration-300 rounded-xl focus:outline-none py-2.5 px-7 text-base text-white shadow-md">
+                        <div class="flex">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                            </svg>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                              </svg>
                         <div class="ml-2.5">Tambah Disertasi</div></div>
                     </button>
+                </div>
+                <div class="transform hover:scale-95 duration-300 bg-gradient-to-r from-green-800 to-green-500 w-full md:w-1/3 flex text-white pl-5 rounded-xl shadow-md">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <input style="background-color: #057A55;" wire:model="search" type="text" class="ml-4 w-full focus:outline-none py-2.5 pl-5 text-white placeholder-green-200 rounded-tr-xl rounded-br-xl" placeholder="Ketik nama atau nim mahasiswa...">
                 </div>
             </div>
                 @if($isOpen)
@@ -55,45 +61,45 @@
                 <div class="mt-6">
                 @foreach ($disertasis as $key=>$disertasi)
                         <!-- start  -->
-                            <div class="mx-auto bg-gradient-to-r from-gray-100 to-gray-200 rounded-xl pr-7 py-5 mb-7">
+                            <div class="mx-auto bg-white rounded-xl px-7 py-5 mb-6 shadow-md">
                                 <div class="flex">
-                                    <div class="px-7 py-7 flex-1 bg-white shadow-md rounded-xl mr-6 text-gray-600">
-                                        <div>
-                                            <div class="text-sm font-normal pb-1.5">
+                                    <div class="px-7 py-7 flex-1 bg-gray-50 shadow-inner rounded-xl mr-7 text-gray-600">
+                                        <div class="">
+                                            <div class="text-sm font-normal pb-3.5 text-gray-400">
                                                 Mahasiwa:
-                                                <span class="font-bold text-gray-600">{{ $students[$disertasi->student_id] }}</span>
+                                                <button style="background-color: #057954;" class="ml-1 px-5 py-1.5 text-sm text-white rounded-lg shadow-md">{{ $students[$disertasi->student_id] }} (12345678)</button>
                                             </div>
                                             @if ($disertasi->title)
-                                                <div class="font-bold text-xl">{{ $disertasi->title }}</div>
+                                                <div class="text-xl">{{ $disertasi->title }}</div>
                                             @else
                                                 <div class="text-base leading-6 font-normal">Belum ada judul</div>
                                             @endif
-                                            <div class="text-sm font-normal pb-1.5">
+                                            <div class="text-sm font-normal pt-3.5 text-gray-400">
                                                 Topik:
-                                                <span class="font-bold text-gray-600">{{ $topics[$disertasi->topic_id] }}</span>
+                                                <span class="text-gray-600 italic">{{ $topics[$disertasi->topic_id] }}</span>
                                             </div>
                                         </div>
                                     </div>
 
                                     <div>
-                                        <div class="flex text-green-500 mb-4">
+                                        <div class="flex text-green-500 mb-5 ml-7">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                                 </svg>
-                                            <div class="text-sm font-bold text-gray-600 ml-3">
-                                                Tim Pembimbing:
+                                            <div class="text-sm text-gray-600 ml-2.5">
+                                                Tim Pembimbing
                                             </div>
                                         </div>
-                                        <div class="pr-8 pl-7 pb-4 pt-6 flex-2 bg-white shadow-md rounded-xl text-gray-600 mr-5">
+                                        <div class="px-7 pb-5 pt-7 flex-2 bg-gray-50 rounded-xl text-gray-600 mr-6 shadow-inner">
                                             @foreach ($lecturer as $lectur)
                                             @if($lectur->disertasi_id==$disertasi->id)
                                                 <div class="flex text-sm pb-2">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-600 h-5 w-4 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 h-5 w-4 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                       </svg>
                                                     Pembimbing
                                                     {{ $lectur->position }}:
-                                                    <span class="ml-2 font-bold text-gray-600">{{ $lecturers[$lectur->lecturer_id] }}</span>
+                                                    <span class="ml-2 text-gray-600">{{ $lecturers[$lectur->lecturer_id] }}</span>
                                                 </div>
                                             @endif
                                         @endforeach
@@ -102,19 +108,19 @@
 
                                     <div>
                                         <div>
-                                            <div class="flex text-green-500 mb-4">
+                                            <div class="flex text-green-500 mb-5 ml-5">
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                   </svg>
-                                            <div class="text-sm font-bold text-gray-600 ml-3">
-                                                Status:
+                                            <div class="text-sm text-gray-600 ml-2">
+                                                Status
                                             </div>
                                         </div>
-                                            <div class="flex rounded-xl text-sm bg-white text-{{ $colors[$disertasi->status]}} py-3 px-5 mr-5 focus:outline-none">
+                                            <div class="flex rounded-xl text-sm bg-gray-50 text-{{ $colors[$disertasi->status]}} py-3 px-5 mr-5 focus:outline-none shadow-inner">
                                                 @php
                                                     echo $icons [$disertasi->status];
                                                 @endphp
-                                                <button class="pl-2 font-bold text-gray-600 focus:outline-none">
+                                                <button class="pl-2 text-gray-600 focus:outline-none">
                                                     {{ $statuses [$disertasi->status] }}...
                                                 </button>
                                             </div>
@@ -141,22 +147,22 @@
 
                                             <div x-show="dropdownOpen" @click="dropdownOpen = false" class="fixed inset-0 h-full w-full z-10"></div>
 
-                                            <div x-show="dropdownOpen" class="absolute right-0 pt-15 mr-10 w-30 rounded-md overflow-hidden z-20 pb-10">
-                                                <div class="flex rounded-xl text-sm bg-yellow-300 hover:bg-yellow-400 text-gray-600 py-2.5 px-8 mb-2 shadow-md">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <div x-show="dropdownOpen" class="absolute right-0 pt-16 mr-10 rounded-md overflow-hidden z-20 pb-10">
+                                                <button style="background-color: #9E8235;" class="transform hover:scale-95 duration-300 flex rounded-xl text-sm text-white py-3 px-8 mb-2 shadow-md focus:outline-none">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>
-                                                    <button class="pl-2 font-bold focus:outline-none"onclick="location.href=' {{ route( 'ddisertasi',[$disertasi->id]) }} '">Detail
-                                                    </button>
-                                                </div>
+                                                    <div class="pl-2 pr-1"onclick="location.href=' {{ route( 'ddisertasi',[$disertasi->id]) }} '">Detail
+                                                    </div>
+                                                </button>
 
-                                                <div class="flex rounded-xl text-sm bg-red-500 hover:bg-red-700 text-white py-2.5 px-8 shadow-md">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                <button style="background-color: #AA073B;" class="transform hover:scale-95 duration-300 flex rounded-xl text-sm text-white py-3 px-8 shadow-md focus:outline-none">
+                                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                     </svg>
-                                                    <button class="pl-2 font-bold focus:outline-none" wire:click="showDel({{ $disertasi->id }})">Delete
-                                                    </button>
-                                                </div>
+                                                    <div class="pl-2" wire:click="showDel({{ $disertasi->id }})">Delete
+                                                    </div>
+                                                </button>
                                             </div>
 
                                         </div>

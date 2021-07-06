@@ -76,7 +76,7 @@
 
         <div class="px-6 mb-10">
           <span class="flex w-full mb-3">
-            <button style="background-color: #057954;" wire:click.prevent="store()" type="button" class="transform hover:scale-95 duration-300 inline-flex justify-center w-full py-2.5 text-sm leading-6 text-white focus:outline-none rounded-xl shadow-md">
+            <button style="background-color: #078CAA;" wire:click.prevent="store()" type="button" class="transform hover:scale-95 duration-300 inline-flex justify-center w-full py-2.5 text-sm leading-6 text-white focus:outline-none rounded-xl shadow-md">
               Simpan
             </button>
           </span>

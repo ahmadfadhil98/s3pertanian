@@ -28,7 +28,7 @@
                     </button>
                 </div>
                 <div class="transform hover:scale-95 duration-300 bg-gradient-to-r from-green-800 to-green-500 w-full md:w-1/3 flex text-white pl-5 rounded-xl shadow-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                     </svg>
                     <input style="background-color: #057A55;" wire:model="search" type="text" class="ml-4 w-full focus:outline-none py-2.5 pl-5 text-white placeholder-green-200 rounded-tr-xl rounded-br-xl" placeholder="Ketik nama dosen...">
@@ -78,7 +78,7 @@
                                     <div class="ml-3">Nama Dosen</div>
                                 </div>
                             </th>
-                            <th style="background-color: #057954;" class="font-normal text-base py-2.5 text-white rounded-tr-xl rounded-br-xl w-70 ">
+                            <th style="background-color: #057954;" class="font-normal text-base py-2.5 text-white rounded-tr-xl rounded-br-xl w-70">
                                 <div class="flex">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />

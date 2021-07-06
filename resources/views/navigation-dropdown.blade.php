@@ -6,12 +6,12 @@
                 <!-- Logo -->
                 <div class="flex-shrink-0 flex items-center">
                     <img href="{{ route('dashboard') }}">
-                        <img src="{{url('/img/logo_unand.png')}}" width="75">
+                        <img src="{{url('/img/logo_unand.png')}}" width="64">
                     </a>
                 </div>
 
                 <!-- Navigation Links -->
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                <div class="hidden space-x-8 sm:-my-px sm:ml-7 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         <h1 class="text-base text-white hover:text-gray-100 font-bold pb-0.5">Home</h1>
                     </x-jet-nav-link>
