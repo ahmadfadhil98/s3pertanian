@@ -21,8 +21,10 @@ class Bdisertasi extends Component
     public function render()
     {
         $this->user = Auth::user();
-        $students = DisertasiLecturer::where('lecturer_id',$this->user->id)->select('id','disertasi_id','approve')->distinct()->paginate(3);
+        $students = DisertasiLecturer::where('lecturer_id',$this->user->id)->select('id','disertasi_id','approve')->distinct()->paginate(4);
         $stu_name = Student::pluck('name','id');
+        $colors = config('central.colorIcon');
+        $icons = config('central.icon');
         $stu_nim = Student::pluck('nim','id');
         $lecturer = Lecturer::pluck('name','id');
         $disertasi = Disertasi::pluck('title','id');
@@ -32,6 +34,8 @@ class Bdisertasi extends Component
         return view('livewire.disertasi.bimbingan.index',[
             'students' => $students,
             'stu_name' => $stu_name,
+            'colors' => $colors,
+            'icons' => $icons,
             'stu_nim' => $stu_nim,
             'disertasi' => $disertasi,
             'statuses' => $statuses,

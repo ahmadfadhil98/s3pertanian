@@ -65,14 +65,18 @@ class DetailAcademic extends Component
         $this->validate(
             [
                 'score' => 'required',
+                'keterangan' => 'required'
             ]
         );
 
         $this->grade();
-
+        // $coun = Marking::where('academic_id',$this->academicId)->count();
+        // $marking = Marking::where('academic_id',$this->academicId)->sum('score');
+        // $marking1 = $marking/$coun;
+        // dd($marking1);
         if($this->type==1){
             try {
-            // dd($this->topicId);
+            // dd($this->keterangan);
                 Marking::updateOrCreate(['id' => $this->markingId], [
                     'academic_id' => $this->academicId,
                     'score' => $this->score,
@@ -82,7 +86,7 @@ class DetailAcademic extends Component
                 ]);
 
 
-                session()->flash('info', $this->topicId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
+                session()->flash('info', $this->markingId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
             } catch (QueryException $e){
                 $errorCode = $e->errorInfo[1];
@@ -102,7 +106,7 @@ class DetailAcademic extends Component
                 ]);
 
 
-                session()->flash('info', $this->topicId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
+                session()->flash('info', $this->markingId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
             } catch (QueryException $e){
                 $errorCode = $e->errorInfo[1];
@@ -111,12 +115,19 @@ class DetailAcademic extends Component
                 }
             }
         }
+        $coun = Marking::where('academic_id',$this->academicId)->count();
+        $marking = Marking::where('academic_id',$this->academicId)->sum('score');
+        // $marking1 = $marking/$coun;
+        // dd($marking1);
+        Academic::where('id',$this->academicId)->update([
+            'mark' => $marking/$coun,
+        ]);
 
         $this->hideModal();
 
         $this->markingId = '';
-        $this->topicId = '';
-        $this->name = '';
+        $this->score = '';
+        $this->keterangan = '';
     }
 
     public function grade(){
