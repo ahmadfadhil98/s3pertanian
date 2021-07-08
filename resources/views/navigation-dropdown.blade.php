@@ -89,7 +89,7 @@
                                 <div class="border-t border-gray-50"></div>
 
                                 <x-jet-dropdown-link href="{{ route('topic') }}">
-                                    <h2 class="text-sm text-gray-600">Topik Disertasi</h2>
+                                    <h2 class="text-sm text-gray-600">Bidang Ilmu</h2>
                                 </x-jet-dropdown-link>
                                 <x-jet-dropdown-link href="{{ route('proses_disertasi') }}">
                                     <h2 class="text-sm text-gray-600">Proses Disertasi</h2>

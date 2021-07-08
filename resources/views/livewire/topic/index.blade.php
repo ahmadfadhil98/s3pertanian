@@ -2,7 +2,7 @@
     <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
             <div class="flex mt-7">
                 <div class="text-xl font-bold text-gray-600">
-                    Database Topik Disertasi
+                    Database Bidang Ilmu
                 </div>
                 <div class="text-xl font-bold text-gray-300 px-2 ">
                     -
@@ -24,7 +24,7 @@
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                               </svg>
-                              <div class="ml-2.5">Tambah Topik Disertasi</div></div>
+                              <div class="ml-2.5">Tambah Bidang ilmu</div></div>
                             </button>
                         </div>
                         <div class="transform hover:scale-95 duration-300 bg-gray-50 w-full md:w-1/3 flex text-gray-400 pl-5 rounded-xl shadow-inner">
@@ -64,7 +64,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                       </svg>
-                                    <div class="ml-3">Topik Disertasi</div>
+                                    <div class="ml-3">Bidang Ilmu</div>
                                 </div>
                             </th>
                             <th class="w-48"></th>
