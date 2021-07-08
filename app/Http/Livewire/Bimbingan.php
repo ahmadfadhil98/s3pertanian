@@ -25,6 +25,7 @@ class Bimbingan extends Component
         $disertasi = Disertasi::find($this->disertasiId);
         $name = Lecturer::pluck('name','id');
         $student = Student::pluck('name','id');
+        $nim = Student::pluck('nim','id');
         $faculties = config('central.faculties');
         $positions = config('central.position');
         $nip = Lecturer::pluck('nip','id');
@@ -34,6 +35,7 @@ class Bimbingan extends Component
             'faculties' => $faculties,
             'disertasi' => $disertasi,
             'student' => $student,
+            'nim' => $nim,
             'name' => $name,
             'nip' => $nip,
             'positions' => $positions

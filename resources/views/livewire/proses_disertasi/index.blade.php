@@ -70,7 +70,7 @@
                                     <div class="ml-3">Nama Proses</div>
                                 </div>
                             </th>
-                            <th style="background-color: #057954;" class="font-normal text-base py-2.5 text-white w-48">
+                            {{-- <th style="background-color: #057954;" class="font-normal text-base py-2.5 text-white w-48">
                                 <div class="text-left">
                                     <div class="flex">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -78,13 +78,13 @@
                                           </svg>
                                     <div class="ml-3">Jumlah File</div>
                                 </div></div>
-                            </th>
+                            </th> --}}
                             <th style="background-color: #057954;" class="font-normal text-base py-2.5 text-white rounded-tr-xl rounded-br-xl w-auto">
                                 <div class="flex">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                                     </svg>
-                                    <div class="ml-3">Jumlah Link</div>
+                                    <div class="ml-3">Jumlah File</div>
                                 </div>
                             </th>
                             <th class="w-48"></th>
@@ -97,7 +97,6 @@
                                 <td class="text-center text-base text-gray-600 py-4">({{ $proses_disertasis->firstitem() + $key }})</td>
                                 <td class="text-left text-base text-gray-600">{{ $proses_disertasi->name }}</td>
                                 <td class="text-left text-base text-gray-600 px-15">{{ $proses_disertasi->upload_lots }}</td>
-                                <td class="text-left text-base text-gray-600 px-15">{{ $proses_disertasi->link_lots }}</td>
                                 <td class="text-right">
                                     <button style="background-color: #078CAA;" wire:click="edit({{ $proses_disertasi->id }})" class="transform hover:scale-95 duration-300 rounded-xl text-sm font-bold text-white py-3 px-7 focus:outline-none shadow-md mr-1.5">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
