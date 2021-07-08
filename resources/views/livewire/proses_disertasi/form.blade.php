@@ -39,7 +39,7 @@
                             @error('upload_lots') <h1 class="text-red-500">{{$message}}</h1>@enderror
                         </div>
 
-                        <div class="mb-2">
+                        {{-- <div class="mb-2">
                             <div class="flex text-sm text-gray-600 font-bold mb-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
@@ -48,7 +48,7 @@
                             </div>
                             <input wire:model="link_lots" type="number" name="link_lots" class="w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none mb-2 shadow-md" placeholder="Input jumlah link">
                             @error('link_lots') <h1 class="text-red-500">{{$message}}</h1>@enderror
-                        </div>
+                        </div> --}}
 
                         <div>
                             <div class="flex text-sm text-gray-600 font-bold mb-2">
