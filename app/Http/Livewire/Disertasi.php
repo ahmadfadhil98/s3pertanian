@@ -35,7 +35,13 @@ class Disertasi extends Component
         $this->user = Auth::user();
         $user = $this->user;
         $searchParam = '%'.$this->search.'%';
-        $disertasis = DB::table('disertasis')->join('students','students.id','=','disertasis.student_id')->select('disertasis.id','student_id','name','nim','topic_id','title','status')->where('name','like',$searchParam)->orWhere('nim','like',$searchParam)->orWhere('title','like',$searchParam)->paginate(5);
+
+        if($user->type==1){
+            $disertasis = DB::table('disertasis')->join('students','students.id','=','disertasis.student_id')->select('disertasis.id','student_id','name','nim','topic_id','title','status')->where('name','like',$searchParam)->orWhere('nim','like',$searchParam)->orWhere('title','like',$searchParam)->paginate(5);
+        }else{
+            $disertasis = DB::table('disertasis')->join('students','students.id','=','disertasis.student_id')->select('disertasis.id','student_id','name','nim','topic_id','title','status')->where('student_id',$user->id)->where('title','like',$searchParam)->paginate(5);
+        }
+
         $students = Student::pluck('name','id');
         $topics = DisertasiTopic::pluck('name','id');
         $icons = config('central.icon');
@@ -76,7 +82,18 @@ class Disertasi extends Component
     }
 
     public function showModal() {
-        $this->isOpen = true;
+        // dd($this->user->type);
+        if($this->user->type==3){
+            $cekdis = ModelsDisertasi::where('student_id',$this->user->id)->where('status','!=',3)->get();
+            if($cekdis->count()==1){
+                session()->flash('delete', 'Anda Sudah Memiliki Disertasi');
+            }else{
+                $this->isOpen = true;
+            }
+        }else{
+            $this->isOpen = true;
+        }
+
     }
 
     public function hideModal() {
@@ -104,35 +121,40 @@ class Disertasi extends Component
                     'student_id' => 'required',
                 ]
             );
+            $cekdis = ModelsDisertasi::where('student_id',$this->student_id)->where('status','!=',3)->get();
+            if($cekdis->count()==1){
+                session()->flash('delete', 'Mahasiswa Ini Sudah Memiliki Disertasi');
+            }else{
+                try {
+                    $disertasi = ModelsDisertasi::updateOrCreate(['id' => $this->disertasiId], [
+                        'title' => $this->title,
+                        'student_id' => $this->student_id,
+                        'topic_id' => $this->topic_id,
+                        'status' => 1
+                    ]);
 
-            try {
-                $disertasi = ModelsDisertasi::updateOrCreate(['id' => $this->disertasiId], [
-                    'title' => $this->title,
-                    'student_id' => $this->student_id,
-                    'topic_id' => $this->topic_id,
-                    'status' => 1
-                ]);
+                    foreach($dosens as $dosen){
+                        // dd($dosen);
+                        if($dosen!=0){
+                            $disertasi->disertasi_lecturer()->create([
+                                'lecturer_id' => $dosen,
+                                'position' => $no,
+                                'approve' => 1
+                            ]);
+                            $no++;
+                        }
+                    }
 
-                foreach($dosens as $dosen){
-                    // dd($dosen);
-                    if($dosen!=0){
-                        $disertasi->disertasi_lecturer()->create([
-                            'lecturer_id' => $dosen,
-                            'position' => $no,
-                            'approve' => 1
-                        ]);
-                        $no++;
+                    session()->flash('info', $this->disertasiId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
+
+                } catch (QueryException $e){
+                    $errorCode = $e->errorInfo[1];
+                    if($errorCode == 1062){
+                        session()->flash('delete', 'Kesalahan Input');
                     }
                 }
-
-                session()->flash('info', $this->disertasiId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
-
-            } catch (QueryException $e){
-                $errorCode = $e->errorInfo[1];
-                if($errorCode == 1062){
-                    session()->flash('delete', 'Kesalahan Input');
-                }
             }
+
         }elseif($this->user->type==3){
 
             $this->validate(

@@ -245,14 +245,14 @@
                                             </svg>
                                             <div class="flex pl-3">Input File</div>
                                         </button>
-                                        <button style="background-color: #078CAA;" type="button"
+                                        {{-- <button style="background-color: #078CAA;" type="button"
                                         wire:click="academic({{$proses_disertasi->id}},2)"
                                         class="transform hover:scale-95 duration-300 flex rounded-xl text-sm font-bold text-white py-3 px-6 focus:outline-none shadow-md">
                                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
                                             </svg>
                                             <div class="flex pl-3"> Tautkan Link </div>
-                                        </button>
+                                        </button> --}}
                                     </section>
                                 @endcan
 
