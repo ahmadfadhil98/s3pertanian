@@ -23,10 +23,7 @@
                 </div>
 
                 <div class="w-full md:w-1/2 flex text-gray-300 bg-white pl-5 rounded-xl shadow-md">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <input wire:model="search" type="text" class="w-full focus:outline-none py-3 pl-3 text-gray-600 placeholder-gray-300 rounded-xl" placeholder="Ketik dwadnama academic...">
+                    @include('search')
                 </div>
             </div>
                 @if($isOpen)

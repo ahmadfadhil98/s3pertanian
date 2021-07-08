@@ -1,4 +1,4 @@
-<div class="h-screen">
+<div class="h-screen mb-2">
     <div class="max-w-screen-xl h-4/5 mx-auto sm:px-6 lg:px-8">
         <div class="flex mt-7">
             <div class="text-xl font-bold text-gray-600 ">
@@ -17,11 +17,25 @@
             </div>
         </div>
 
-            <div class="flex mt-6">
+        <div class="flex mt-6">
+            <div class="w-full md:w-2/3 mb-5">
+                <button style="background-color: #078CAA;" wire:click="showModal()" class="transform hover:scale-95 duration-300 rounded-xl focus:outline-none py-2.5 px-7 text-base text-white shadow-md">
+                    <div class="flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                          </svg>
+                    <div class="ml-2.5">Beri Nilai</div></div>
+                </button>
+            </div>
+            <div class="w-full md:w-1/3 grid justify-end text-gray-400 py-2.5">
+                <p class="text-base">{{$academic->mark}}</p>
+            </div>
+        </div>
+            {{-- <div class="flex mt-6">
 
                 <div class="w-full md:w-1/2 mb-5">
                     @can('admin_manage_file')
-                        <button wire:click="showModal()" class="rounded-xl focus:outline-none py-3 px-7 text-base font-bold bg-green-500 hover:bg-green-700 text-white shadow-md">
+                        <button style="background-color: #078CAA;" wire:click="showModal()" class="transform hover:scale-95 duration-300 rounded-xl focus:outline-none py-2.5 px-7 text-base text-white shadow-md">
                             <div class="flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -30,7 +44,10 @@
                         </button>
                     @endcan
                 </div>
-            </div>
+                <div class="transform hover:scale-95 duration-300 bg-gray-50 w-full md:w-1/3 flex text-gray-400 pl-5 rounded-xl shadow-inner">
+                    @include('search')
+                </div>
+            </div> --}}
                 @if($isOpen)
                     @include('livewire.detail_academic.form')
                 @endif
@@ -54,7 +71,7 @@
                         </div>
                     </div>
                 @endif
-                <div class="border-4 border-gray-600 rounded-xl shadow-md h-full">
+                <div class="mt-1 border-4 border-gray-600 rounded-xl shadow-md h-full">
                     <div class="rounded-xl h-full" id="pdf-viewer">Silahkan refresh terlebih dahulu</div>
                 </div>
 

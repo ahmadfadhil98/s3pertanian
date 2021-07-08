@@ -29,10 +29,10 @@ class Ddisertasi extends Component
     public $types='text';
     public $disabled = 'disabled';
     public $content,$academicId;
-    public $isDel,$delId,$idDel,$filup;
+    public $isDel,$delId,$idDel,$filup,$linkme;
 
     public function mount($id){
-
+        $this->linkme = $id;
         $disertasis = Disertasi::get();
         foreach ($disertasis as $disertasi){
             if(Hash::check($disertasi->id, $id)){
@@ -151,7 +151,7 @@ class Ddisertasi extends Component
             }
         }
 
-        return redirect()->to('/ddisertasi/'.$this->disertasiId);
+        return redirect()->to('/ddisertasi/'.$this->linkme);
     }
 
     public function storeacademic(){
@@ -208,7 +208,7 @@ class Ddisertasi extends Component
             }
         }
 
-        return redirect()->to('/ddisertasi/'.$this->disertasiId);
+        return redirect()->to('/ddisertasi/'.$this->linkme);
     }
 
     public function download($id) {
@@ -217,6 +217,7 @@ class Ddisertasi extends Component
     }
 
     public function delete($id,$di){
+        // dd($id);
         try{
             if($di==1){
                 $file = Academic::find($id);

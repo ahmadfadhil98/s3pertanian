@@ -47,8 +47,7 @@ class DetailAcademic extends Component
 
     }
 
-    public function showModal($id) {
-        $this->acId = $id;
+    public function showModal() {
         $this->isOpen = true;
     }
 
@@ -63,7 +62,6 @@ class DetailAcademic extends Component
     }
 
     public function store(){
-
         $this->validate(
             [
                 'score' => 'required',
@@ -71,7 +69,6 @@ class DetailAcademic extends Component
         );
 
         $this->grade();
-        // dd($this->keterangan);
 
         if($this->type==1){
             try {

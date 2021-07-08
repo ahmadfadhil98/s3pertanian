@@ -22,7 +22,7 @@ class CreateAcademicsTable extends Migration
             $table->text('link_upload');
             $table->text('path')->nullable();
             $table->text('keterangan')->nullable();
-            $table->integer('mark')->nullable();
+            $table->integer('mark')->default(0);
             $table->timestamps();
 
             $table->foreign('proses_disertasi_id')->references('id')->on('proses_disertasis');

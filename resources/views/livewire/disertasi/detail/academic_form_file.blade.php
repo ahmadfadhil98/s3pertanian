@@ -24,11 +24,11 @@
                             </div>
                             <div class="relative h-40 rounded-xl bg-white flex justify-center items-center hover:cursor-pointer shadow-md" x-data="{photoName: null}">
                                 <div class="absolute" x-show="! photoName">
-                                    <div class="flex flex-col items-center "> <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> <span class="block text-sm text-gray-400 pb-1">Seret File ke sini</span> <span class="block text-sm text-gray-400 font-normal pb-1">atau</span> <span class="block text-sm text-yellow-300 font-normal">Browse files</span> </div>
+                                    <div class="flex flex-col items-center "> <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> <span class="block text-sm text-gray-400 pb-1">Seret File ke sini</span> <span class="block text-sm text-gray-600 font-normal pb-1">atau</span> <span class="block text-sm text-green-500 font-normal">Browse files</span> </div>
                                 </div>
                                 <div class="absolute" x-show="photoName">
                                     <div class="flex flex-col items-center ">
-                                        <p x-text="photoName"></p>
+                                        <p class="px-10 text-sm text-center text-gray-600" x-text="photoName"></p>
                                     </div>
                                 </div>
                                 <input type="file" class="h-full w-full opacity-0" name="" wire:model="content"
@@ -37,7 +37,7 @@
                                         photoName = $refs.content.files[0].name;" >
                             </div>
                         </div>
-                        <div wire:loading wire:target='content' class="text-sm text-gray-400">
+                        <div wire:loading wire:target='content' class="text-sm text-gray-600">
                             Mohon menunggu...
                         </div>
                     </div>
@@ -55,12 +55,12 @@
 
                 <div class="px-6 mb-10">
                     <span class="flex w-full mb-3">
-                    <button wire:click.prevent="storeacademic()" type="button" class="inline-flex justify-center w-full px-4 py-2.5 bg-green-500 hover:bg-green-700 text-sm font-bold leading-6 text-white focus:outline-none rounded-xl shadow-md">
+                    <button style="background-color: #078CAA;" wire:click.prevent="storeacademic()" type="button" class="transform hover:scale-95 duration-300 inline-flex justify-center w-full py-2.5 text-sm leading-6 text-white focus:outline-none rounded-xl shadow-md">
                         Simpan
                     </button>
                     </span>
                     <span class="flex w-full">
-                    <button wire:click="hideModal2()" type="button" class="inline-flex justify-center w-full px-4 py-2.5 bg-red-500 hover:bg-red-700 text-sm font-bold leading-6 text-white focus:outline-none rounded-xl shadow-md">
+                    <button style="background-color: #E42025;" wire:click="hideModal2()" type="button" class="transform hover:scale-95 duration-300 inline-flex justify-center w-full py-2.5 text-sm leading-6 text-white focus:outline-none rounded-xl shadow-md">
                         Kembali
                     </button>
                     </span>

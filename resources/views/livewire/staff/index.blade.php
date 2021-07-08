@@ -27,11 +27,8 @@
                         <div class="ml-2.5">Tambah Staff</div></div>
                     </button>
                 </div>
-                <div class="transform hover:scale-95 duration-300 bg-gray-300 w-full md:w-1/3 flex text-gray-400 pl-5 rounded-xl shadow-inner">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5 h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16l2.879-2.879m0 0a3 3 0 104.243-4.242 3 3 0 00-4.243 4.242zM21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <input wire:model="search" type="text" class="ml-4 w-full bg-gray-200 focus:outline-none py-2.5 pl-5 text-gray-600 placeholder-gray-400 rounded-tr-xl rounded-br-xl shadow-inner" placeholder="Ketik nama staff...">
+                <div class="transform hover:scale-95 duration-300 bg-gray-50 w-full md:w-1/3 flex text-gray-400 pl-5 rounded-xl shadow-inner">
+                    @include('search')
                 </div>
             </div>
                 @if($isOpen)
