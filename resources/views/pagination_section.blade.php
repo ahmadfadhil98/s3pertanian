@@ -36,7 +36,7 @@
                             @foreach ($element as $page => $url)
                                 @if ($page == $paginator->currentPage())
                                     {{-- {{$url}}    --}}
-                                    <li style="background-color: #9E8235;" class="w-10 mx-1 px-2 py-1 text-center text-sm rounded-xl text-white cursor-pointer shadow-md" wire:click="gotoPage({{$page}})">{{$page}}</li>
+                                    <li style="background-color: #057954;" class="w-10 mx-1 px-2 py-1 text-center text-sm rounded-xl text-white cursor-pointer shadow-md" wire:click="gotoPage({{$page}})">{{$page}}</li>
                                 @else
                                     <li class="transform hover:scale-95 duration-300 w-10 mx-1 px-2 py-1 text-center text-sm text-gray-400 rounded-xl bg-white cursor-pointer shadow-md" wire:click="gotoPage({{$page}})">{{$page}}</li>
                                 @endif
