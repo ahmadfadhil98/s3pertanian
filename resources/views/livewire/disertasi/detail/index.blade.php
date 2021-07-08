@@ -114,9 +114,9 @@
 
                             @foreach ($c_academic as $count)
                                 @if ($count->proses_disertasi_id==$proses_disertasi->id&&$count->type==1)
-                                    <table class="table-fixed w-full mb-4">
-                                        <tr>
-                                            <td class="border-b-2 border-gray-200 text-base py-3 text-gray-600 w-auto">
+                                    <table class="w-full mb-4">
+                                        <tr class="">
+                                            <td colspan="4" class="border-b-2 border-gray-200 text-base py-3 text-gray-600 w-auto">
                                                 <div class="flex">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
@@ -124,7 +124,6 @@
                                                     <div class="ml-3">File</div>
                                                 </div>
                                             </td>
-                                            <td class="border-b-2 border-gray-200 w-40"></td>
                                         </tr>
                                 @endif
                             @endforeach
@@ -134,12 +133,12 @@
                                     @foreach ($academics as $academic)
                                         @if($academic->type==1&&$academic->proses_disertasi_id==$proses_disertasi->id)
                                             <tr>
+                                                <td class="pl-5"></td>
                                                 <td class="border-t-2 border-b-2 border-gray-200 text-left text-sm text-gray-600 py-3">
                                                     <div class="flex text-gray-600 rounded-xl">
                                                         {{$academic->keterangan}}
                                                     </div>
                                                 </td>
-
                                                 <td class="border-t-2 border-b-2 border-gray-200 text-right">
                                                     <button wire:click="download({{ $academic->id }})" class="transform hover:scale-95 duration-300 text-sm font-bold text-gray-500 focus:outline-none mr-3">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -158,6 +157,7 @@
                                                         </svg>
                                                     </button>
                                                 </td>
+                                                <td class="pr-5"></td>
                                             </tr>
                                         @endif
                                     @endforeach
@@ -169,9 +169,9 @@
                             @foreach ($c_academic as $count)
                                 @if ($count->proses_disertasi_id==$proses_disertasi->id&&$count->type==2)
 
-                                <table class="table-fixed w-full mb-5">
+                                <table class="w-full mb-5">
                                         <tr>
-                                            <td class="text-base py-3 text-gray-600 rounded-xl w-auto">
+                                            <td colspan="2" class="border-b-2 text-base py-3 text-gray-600 rounded-xl w-auto">
                                                 <div class="flex">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
@@ -182,7 +182,7 @@
 
                                             </td>
 
-                                            <td class="w-40 text-right">
+                                            <td colspan="2" class="border-b-2 w-40 text-right ">
                                                 <button onclick="location.href=' {{ route( 'dacademic',[2,$this->disertasiId,$proses_disertasi->id]) }} '" class="transform hover:scale-95 duration-300 ml-3 rounded-xl text-sm font-bold text-gray-500 focus:outline-none">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -199,14 +199,15 @@
                                     @foreach ($academics as $academic)
                                         @if($academic->type==2&&$academic->proses_disertasi_id==$proses_disertasi->id)
                                             <tr>
-                                                <td class="border-t-2 border-b-2 border-gray-200 text-left text-sm text-gray-600 py-3">
+                                                <td class="p-4"></td>
+                                                <td class="border-b-2 border-gray-200 text-left text-sm text-gray-600 py-3 ">
                                                     <div class="flex">
                                                         <a href="{{$academic->link_upload}}">
                                                         {{$academic->link_upload}}</a>
                                                     </div>
                                                 </td>
 
-                                                <td class="border-t-2 border-b-2 border-gray-200 text-right">
+                                                <td class="border-b-2 border-gray-200 text-right w-full">
                                                     <button wire:click="download({{ $academic->id }})" class="transform hover:scale-95 duration-300 text-sm font-bold text-gray-500 focus:outline-none mr-3">
                                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
@@ -218,6 +219,7 @@
                                                         </svg>
                                                     </button>
                                                 </td>
+                                                <td class="p-4"></td>
                                             </tr>
 
                                             </section>
