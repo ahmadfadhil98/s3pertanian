@@ -116,6 +116,6 @@ class Bimbingan extends Component
     }
 
     public function back(){
-        return redirect()->to('/ddisertasi/'.$this->disertasiId);
+        return redirect()->to('/ddisertasi/'. bcrypt($this->disertasiId));
     }
 }
