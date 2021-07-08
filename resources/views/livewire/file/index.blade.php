@@ -18,9 +18,9 @@
         </div>
 
             <div class="flex mt-6">
-
+            @can('admin_manage_file')
                 <div class="w-full md:w-2/3">
-                    @can('admin_manage_file')
+
                         <button style="background-color: #078CAA;" wire:click="showModal()" class="transform hover:scale-95 duration-300 rounded-xl focus:outline-none py-2.5 px-7 text-base text-white shadow-md">
                             <div class="flex">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -28,8 +28,9 @@
                                 </svg>
                             <div class="ml-2.5">Tambah File</div></div>
                         </button>
-                    @endcan
+
                 </div>
+                @endcan
                 <div class="transform hover:scale-95 duration-300 bg-gray-50 w-full md:w-1/3 flex text-gray-400 pl-5 rounded-xl shadow-inner">
                     @include('search')
                 </div>
