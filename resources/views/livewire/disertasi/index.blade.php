@@ -67,13 +67,13 @@
                                         <div class="">
                                             <div class="text-sm font-normal pb-3.5 text-gray-400">
                                                 Mahasiwa:
-                                                <a href="{{route('ddisertasi',[$disertasi->id])}}"class="text-gray-500 font-semibold">
+                                                <a href="{{route('ddisertasi',[bcrypt($disertasi->id)])}}"class="text-gray-500 font-semibold">
                                                 {{ $disertasi->name }} ({{ $disertasi->nim }})
                                                 </a>
                                             </div>
                                             @if ($disertasi->title)
                                                 <div class="text-xl">
-                                                    <a href="{{route('ddisertasi',[$disertasi->id])}}">
+                                                    <a href="{{route('ddisertasi',[bcrypt($disertasi->id)])}}">
                                                     {{ $disertasi->title }}
                                                     </a>
                                                 </div>
