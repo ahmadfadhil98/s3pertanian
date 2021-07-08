@@ -21,6 +21,7 @@ class CreateAcademicsTable extends Migration
             $table->unsignedBigInteger('disertasi_id');
             $table->text('link_upload');
             $table->text('keterangan')->nullable();
+            $table->integer('mark')->nullable();
             $table->timestamps();
 
             $table->foreign('proses_disertasi_id')->references('id')->on('proses_disertasis');

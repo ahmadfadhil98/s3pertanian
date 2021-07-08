@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -31,7 +32,13 @@ class Ddisertasi extends Component
     public $isDel,$delId,$idDel,$filup;
 
     public function mount($id){
-        $this->disertasiId = $id;
+
+        $disertasis = Disertasi::get();
+        foreach ($disertasis as $disertasi){
+            if(Hash::check($disertasi->id, $id)){
+                $this->disertasiId = $disertasi->id;
+            }
+        }
     }
 
     public function render()
@@ -55,7 +62,7 @@ class Ddisertasi extends Component
 
         $ketac = Academic::pluck('keterangan','id');
 
-        $lecturers = DisertasiLecturer::where('disertasi_id',$this->disertasiId)->get();
+        $lecturers = DisertasiLecturer::where('disertasi_id',$this->disertasiId)->orderBy('position')->get();
         $name = Lecturer::pluck('name','id');
         $approved = DisertasiLecturer::where('disertasi_id',$this->disertasiId)->where('approve',1)->get();
         return view('livewire.disertasi.detail.index',[

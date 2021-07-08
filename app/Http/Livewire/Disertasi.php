@@ -11,6 +11,7 @@ use App\Models\Student;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 
 class Disertasi extends Component
@@ -40,7 +41,11 @@ class Disertasi extends Component
         $statuses = config('central.status');
         $this->lecturers = Lecturer::pluck('name','id');
         $lecturer = DisertasiLecturer::orderBy('position')->get();
-        // dd($lecturer);
+        $key = base64_encode(Hash::make(1));
+        $key1 = base64_decode($key);
+
+        // dd(Hash::check(1, $key1));
+
         return view('livewire.disertasi.index',[
             'disertasis' => $disertasis,
             'students' => $students,

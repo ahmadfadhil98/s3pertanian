@@ -10,12 +10,13 @@ use Livewire\Component;
 
 class DetailAcademic extends Component
 {
-    public $user,$markingId,$disertasiId,$academicId,$type,$prodisId,$isOpen;
+    public $user,$markingId,$disertasiId,$academicId,$type,$prodisId,$isOpen,$acId;
     public $keterangan,$grade,$score;
 
     public function mount($di,$did,$id){
         $this->type = $di;
         $this->disertasiId = $did;
+
         if($di==1){
             $this->academicId = $id;
         }else{
@@ -46,13 +47,16 @@ class DetailAcademic extends Component
 
     }
 
-    public function showModal() {
+    public function showModal($id) {
+        $this->acId = $id;
         $this->isOpen = true;
     }
 
     public function hideModal() {
         $this->isOpen = false;
-        return redirect()->to('/dacademic/'.$this->type.'/'.$this->academicId);
+        if($this->type==1){
+            return redirect()->to('/dacademic/'.$this->type.'/'.$this->disertasiId.'/'.$this->academicId);
+        }
     }
 
     public function store(){
@@ -64,30 +68,53 @@ class DetailAcademic extends Component
         );
 
         $this->grade();
-        dd($this->keterangan);
+        // dd($this->keterangan);
 
-        try {
+        if($this->type==1){
+            try {
             // dd($this->topicId);
-            $mark = Marking::updateOrCreate(['id' => $this->markingId], [
-                'academic_id' => $this->academicId,
-                'score' => $this->score,
-                'lecturer_id' => $this->user->id,
-                'grade' =>  $this->grade,
-                'keterangan' => $this->keterangan
-            ]);
+                Marking::updateOrCreate(['id' => $this->markingId], [
+                    'academic_id' => $this->academicId,
+                    'score' => $this->score,
+                    'lecturer_id' => $this->user->id,
+                    'grade' =>  $this->grade,
+                    'keterangan' => $this->keterangan
+                ]);
 
 
-            session()->flash('info', $this->topicId ? 'Topik Update Successfully' : 'Topik Created Successfully' );
+                session()->flash('info', $this->topicId ? 'Topik Update Successfully' : 'Topik Created Successfully' );
 
-        } catch (QueryException $e){
-            $errorCode = $e->errorInfo[1];
-            if($errorCode == 1062){
-                session()->flash('delete', 'Duplicate Entry');
+            } catch (QueryException $e){
+                $errorCode = $e->errorInfo[1];
+                if($errorCode == 1062){
+                    session()->flash('delete', 'Duplicate Entry');
+                }
+            }
+        }else{
+            try {
+            // dd($this->topicId);
+                Marking::updateOrCreate(['id' => $this->markingId], [
+                    'academic_id' => $this->acId,
+                    'score' => $this->score,
+                    'lecturer_id' => $this->user->id,
+                    'grade' =>  $this->grade,
+                    'keterangan' => $this->keterangan
+                ]);
+
+
+                session()->flash('info', $this->topicId ? 'Topik Update Successfully' : 'Topik Created Successfully' );
+
+            } catch (QueryException $e){
+                $errorCode = $e->errorInfo[1];
+                if($errorCode == 1062){
+                    session()->flash('delete', 'Duplicate Entry');
+                }
             }
         }
 
         $this->hideModal();
 
+        $this->markingId = '';
         $this->topicId = '';
         $this->name = '';
     }
