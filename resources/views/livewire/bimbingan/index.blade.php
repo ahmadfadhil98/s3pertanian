@@ -109,7 +109,7 @@
                                 <td class="text-center text-base text-gray-600 py-4">Pembimbing {{ $lecturer->position }}</td>
                                 <td class="text-left text-base text-gray-600">{{ $nip[$lecturer->lecturer_id] }}</td>
                                 <td class="text-left text-base text-gray-600">{{ $name[$lecturer->lecturer_id] }}</td>
-                                <td class="text-left text-base text-gray-600">{{ $faculties[$lecturer->lecturer_id] }}</td>
+                                <td class="text-left text-base text-gray-600">{{ $faculties[$faculty[$lecturer->lecturer_id]] }}</td>
 
                                 <td class="text-right">
                                     <button style="background-color: #078CAA;" wire:click="edit({{ $lecturer->id }})"class="transform hover:scale-95 duration-300 rounded-xl text-sm font-bold text-white py-3 px-7 focus:outline-none shadow-md">

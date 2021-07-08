@@ -60,11 +60,12 @@ class Lecturer extends Component
 
         try {
             // dd($this->lecturerId);
+            $nipi = $this->nip + 333322113333220000;
             $user = User::updateOrCreate(['id' => $this->lecturerId], [
                 'name' => $this->name,
-                'username' => $this->nip,
+                'username' => $nipi,
                 'email' => $this->email,
-                'password' => bcrypt($this->nip),
+                'password' => bcrypt($nipi),
                 'type' => 2,
                 'remember_token' => null,
             ]);
@@ -73,13 +74,13 @@ class Lecturer extends Component
             if($this->lecturerId){
                 $user->lecturer()->update([
                     'name' => $this->name,
-                    'nip' => $this->nip,
+                    'nip' => $nipi,
                     'faculty' => $this->faculty
                 ]);
             }else{
                 $user->lecturer()->create([
                     'name' => $this->name,
-                    'nip' => $this->nip,
+                    'nip' => $nipi,
                     'faculty' => $this->faculty
                 ]);
             }

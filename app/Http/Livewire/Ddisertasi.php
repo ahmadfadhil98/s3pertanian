@@ -29,22 +29,16 @@ class Ddisertasi extends Component
     public $types='text';
     public $disabled = 'disabled';
     public $content,$academicId;
-    public $isDel,$delId,$idDel,$filup,$linkme;
+    public $isDel,$delId,$idDel,$filup;
 
     public function mount($id){
-        $this->linkme = $id;
-        $disertasis = Disertasi::get();
-        foreach ($disertasis as $disertasi){
-            if(Hash::check($disertasi->id, $id)){
-                $this->disertasiId = $disertasi->id;
-            }
-        }
+
+        $this->disertasiId = $id;
     }
 
     public function render()
     {
         $this->user = Auth::user();
-
         $icons = config('central.icon');
         $disertasis = Disertasi::find($this->disertasiId);
         $students = Student::pluck('name','id');
@@ -151,7 +145,7 @@ class Ddisertasi extends Component
             }
         }
 
-        return redirect()->to('/ddisertasi/'.$this->linkme);
+        return redirect()->to('/ddisertasi/'.$this->disertasiId);
     }
 
     public function storeacademic(){
@@ -208,7 +202,7 @@ class Ddisertasi extends Component
             }
         }
 
-        return redirect()->to('/ddisertasi/'.$this->linkme);
+        return redirect()->to('/ddisertasi/'.$this->disertasiId);
     }
 
     public function download($id) {

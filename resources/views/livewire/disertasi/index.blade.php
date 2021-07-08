@@ -64,13 +64,13 @@
                                         <div class="">
                                             <div class="text-sm font-normal pb-3.5 text-gray-400">
                                                 Mahasiwa:
-                                                <a href="{{route('ddisertasi',[bcrypt($disertasi->id)])}}"class="text-gray-500 font-semibold">
+                                                <a href="{{route('ddisertasi',[$disertasi->id])}}"class="text-gray-500 font-semibold">
                                                 {{ $disertasi->name }} ({{ $disertasi->nim }})
                                                 </a>
                                             </div>
                                             @if ($disertasi->title)
                                                 <div class="text-xl">
-                                                    <a href="{{route('ddisertasi',[bcrypt($disertasi->id)])}}">
+                                                    <a href="{{route('ddisertasi',[$disertasi->id])}}">
                                                     {{ $disertasi->title }}
                                                     </a>
                                                 </div>
@@ -155,7 +155,7 @@
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>
-                                                    <div class="pl-2 pr-1"onclick="location.href=' {{ route( 'ddisertasi',[bcrypt($disertasi->id)]) }} '">Detail
+                                                    <div class="pl-2 pr-1"onclick="location.href=' {{ route( 'ddisertasi',[$disertasi->id]) }} '">Detail
                                                     </div>
                                                 </button>
 

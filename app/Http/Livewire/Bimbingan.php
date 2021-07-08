@@ -26,12 +26,14 @@ class Bimbingan extends Component
         $name = Lecturer::pluck('name','id');
         $student = Student::pluck('name','id');
         $nim = Student::pluck('nim','id');
+        $faculty = Lecturer::pluck('faculty','id');
         $faculties = config('central.faculties');
         $positions = config('central.position');
         $nip = Lecturer::pluck('nip','id');
 
         return view('livewire.bimbingan.index',[
             'lecturers' => $lecturers,
+            'faculty' => $faculty,
             'faculties' => $faculties,
             'disertasi' => $disertasi,
             'student' => $student,
@@ -116,6 +118,6 @@ class Bimbingan extends Component
     }
 
     public function back(){
-        return redirect()->to('/ddisertasi/'. bcrypt($this->disertasiId));
+        return redirect()->to('/ddisertasi/'. $this->disertasiId);
     }
 }
