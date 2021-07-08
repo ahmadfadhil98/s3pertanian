@@ -13,9 +13,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Disertasi extends Component
 {
+    use WithPagination;
     public $isOpen,$isOpen2,$isDel,$delId,$search;
     public $disertasiId,$title,$student_id,$topic_id;
     public $lecturer1 = 0;

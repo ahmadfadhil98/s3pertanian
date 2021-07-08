@@ -18,7 +18,7 @@ class File extends Component
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
-        $files = ModelsFile::where('name','like',$searchParam)->paginate(5);
+        $files = ModelsFile::where('name','like',$searchParam)->paginate(6);
         return view('livewire.file.index',[
             'files' => $files
         ]);

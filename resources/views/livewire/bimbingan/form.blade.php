@@ -23,7 +23,7 @@
                                 <div class="ml-3">Nama Dosen</div>
                             </div>
                             {{ Form::select('lecturer_id',$name,null,
-                            ['class' => 'w-full py-2.5 px-4 text-sm text-gray-400 rounded-xl focus:outline-none mb-2 shadow-md','id' => 'lecturer_id','wire:model'=>'lecturer_id','placeholder'=>'- Pilih dosen -'])}}
+                            ['class' => 'w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none mb-2 shadow-md','id' => 'lecturer_id','wire:model'=>'lecturer_id','placeholder'=>'- Pilih dosen -'])}}
                             @error('lecturer_id') <h1 class="text-red-500">{{$message}}</h1>@enderror
                         </div>
                         <div>
@@ -34,7 +34,7 @@
                                 <div class="ml-3">Posisi</div>
                             </div>
                             {{ Form::select('position',$positions,null,
-                            ['class' => 'w-full py-2.5 px-4 text-sm text-gray-400 rounded-xl focus:outline-none shadow-md','id' => 'position','wire:model'=>'position','placeholder'=>'- Pilih posisi dosen -'])}}
+                            ['class' => 'w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none shadow-md','id' => 'position','wire:model'=>'position','placeholder'=>'- Pilih posisi dosen -'])}}
                             @error('position') <h1 class="text-red-500">{{$message}}</h1>@enderror
                         </div>
                     </div>
@@ -51,16 +51,17 @@
                 </div>
                 <div class="px-6 mb-10">
                     <span class="flex w-full mb-3">
-                    <button wire:click.prevent="store()" type="button" class="inline-flex justify-center w-full px-4 py-2.5 bg-green-500 hover:bg-green-700 text-sm font-bold leading-6 text-white focus:outline-none rounded-xl shadow-md">
+                      <button style="background-color: #078CAA;" wire:click.prevent="store()" type="button" class="transform hover:scale-95 duration-300 inline-flex justify-center w-full py-2.5 text-sm leading-6 text-white focus:outline-none rounded-xl shadow-md">
                         Simpan
-                    </button>
+                      </button>
                     </span>
                     <span class="flex w-full">
-                    <button wire:click="hideModal()" type="button" class="inline-flex justify-center w-full px-4 py-2.5 bg-red-500 hover:bg-red-700 text-sm font-bold leading-6 text-white focus:outline-none rounded-xl shadow-md">
+                      <button style="background-color: #E42025;" wire:click="hideModal()" type="button" class="transform hover:scale-95 duration-300 inline-flex justify-center w-full py-2.5 text-sm leading-6 text-white focus:outline-none rounded-xl shadow-md">
                         Kembali
-                    </button>
+                      </button>
                     </span>
-                </div>
+                  </div>
+
             </form>
         </div>
     </div>

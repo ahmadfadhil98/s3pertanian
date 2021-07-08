@@ -171,7 +171,7 @@
 
                                 <table class="w-full mb-5">
                                         <tr>
-                                            <td colspan="2" class="border-b-2 text-base py-3 text-gray-600 rounded-xl w-auto">
+                                            <td colspan="2" class="border-b-2 border-gray-200 text-base py-3 text-gray-600 rounded-xl w-auto">
                                                 <div class="flex">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1" />
@@ -180,7 +180,7 @@
                                                 </div>
                                             </td>
 
-                                            <td colspan="2" class="border-b-2 text-right w-auto">
+                                            <td colspan="2" class="border-b-2 border-gray-200 text-right w-auto">
                                                 <button onclick="location.href=' {{ route( 'dacademic',[2,$this->disertasiId,$proses_disertasi->id]) }} '" class="transform hover:scale-95 duration-300 ml-3 rounded-xl text-sm font-bold text-gray-500 focus:outline-none">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
@@ -312,7 +312,7 @@
                                             <th class="w-5 text-gray-600 font-normal py-1">
                                                 {{$lecturer->position}}:
                                             </th>
-                                            <th class="font-normal text-gray-600 py-1">{{ $name[$lecturer->lecturer_id] }}
+                                            <th class="font-semibold text-gray-600 py-1">{{ $name[$lecturer->lecturer_id] }}
                                             </th>
                                             @if ($approved->count()!=0)
                                                 <th class="font-bold text-{{ $colors[$lecturer->approve]}} py-1">

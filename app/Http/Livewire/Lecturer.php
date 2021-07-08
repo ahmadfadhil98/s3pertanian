@@ -17,7 +17,7 @@ class Lecturer extends Component
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
-        $lecturers = ModelsLecturer::where('name','like',$searchParam)->orWhere('nip','like',$searchParam)->paginate(5);
+        $lecturers = ModelsLecturer::where('name','like',$searchParam)->orWhere('nip','like',$searchParam)->paginate(6);
         $faculties = config('central.faculties');
         return view('livewire.lecturer.index',[
             'faculties' => $faculties,

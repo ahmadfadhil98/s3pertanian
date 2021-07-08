@@ -16,7 +16,7 @@ class Topic extends Component
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
-        $topics = DisertasiTopic::where('name','like',$searchParam)->paginate(5);
+        $topics = DisertasiTopic::where('name','like',$searchParam)->paginate(6);
         return view('livewire.topic.index',[
             'topics' => $topics
         ]);
