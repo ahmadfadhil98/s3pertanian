@@ -126,7 +126,7 @@
                           </button>
                     </span>
                     <span class="flex w-1/2">
-                        <button style="background-color: #79052a;" wire:click="hideModal()" type="button" class="transform hover:scale-95 duration-300 inline-flex justify-center w-full py-2.5 text-sm leading-6 text-white focus:outline-none rounded-xl shadow-md">
+                        <button style="background-color: #E42025;" wire:click="hideModal()" type="button" class="transform hover:scale-95 duration-300 inline-flex justify-center w-full py-2.5 text-sm leading-6 text-white focus:outline-none rounded-xl shadow-md">
                             Kembali
                           </button>
                     </span>
