@@ -20,10 +20,10 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                                   </svg>
-                                <div class="ml-3">Topik Disertasi</div>
+                                <div class="ml-3">Bidang Ilmu</div>
                             </div>
                             {{ Form::select('topic_id',$topics,null,
-                            ['class' => 'w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none mb-2 shadow-md','id' => 'topic_id','wire:model'=>'topic_id','placeholder'=>'- Pilih topik disertasi -'])}}
+                            ['class' => 'w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none mb-2 shadow-md','id' => 'topic_id','wire:model'=>'topic_id','placeholder'=>'- Pilih bidang ilmu -'])}}
                             @error('topic_id') <h1 class="text-red-500">{{$message}}</h1>@enderror
                         </div>
 

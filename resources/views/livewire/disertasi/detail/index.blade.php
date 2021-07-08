@@ -53,7 +53,7 @@
                         </section>
                         <section>
                             @if ($disertasis->topic_id)
-                                <span class="text-sm text-gray-400">Topik:</span>
+                                <span class="text-sm text-gray-400">Bidang Ilmu:</span>
                                 <span class="text-sm text-gray-600 italic">{{ $topics[$disertasis->topic_id] }}</span>
                             @endif
                         </section>

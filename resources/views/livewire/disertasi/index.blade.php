@@ -78,7 +78,7 @@
                                                 <div class="text-base leading-6 font-normal">Belum ada judul</div>
                                             @endif
                                             <div class="text-sm font-normal pt-3.5 text-gray-400">
-                                                Topik:
+                                                Bidang Ilmu:
                                                 <span class="text-gray-600 italic">{{ $topics[$disertasi->topic_id] }}</span>
                                             </div>
                                         </div>
