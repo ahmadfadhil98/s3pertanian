@@ -29,6 +29,11 @@ class ProsesDisertasi extends Component
     }
 
     public function hideModal() {
+        $this->pdId = '';
+        $this->name = '';
+        $this->upload_lots = '';
+        $this->link_lots = '';
+        $this->terms_id = '';
         $this->isOpen = false;
     }
 
@@ -47,7 +52,7 @@ class ProsesDisertasi extends Component
             [
                 'name' => 'required',
                 'upload_lots' => 'required',
-                'link_lots' => 'required',
+                // 'link_lots' => 'required',
             ]
         );
 
@@ -56,15 +61,16 @@ class ProsesDisertasi extends Component
             ModelsProsesDisertasi::updateOrCreate(['id' => $this->pdId], [
                 'name' => $this->name,
                 'upload_lots' => $this->upload_lots,
-                'link_lots' => $this->link_lots,
+                'terms_id' => $this->terms_id
+                // 'link_lots' => $this->link_lots,
             ]);
 
-            session()->flash('info', $this->pdId ? 'Proses Disertasi Update Successfully' : 'Proses Disertasi Created Successfully' );
+            session()->flash('info', $this->pdId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
-                session()->flash('delete', 'Duplicate Entry');
+                session()->flash('delete', 'Kesalahan Input');
             }
         }
 
@@ -74,6 +80,7 @@ class ProsesDisertasi extends Component
         $this->name = '';
         $this->upload_lots = '';
         $this->link_lots = '';
+        $this->terms_id = '';
     }
 
     public function edit($id){
@@ -82,16 +89,17 @@ class ProsesDisertasi extends Component
         $this->name = $proses_disertasi->name;
         $this->upload_lots = $proses_disertasi->upload_lots;
         $this->link_lots = $proses_disertasi->link_lots;
+        $this->terms_id = $proses_disertasi->terms_id;
         $this->showModal();
     }
 
     public function delete($id){
         try{
             ModelsProsesDisertasi::find($id)->delete();
-            session()->flash('delete','Proses Disertasi Successfully Deleted');
+            session()->flash('delete','Berhasil Dihapu');
             $this->hideDel();
         }catch(QueryException $e){
-            session()->flash('delete', 'Tidak bisa menghapus,coba beberapa saat lagi');
+            session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
         }
 
     }
