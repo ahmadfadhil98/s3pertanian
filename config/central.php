@@ -32,6 +32,7 @@ return [
         1 => 'Diajukan',
         2 => 'Disetujui',
         3 => 'Ditolak',
+        4 => 'Selesai'
     ],
 
     'icon' => [

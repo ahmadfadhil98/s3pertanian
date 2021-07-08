@@ -179,6 +179,9 @@
                 @endforeach
                 {{-- <h1>Halo</h1> --}}
                 </div>
+                <div class="mt-4">
+                    {{$disertasis->links('pagination_section')}}
+                </div>
     </div>
 </div>
 

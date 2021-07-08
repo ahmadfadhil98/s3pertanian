@@ -33,7 +33,7 @@ class Disertasi extends Component
         $this->user = Auth::user();
         $user = $this->user;
         $searchParam = '%'.$this->search.'%';
-        $disertasis = DB::table('disertasis')->join('students','students.id','=','disertasis.student_id')->select('disertasis.id','student_id','name','nim','topic_id','title','status')->where('name','like',$searchParam)->orWhere('nim','like',$searchParam)->orWhere('title','like',$searchParam)->get();
+        $disertasis = DB::table('disertasis')->join('students','students.id','=','disertasis.student_id')->select('disertasis.id','student_id','name','nim','topic_id','title','status')->where('name','like',$searchParam)->orWhere('nim','like',$searchParam)->orWhere('title','like',$searchParam)->paginate(5);
         $students = Student::pluck('name','id');
         $topics = DisertasiTopic::pluck('name','id');
         $icons = config('central.icon');
@@ -41,10 +41,6 @@ class Disertasi extends Component
         $statuses = config('central.status');
         $this->lecturers = Lecturer::pluck('name','id');
         $lecturer = DisertasiLecturer::orderBy('position')->get();
-        $key = base64_encode(Hash::make(1));
-        $key1 = base64_decode($key);
-
-        // dd(Hash::check(1, $key1));
 
         return view('livewire.disertasi.index',[
             'disertasis' => $disertasis,
