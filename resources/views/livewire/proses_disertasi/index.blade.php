@@ -95,7 +95,7 @@
                         @foreach($proses_disertasis as  $key=>$proses_disertasi)
                             <tr>
                                 <td class="text-center text-base text-gray-600 py-4">({{ $proses_disertasis->firstitem() + $key }})</td>
-                                <td class="text-left text-base text-gray-600 font-bold">{{ $proses_disertasi->name }}</td>
+                                <td class="text-left text-base text-gray-600">{{ $proses_disertasi->name }}</td>
                                 <td class="text-left text-base text-gray-600 px-15">{{ $proses_disertasi->upload_lots }}</td>
                                 <td class="text-left text-base text-gray-600 px-15">{{ $proses_disertasi->link_lots }}</td>
                                 <td class="text-right">

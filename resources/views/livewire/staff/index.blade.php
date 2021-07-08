@@ -87,7 +87,7 @@
                             <tr>
                                 <td class="text-center text-base text-gray-600 py-4">({{ $staffs->firstitem() + $key }})</td>
                                 <td class="text-left text-base text-gray-600">{{ $staff->nip }}</td>
-                                <td class="text-left text-base text-gray-600 font-bold">{{ $staff->name }}</td>
+                                <td class="text-left text-base text-gray-600">{{ $staff->name }}</td>
                                 <td class="text-right">
                                     <button style="background-color: #078CAA;" wire:click="edit({{ $staff->id }})" class="transform hover:scale-95 duration-300 rounded-xl text-sm font-bold text-white py-3 px-7 focus:outline-none shadow-md mr-1.5">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
