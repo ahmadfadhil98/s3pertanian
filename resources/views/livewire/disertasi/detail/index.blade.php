@@ -99,14 +99,14 @@
                     </div>
                     @foreach ($proses_disertasis as $key => $proses_disertasi)
                         <div x-data="{ opened_tab: null }" class="flex flex-col px-7 py-5 rounded-xl bg-white shadow-md mb-6 text-gray-600">
-                            <div @click="opened_tab = opened_tab == {{$key}} ? null : {{$key}} " class="text-sm pb-5">
+                            <div @click="opened_tab = opened_tab == {{$key}} ? null : {{$key}} " class="text-sm pb-2">
                                 <section class="text-xl pb-1">
                                     {{ $proses_disertasi->name }}
                                 </section>
                             </div>
                             <div x-show="opened_tab=={{$key}}">
                                 <div class="bg-gray-50 rounded-md px-7 py-5 shadow-inner mb-5">
-                                    <div class="text-sm text-green-500 pb-5">
+                                    <div class="text-sm text-green-500 pb-2">
                                         <span class="text-sm text-gray-400">Updated:</span>
                                         @if($dateac)
                                         <span class="text-sm text-green-500">{{ date('d F Y, h:m A', strtotime($dateac->updated_at)) }}</span>
