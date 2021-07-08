@@ -53,6 +53,9 @@ class DetailAcademic extends Component
     }
 
     public function hideModal() {
+        $this->markingId = '';
+        $this->topicId = '';
+        $this->name = '';
         $this->isOpen = false;
         if($this->type==1){
             return redirect()->to('/dacademic/'.$this->type.'/'.$this->disertasiId.'/'.$this->academicId);
@@ -82,12 +85,12 @@ class DetailAcademic extends Component
                 ]);
 
 
-                session()->flash('info', $this->topicId ? 'Topik Update Successfully' : 'Topik Created Successfully' );
+                session()->flash('info', $this->topicId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
             } catch (QueryException $e){
                 $errorCode = $e->errorInfo[1];
                 if($errorCode == 1062){
-                    session()->flash('delete', 'Duplicate Entry');
+                    session()->flash('delete', 'Kesalahan Input');
                 }
             }
         }else{
@@ -102,12 +105,12 @@ class DetailAcademic extends Component
                 ]);
 
 
-                session()->flash('info', $this->topicId ? 'Topik Update Successfully' : 'Topik Created Successfully' );
+                session()->flash('info', $this->topicId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
             } catch (QueryException $e){
                 $errorCode = $e->errorInfo[1];
                 if($errorCode == 1062){
-                    session()->flash('delete', 'Duplicate Entry');
+                    session()->flash('delete', 'Kesalahan Input');
                 }
             }
         }

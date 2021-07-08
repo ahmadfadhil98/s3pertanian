@@ -29,6 +29,9 @@ class File extends Component
     }
 
     public function hideModal() {
+        $this->fileId = '';
+        $this->name = '';
+        $this->file = '';
         $this->isOpen = false;
     }
 
@@ -61,12 +64,12 @@ class File extends Component
                 'path' => $file
             ]);
 
-            session()->flash('info', $this->fileId ? 'file Update Successfully' : 'file Created Successfully' );
+            session()->flash('info', $this->fileId ? 'Berhasil Diedit' : 'Berhasil Ditambahakan' );
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
-                session()->flash('delete', 'Duplicate Entry');
+                session()->flash('delete', 'Kesalahan Input');
             }
         }
 
@@ -87,10 +90,10 @@ class File extends Component
             $file = ModelsFile::find($id);
             Storage::delete($file->path);
             $file->delete();
-            session()->flash('delete','Dosen Successfully Deleted');
+            session()->flash('delete','Berhasil Dihapus');
             $this->hideDel();
         }catch(QueryException $e){
-            session()->flash('delete', 'Tidak bisa menghapus,coba beberapa saat lagi');
+            session()->flash('delete', 'Tidak Dapat Dihapus, Coba Beberapa Saat Lagi');
         }
 
     }

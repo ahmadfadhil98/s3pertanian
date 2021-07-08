@@ -80,6 +80,9 @@ class Disertasi extends Component
     }
 
     public function hideModal() {
+        $this->disertasiId = '';
+        $this->title = '';
+        $this->student_id = '';
         $this->isOpen = false;
     }
 
@@ -122,12 +125,12 @@ class Disertasi extends Component
                     }
                 }
 
-                session()->flash('info', $this->disertasiId ? 'Dosen Update Successfully' : 'Dosen Created Successfully' );
+                session()->flash('info', $this->disertasiId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
             } catch (QueryException $e){
                 $errorCode = $e->errorInfo[1];
                 if($errorCode == 1062){
-                    session()->flash('delete', 'Duplicate Entry');
+                    session()->flash('delete', 'Kesalahan Input');
                 }
             }
         }elseif($this->user->type==3){
@@ -159,12 +162,12 @@ class Disertasi extends Component
                     }
                 }
 
-                session()->flash('info', $this->disertasiId ? 'Dosen Update Successfully' : 'Dosen Created Successfully' );
+                session()->flash('info', $this->disertasiId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
             } catch (QueryException $e){
                 $errorCode = $e->errorInfo[1];
                 if($errorCode == 1062){
-                    session()->flash('delete', 'Duplicate Entry');
+                    session()->flash('delete', 'Kesalahan Input');
                 }
             }
         }
@@ -185,10 +188,10 @@ class Disertasi extends Component
     public function delete($id){
         try{
             ModelsDisertasi::find($id)->delete();
-            session()->flash('delete','Dosen Successfully Deleted');
+            session()->flash('delete','Berhasil Dihapus');
             $this->hideDel();
         }catch(QueryException $e){
-            session()->flash('delete', 'Tidak bisa menghapus,coba beberapa saat lagi');
+            session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
         }
 
     }

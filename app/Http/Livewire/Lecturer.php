@@ -30,6 +30,11 @@ class Lecturer extends Component
     }
 
     public function hideModal() {
+        $this->lecturerId = '';
+        $this->name = '';
+        $this->nip = '';
+        $this->email = '';
+        $this->faculty = '';
         $this->isOpen = false;
     }
 
@@ -80,12 +85,12 @@ class Lecturer extends Component
             }
 
 
-            session()->flash('info', $this->lecturerId ? 'Dosen Update Successfully' : 'Dosen Created Successfully' );
+            session()->flash('info', $this->lecturerId ? 'Berhasil Diedit' : 'Berhasil Menambahkan' );
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
-                session()->flash('delete', 'Duplicate Entry');
+                session()->flash('delete', 'Kesalahan Input');
             }
         }
 
@@ -113,10 +118,10 @@ class Lecturer extends Component
         try{
             ModelsLecturer::find($id)->delete();
             User::find($id)->delete();
-            session()->flash('delete','Dosen Successfully Deleted');
+            session()->flash('delete','Berhasil Dihapus');
             $this->hideDel();
         }catch(QueryException $e){
-            session()->flash('delete', 'Tidak bisa menghapus,coba beberapa saat lagi');
+            session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
         }
 
     }

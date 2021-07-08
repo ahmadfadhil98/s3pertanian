@@ -28,6 +28,10 @@ class Student extends Component
     }
 
     public function hideModal() {
+        $this->studentId = '';
+        $this->name = '';
+        $this->nim = '';
+        $this->email = '';
         $this->isOpen = false;
     }
 
@@ -75,12 +79,12 @@ class Student extends Component
             }
 
 
-            session()->flash('info', $this->studentId ? 'Mahasiswa Update Successfully' : 'Mahasiswa Created Successfully' );
+            session()->flash('info', $this->studentId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
-                session()->flash('delete', 'Duplicate Entry');
+                session()->flash('delete', 'Kesalahan Input');
             }
         }
 
@@ -106,9 +110,9 @@ class Student extends Component
         try{
             ModelsStudent::find($id)->delete();
             User::find($id)->delete();
-            session()->flash('delete','Mahasiswa Successfully Deleted');
+            session()->flash('delete','Berhasil Dihapus');
         }catch(QueryException $e){
-            session()->flash('delete', 'Tidak bisa menghapus,coba beberapa saat lagi');
+            session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
         }
 
     }

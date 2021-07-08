@@ -27,6 +27,8 @@ class Topic extends Component
     }
 
     public function hideModal() {
+        $this->topicId = '';
+        $this->name = '';
         $this->isOpen = false;
     }
 
@@ -54,12 +56,12 @@ class Topic extends Component
             ]);
 
 
-            session()->flash('info', $this->topicId ? 'Topik Update Successfully' : 'Topik Created Successfully' );
+            session()->flash('info', $this->topicId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
-                session()->flash('delete', 'Duplicate Entry');
+                session()->flash('delete', 'Kesalahan Input');
             }
         }
 
@@ -79,10 +81,10 @@ class Topic extends Component
     public function delete($id){
         try{
             DisertasiTopic::find($id)->delete();
-            session()->flash('delete','Topik Successfully Deleted');
+            session()->flash('delete','Berhasil Dihapus');
             $this->hideDel();
         }catch(QueryException $e){
-            session()->flash('delete', 'Tidak bisa menghapus,coba beberapa saat lagi');
+            session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
         }
 
     }

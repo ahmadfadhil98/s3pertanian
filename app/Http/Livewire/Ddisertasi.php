@@ -142,12 +142,12 @@ class Ddisertasi extends Component
                 'status' => 1
             ]);
 
-            session()->flash('info', $this->disertasiId ? 'Disertasi Update Successfully' : 'Disertasi Created Successfully' );
+            session()->flash('info', $this->disertasiId ? 'Berhasil Diedit' : 'Berhasil Ditambah' );
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
-                session()->flash('delete', 'Duplicate Entry');
+                session()->flash('delete', 'Kesalahan Input');
             }
         }
 
@@ -199,12 +199,12 @@ class Ddisertasi extends Component
             }
 
 
-            session()->flash('info', $this->academicId ? $this->pd->name.'Update Successfully' : $this->pd->name.' Created Successfully' );
+            session()->flash('info', $this->academicId ? $this->pd->name.'Berhasil Diedit' : $this->pd->name.' Created Successfully' );
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
-                session()->flash('delete', 'Duplicate Entry');
+                session()->flash('delete', 'Kesalahan Input');
             }
         }
 
@@ -225,10 +225,10 @@ class Ddisertasi extends Component
             }else{
                 Academic::find($id)->delete();
             }
-            session()->flash('delete','Dosen Successfully Deleted');
+            session()->flash('delete','Berhasil Dihapus');
             $this->hideDel();
         }catch(QueryException $e){
-            session()->flash('delete', 'Tidak bisa menghapus,coba beberapa saat lagi');
+            session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
         }
     }
 }
