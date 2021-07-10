@@ -95,16 +95,25 @@
 
                         </div>
                         @foreach ($proses_disertasis as $key => $proses_disertasi)
-                            <div x-data="{ opened_tab: null }" class="flex flex-col px-7 py-5 rounded-xl bg-white shadow-md mb-6 text-gray-600">
-                                <div @click="opened_tab = opened_tab == {{$key}} ? null : {{$key}} " class="pb-2 flex">
+                            <div x-data="{ opened_tab: null , open_svg: null }" class="flex flex-col px-7 py-5 rounded-xl bg-white shadow-md mb-6 text-gray-600">
+                                <div
+                                @click="open_svg = open_svg == {{$key}} ? null : {{$key}};
+                                opened_tab = opened_tab == {{$key}} ? null : {{$key}};" class="pb-2 flex">
                                     <div class="w-full md:w-2/3 text-xl pb-1">
                                         {{ $proses_disertasi->name }}
                                     </div>
-                                    <div class="w-full md:w-1/3 grid justify-end">
+                                    <div x-show="open_svg==null" class="w-full md:w-1/3 grid justify-end">
 
                                         <svg xmlns="http://www.w3.org/2000/svg" class="pt-1 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
                                         </svg>
+
+                                    </div>
+                                    <div x-show="open_svg=={{$key}}" class="w-full md:w-1/3 grid justify-end">
+
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7" />
+                                          </svg>
 
                                     </div>
 
