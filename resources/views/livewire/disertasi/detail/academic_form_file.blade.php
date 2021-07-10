@@ -22,7 +22,7 @@
                                 </svg>
                                 <div class="ml-3">File</div>
                             </div>
-                            <div class="relative h-40 rounded-xl bg-white flex justify-center items-center hover:cursor-pointer shadow-md" x-data="{photoName: null}">
+                            <div class="relative h-40 rounded-xl bg-white flex justify-center items-center hover:cursor-pointer shadow-md mb-4" x-data="{photoName: null}">
                                 <div class="absolute" x-show="! photoName">
                                     <div class="flex flex-col items-center "> <i class="fa fa-cloud-upload fa-3x text-gray-200"></i> <span class="block text-sm text-gray-400 pb-1">Seret File ke sini</span> <span class="block text-sm text-gray-600 font-normal pb-1">atau</span> <span class="block text-sm text-green-500 font-normal">Browse files</span> </div>
                                 </div>
@@ -85,9 +85,9 @@
             <div class="absolute inset-0 bg-gray-500 opacity-50"></div>
         </div>
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
-        <div class="inline-block align-bottom rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-            Loading...
-            <img src="{{url('/img/loading.gif')}}" alt="Image" />
+        <div class="inline-block align-bottom text-left overflow-hidden transform transition-all sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+            <div class="grid justify-center w-full"><img src="{{url('/img/loading.gif')}}" width="45" alt="Image" /></div>
+
         </div>
     </div>
 </div>

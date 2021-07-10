@@ -96,14 +96,18 @@
                         </div>
                         @foreach ($proses_disertasis as $key => $proses_disertasi)
                             <div x-data="{ opened_tab: null }" class="flex flex-col px-7 py-5 rounded-xl bg-white shadow-md mb-6 text-gray-600">
-                                <div @click="opened_tab = opened_tab == {{$key}} ? null : {{$key}} " class="text-sm pb-2 flex">
-                                    <section class="text-xl pb-1">
+                                <div @click="opened_tab = opened_tab == {{$key}} ? null : {{$key}} " class="pb-2 flex">
+                                    <div class="w-full md:w-2/3 text-xl pb-1">
                                         {{ $proses_disertasi->name }}
-                                    </section>
+                                    </div>
+                                    <div class="w-full md:w-1/3 grid justify-end">
 
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="pt-1 h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                                    </svg>
+                                        </svg>
+
+                                    </div>
+
                                 </div>
                                 <div x-show="opened_tab=={{$key}}">
                                     <div class="bg-gray-50 rounded-md px-7 py-5 shadow-inner mb-5">
@@ -233,7 +237,7 @@
                                                 <th class="font-semibold text-gray-600 py-1">{{ $name[$lecturer->lecturer_id] }}
                                                 </th>
                                                 @if ($approved->count()!=0)
-                                                    <th class="font-bold text-{{ $colors[$lecturer->approve]}} py-1">
+                                                    <th class="pl-2 font-bold text-{{ $colors[$lecturer->approve]}} py-1">
                                                         @php
                                                             echo $icons [$lecturer->approve];
                                                         @endphp
