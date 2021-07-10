@@ -1,4 +1,4 @@
-<div wire:init="loadPosts">
+<div>
     <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8 pb-1">
             <div class="flex mt-7" >
                 <div class="text-xl font-bold text-gray-600 ">
@@ -152,7 +152,7 @@
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>
-                                                    <div class="pl-2 pr-1"onclick="location.href=' {{ route( 'ddisertasi',[bcrypt($disertasi->id)]) }} '">Detail
+                                                    <div class="pl-2 pr-1"onclick="location.href=' {{ route( 'ddisertasi',[$disertasi->id]) }} '">Detail
                                                     </div>
                                                 </button>
 
@@ -174,10 +174,7 @@
                 {{-- <h1>Halo</h1> --}}
                 </div>
                 <div class="mt-4">
-                    @if ($disertasis!=[])
-                        {{$disertasis->links('pagination_section')}}
-                    @endif
-
+                    {{$disertasis->links('pagination_section')}}
                 </div>
     </div>
 </div>

@@ -30,13 +30,6 @@ class Disertasi extends Component
     public $lecturers4 = [];
     public $user;
 
-    public $readyToLoad = false;
-
-    public function loadPosts()
-    {
-        $this->readyToLoad = true;
-    }
-
     public function render()
     {
         $this->user = Auth::user();
@@ -58,8 +51,7 @@ class Disertasi extends Component
         $lecturer = DisertasiLecturer::orderBy('position')->get();
 
         return view('livewire.disertasi.index',[
-            'disertasis' => $this->readyToLoad
-            ? $disertasis : [],
+            'disertasis' => $disertasis,
             'students' => $students,
             'topics' => $topics,
             'icons' => $icons,

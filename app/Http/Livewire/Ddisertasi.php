@@ -27,7 +27,7 @@ class Ddisertasi extends Component
     public $user;
     public $pd,$keterangan;
     public $content,$academicId;
-    public $isDel,$delId,$idDel,$filup,$link;
+    public $isDel,$delId,$idDel,$filup;
 
     public $readyToLoad = false;
 
@@ -37,13 +37,8 @@ class Ddisertasi extends Component
     }
 
     public function mount($id){
-        $this->link = $id;
-        $disertasis = Disertasi::get();
-        foreach($disertasis as $disertasi){
-            if(Hash::check($disertasi->id,$id)){
-                $this->disertasiId = $disertasi->id;
-            }
-        }
+
+        $this->disertasiId = $id;
     }
 
     public function render()
@@ -155,7 +150,7 @@ class Ddisertasi extends Component
             }
         }
 
-        return redirect()->to('/ddisertasi/'.$this->link);
+        return redirect()->to('/ddisertasi/'.$this->disertasiId);
     }
 
     public function storeacademic(){
@@ -192,7 +187,7 @@ class Ddisertasi extends Component
             }
         }
 
-        return redirect()->to('/ddisertasi/'.$this->link);
+        return redirect()->to('/ddisertasi/'.$this->disertasiId);
     }
 
     public function download($id) {
