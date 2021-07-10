@@ -4,16 +4,13 @@
     </x-slot>
 
     <x-slot name="description">
-        {{ __('Manage and logout your active sessions on other browsers and devices.') }}
+        {{ __('Kelola dan keluar dari perangkat lain.') }}
     </x-slot>
 
     <x-slot name="content">
-        <div class="max-w-xl text-sm text-gray-600">
-            {{ __('If necessary, you may logout of all of your other browser sessions across all of your devices. Some of your recent sessions are listed below; however, this list may not be exhaustive. If you feel your account has been compromised, you should also update your password.') }}
-        </div>
 
         @if (count($this->sessions) > 0)
-            <div class="mt-5 space-y-6">
+            <div class="space-y-6">
                 <!-- Other Browser Sessions -->
                 @foreach ($this->sessions as $session)
                     <div class="flex items-center">
@@ -52,8 +49,8 @@
         @endif
 
         <div class="flex items-center mt-5">
-            <x-jet-button wire:click="confirmLogout" wire:loading.attr="disabled">
-                {{ __('Logout Other Browser Sessions') }}
+            <x-jet-button style="background-color: #078CAA;" class="py-3 px-7 transform hover:scale-95 duration-300 border-none shadow-md focus:outline-none rounded-xl mt-1 mb-1 font-normal" wire:click="confirmLogout" wire:loading.attr="disabled">
+                {{ __('Keluar dari Perangkat Lain') }}
             </x-jet-button>
 
             <x-jet-action-message class="ml-3" on="loggedOut">
@@ -64,7 +61,7 @@
         <!-- Logout Other Devices Confirmation Modal -->
         <x-jet-dialog-modal wire:model="confirmingLogout">
             <x-slot name="title">
-                {{ __('Logout Other Browser Sessions') }}
+                {{ __('Keluar dari Perangkat Lain') }}
             </x-slot>
 
             <x-slot name="content">
