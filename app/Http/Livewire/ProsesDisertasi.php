@@ -11,7 +11,7 @@ class ProsesDisertasi extends Component
 {
     use WithPagination;
     public $isOpen,$isDel,$delId,$search;
-    public $pdId,$name,$upload_lots,$link_lots,$terms_id;
+    public $pdId,$name,$upload_lots,$terms_id;
 
     public function render()
     {
@@ -32,7 +32,6 @@ class ProsesDisertasi extends Component
         $this->pdId = '';
         $this->name = '';
         $this->upload_lots = '';
-        $this->link_lots = '';
         $this->terms_id = '';
         $this->isOpen = false;
     }
@@ -52,7 +51,6 @@ class ProsesDisertasi extends Component
             [
                 'name' => 'required',
                 'upload_lots' => 'required',
-                // 'link_lots' => 'required',
             ]
         );
 
@@ -62,7 +60,6 @@ class ProsesDisertasi extends Component
                 'name' => $this->name,
                 'upload_lots' => $this->upload_lots,
                 'terms_id' => $this->terms_id
-                // 'link_lots' => $this->link_lots,
             ]);
 
             session()->flash('info', $this->pdId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
@@ -88,7 +85,6 @@ class ProsesDisertasi extends Component
         $this->pdId = $id;
         $this->name = $proses_disertasi->name;
         $this->upload_lots = $proses_disertasi->upload_lots;
-        $this->link_lots = $proses_disertasi->link_lots;
         $this->terms_id = $proses_disertasi->terms_id;
         $this->showModal();
     }

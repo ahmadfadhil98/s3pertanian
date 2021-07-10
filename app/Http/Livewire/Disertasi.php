@@ -18,7 +18,7 @@ use Livewire\WithPagination;
 class Disertasi extends Component
 {
     use WithPagination;
-    public $isOpen,$isOpen2,$isDel,$delId,$search;
+    public $isOpen,$isDel,$delId,$search;
     public $disertasiId,$title,$student_id,$topic_id;
     public $lecturer1 = 0;
     public $lecturer2 = 0;
@@ -30,18 +30,25 @@ class Disertasi extends Component
     public $lecturers4 = [];
     public $user;
 
+    public $readyToLoad = false;
+
+    public function loadPosts()
+    {
+        $this->readyToLoad = true;
+    }
+
     public function render()
     {
         $this->user = Auth::user();
         $user = $this->user;
         $searchParam = '%'.$this->search.'%';
 
+
         if($user->type==1){
             $disertasis = DB::table('disertasis')->join('students','students.id','=','disertasis.student_id')->select('disertasis.id','student_id','name','nim','topic_id','title','status')->where('name','like',$searchParam)->orWhere('nim','like',$searchParam)->orWhere('title','like',$searchParam)->paginate(5);
         }else{
-            $disertasis = DB::table('disertasis')->join('students','students.id','=','disertasis.student_id')->select('disertasis.id','student_id','name','nim','topic_id','title','status')->where('student_id',$user->id)->where('title','like',$searchParam)->paginate(5);
+            $disertasis = DB::table('disertasis')->join('students','students.id','=','disertasis.student_id')->select('disertasis.id','student_id','name','nim','topic_id','title','status')->where('student_id',$user->id)->paginate(5);
         }
-
         $students = Student::pluck('name','id');
         $topics = DisertasiTopic::pluck('name','id');
         $icons = config('central.icon');
@@ -51,7 +58,8 @@ class Disertasi extends Component
         $lecturer = DisertasiLecturer::orderBy('position')->get();
 
         return view('livewire.disertasi.index',[
-            'disertasis' => $disertasis,
+            'disertasis' => $this->readyToLoad
+            ? $disertasis : [],
             'students' => $students,
             'topics' => $topics,
             'icons' => $icons,

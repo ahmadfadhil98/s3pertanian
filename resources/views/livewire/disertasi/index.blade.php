@@ -1,6 +1,6 @@
-<div>
+<div wire:init="loadPosts">
     <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8 pb-1">
-            <div class="flex mt-7">
+            <div class="flex mt-7" >
                 <div class="text-xl font-bold text-gray-600 ">
                     Disertasi
                 </div>
@@ -27,9 +27,12 @@
                         <div class="ml-2.5">Tambah Disertasi</div></div>
                     </button>
                 </div>
-                <div class="transform hover:scale-95 duration-300 bg-gray-50 w-full md:w-1/3 flex text-gray-400 pl-5 rounded-xl shadow-inner">
-                    @include('search')
-                </div>
+                @if ($user->type==1)
+                    <div class="transform hover:scale-95 duration-300 bg-gray-50 w-full md:w-1/3 flex text-gray-400 pl-5 rounded-xl shadow-inner">
+                        @include('search')
+                    </div>
+                @endif
+
             </div>
                 @if($isOpen)
                     @include('livewire.disertasi.form')
@@ -155,7 +158,7 @@
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                     </svg>
-                                                    <div class="pl-2 pr-1"onclick="location.href=' {{ route( 'ddisertasi',[$disertasi->id]) }} '">Detail
+                                                    <div class="pl-2 pr-1"onclick="location.href=' {{ route( 'ddisertasi',[bcrypt($disertasi->id)]) }} '">Detail
                                                     </div>
                                                 </button>
 
@@ -177,7 +180,10 @@
                 {{-- <h1>Halo</h1> --}}
                 </div>
                 <div class="mt-4">
-                    {{$disertasis->links('pagination_section')}}
+                    @if ($disertasis!=[])
+                        {{$disertasis->links('pagination_section')}}
+                    @endif
+
                 </div>
     </div>
 </div>

@@ -64,7 +64,7 @@
                     </svg>
                 </div>
             </div></div>
-
+            <x-jet-validation-errors class="mb-4" />
             @if (session('status'))
                 <div class="mb-4 text-sm text-green-500">
                     {{ session('status') }}

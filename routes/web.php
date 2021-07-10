@@ -49,7 +49,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/show-pdf/{id}', function($id) {
         $file = Academic::find($id);
-        return response()->file(storage_path('app/'.$file->link_upload));
+        return response()->file(storage_path('app/'.$file->path));
     })->name('show-pdf');
 
 });

@@ -37,8 +37,15 @@
                                         photoName = $refs.content.files[0].name;" >
                             </div>
                         </div>
-                        <div wire:loading wire:target='content' class="text-sm text-gray-600">
-                            Mohon menunggu...
+                        <div>
+                            <div class="flex text-sm text-gray-600 font-bold mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                                  </svg>
+                                <div class="ml-3">Keterangan</div>
+                            </div>
+                            <textarea wire:model="keterangan" name="keterangan"class="w-full py-2.5 px-4 text-sm text-gray-400 rounded-xl focus:outline-none shadow-md" rows="4" placeholder="Input keterangan file"></textarea>
+                            @error('keterangan') <h1 class="text-red-500">{{$message}}</h1>@enderror
                         </div>
                     </div>
 
@@ -66,6 +73,21 @@
                     </span>
                 </div>
             </form>
+        </div>
+    </div>
+</div>
+
+<div
+    wire:loading wire:target='content'
+    class="fixed z-10 inset-0 overflow-y-auto">
+    <div class="flex items-end justify-center min-h-screen text-center sm:block">
+        <div class="fixed inset-0 transition-opacity">
+            <div class="absolute inset-0 bg-gray-500 opacity-50"></div>
+        </div>
+        <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
+        <div class="inline-block align-bottom rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+            Loading...
+            <img src="{{url('/img/loading.gif')}}" alt="Image" />
         </div>
     </div>
 </div>

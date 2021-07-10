@@ -24,6 +24,7 @@ class CreateMarkingsTable extends Migration
 
             $table->foreign('lecturer_id')->references('id')->on('lecturers');
             $table->foreign('academic_id')->references('id')->on('academics');
+            $table->unique(['lecturer_id', 'academic_id']);
         });
     }
 

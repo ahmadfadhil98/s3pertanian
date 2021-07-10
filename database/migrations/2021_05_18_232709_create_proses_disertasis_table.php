@@ -17,7 +17,6 @@ class CreateProsesDisertasisTable extends Migration
             $table->id();
             $table->string('name');
             $table->integer('upload_lots')->nullable();
-            $table->integer('link_lots')->nullable();
             $table->unsignedBigInteger('terms_id')->nullable();
             $table->timestamps();
 
