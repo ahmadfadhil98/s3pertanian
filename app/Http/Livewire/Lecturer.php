@@ -87,11 +87,13 @@ class Lecturer extends Component
 
 
             session()->flash('info', $this->lecturerId ? 'Berhasil Diedit' : 'Berhasil Menambahkan' );
+            $this->emit('saved');
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
                 session()->flash('delete', 'Kesalahan Input');
+                $this->emit('saved');
             }
         }
 
@@ -119,9 +121,11 @@ class Lecturer extends Component
         try{
             ModelsLecturer::find($id)->delete();
             User::find($id)->delete();
+            $this->emit('saved');
             session()->flash('delete','Berhasil Dihapus');
             $this->hideDel();
         }catch(QueryException $e){
+            $this->emit('saved');
             session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
         }
 

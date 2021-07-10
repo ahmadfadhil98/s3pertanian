@@ -82,11 +82,13 @@ class Bimbingan extends Component
                 'approve' => 1,
             ]);
 
+            $this->emit('saved');
             session()->flash('info', $this->lecturerId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
+                $this->emit('saved');
                 session()->flash('delete', 'Kesalahan Input');
             }
         }
@@ -109,9 +111,11 @@ class Bimbingan extends Component
     public function delete($id){
         try{
             DisertasiLecturer::find($id)->delete();
+            $this->emit('saved');
             session()->flash('delete','Berhasil Dihapus');
             $this->hideDel();
         }catch(QueryException $e){
+            $this->emit('saved');
             session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
         }
 

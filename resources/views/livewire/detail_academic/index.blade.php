@@ -42,46 +42,20 @@
                 </div>
             </div>
         </div>
-            {{-- <div class="flex mt-6">
-
-                <div class="w-full md:w-1/2 mb-5">
-                    @can('admin_manage_file')
-                        <button style="background-color: #078CAA;" wire:click="showModal()" class="transform hover:scale-95 duration-300 rounded-xl focus:outline-none py-2.5 px-7 text-base text-white shadow-md">
-                            <div class="flex">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 13h6m-3-3v6m5 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                                </svg>
-                            <div class="ml-2.5">Beri Nilai</div></div>
-                        </button>
-                    @endcan
-                </div>
-                <div class="transform hover:scale-95 duration-300 bg-gray-50 w-full md:w-1/3 flex text-gray-400 pl-5 rounded-xl shadow-inner">
-                    @include('search')
-                </div>
-            </div> --}}
                 @if($isOpen)
                     @include('livewire.detail_academic.form')
                 @endif
 
-                {{-- @if($isDel)
-                    @include('livewire.file.delete')
-                @endif --}}
-
-                @if(session()->has('info'))
-                    <div class="py-2 px-6 mt-4">
-                        <div>
+                <div style="display:none" x-data="{show: false}" x-show.transition.opacity.out.duration.1500ms="show" x-init="@this.on('saved',() => {show = true; setTimeout(()=>{show=false;},2000)})" class="py-2 px-6 mt-4" id="alert">
+                    <div>
+                        @if(session()->has('info'))
                             <h1 class="text-green-500 text-sm">{{ session('info') }}</h1>
-                        </div>
-                    </div>
-                @endif
-
-                @if(session()->has('delete'))
-                    <div class="py-2 px-6 mt-4">
-                        <div>
+                        @elseif(session()->has('delete'))
                             <h1 class="text-red-500 text-sm">{{ session('delete') }}</h1>
-                        </div>
+                        @endif
                     </div>
-                @endif
+                </div>
+
                 <div class="mt-1 border-4 border-gray-600 rounded-xl shadow-md h-full">
                     <div class="rounded-xl h-full" id="pdf-viewer">
                         <span class='text-sm text-gray-400 px-5'>Silahkan refresh terlebih dahulu...</span>

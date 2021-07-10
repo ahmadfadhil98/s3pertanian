@@ -85,12 +85,13 @@ class DetailAcademic extends Component
                     'keterangan' => $this->keterangan
                 ]);
 
-
+                $this->emit('saved');
                 session()->flash('info', $this->markingId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
             } catch (QueryException $e){
                 $errorCode = $e->errorInfo[1];
                 if($errorCode == 1062){
+                    $this->emit('saved');
                     session()->flash('delete', 'Kesalahan Input');
                 }
             }
@@ -105,12 +106,13 @@ class DetailAcademic extends Component
                     'keterangan' => $this->keterangan
                 ]);
 
-
+                $this->emit('saved');
                 session()->flash('info', $this->markingId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
             } catch (QueryException $e){
                 $errorCode = $e->errorInfo[1];
                 if($errorCode == 1062){
+                    $this->emit('saved');
                     session()->flash('delete', 'Kesalahan Input');
                 }
             }

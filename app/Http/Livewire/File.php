@@ -65,10 +65,11 @@ class File extends Component
             ]);
 
             session()->flash('info', $this->fileId ? 'Berhasil Diedit' : 'Berhasil Ditambahakan' );
-
+            $this->emit('saved');
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
+                $this->emit('saved');
                 session()->flash('delete', 'Kesalahan Input');
             }
         }
@@ -90,9 +91,11 @@ class File extends Component
             $file = ModelsFile::find($id);
             Storage::delete($file->path);
             $file->delete();
+            $this->emit('saved');
             session()->flash('delete','Berhasil Dihapus');
             $this->hideDel();
         }catch(QueryException $e){
+            $this->emit('saved');
             session()->flash('delete', 'Tidak Dapat Dihapus, Coba Beberapa Saat Lagi');
         }
 

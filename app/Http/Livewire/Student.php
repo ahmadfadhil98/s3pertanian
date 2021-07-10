@@ -80,11 +80,13 @@ class Student extends Component
 
 
             session()->flash('info', $this->studentId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
+            $this->emit('saved');
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
                 session()->flash('delete', 'Kesalahan Input');
+                $this->emit('saved');
             }
         }
 
@@ -111,8 +113,10 @@ class Student extends Component
             ModelsStudent::find($id)->delete();
             User::find($id)->delete();
             session()->flash('delete','Berhasil Dihapus');
+            $this->emit('saved');
         }catch(QueryException $e){
             session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
+            $this->emit('saved');
         }
 
     }

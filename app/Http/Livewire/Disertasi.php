@@ -94,6 +94,7 @@ class Disertasi extends Component
         if($this->user->type==3){
             $cekdis = ModelsDisertasi::where('student_id',$this->user->id)->where('status','!=',3)->get();
             if($cekdis->count()==1){
+                $this->emit('saved');
                 session()->flash('delete', 'Anda Sudah Memiliki Disertasi');
             }else{
                 $this->isOpen = true;
@@ -142,7 +143,6 @@ class Disertasi extends Component
                     ]);
 
                     foreach($dosens as $dosen){
-                        // dd($dosen);
                         if($dosen!=0){
                             $disertasi->disertasi_lecturer()->create([
                                 'lecturer_id' => $dosen,
@@ -152,12 +152,13 @@ class Disertasi extends Component
                             $no++;
                         }
                     }
-
+                    $this->emit('saved');
                     session()->flash('info', $this->disertasiId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
                 } catch (QueryException $e){
                     $errorCode = $e->errorInfo[1];
                     if($errorCode == 1062){
+                        $this->emit('saved');
                         session()->flash('delete', 'Kesalahan Input');
                     }
                 }
@@ -191,12 +192,13 @@ class Disertasi extends Component
                         $no++;
                     }
                 }
-
+                $this->emit('saved');
                 session()->flash('info', $this->disertasiId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
             } catch (QueryException $e){
                 $errorCode = $e->errorInfo[1];
                 if($errorCode == 1062){
+                    $this->emit('saved');
                     session()->flash('delete', 'Kesalahan Input');
                 }
             }
@@ -219,8 +221,10 @@ class Disertasi extends Component
         try{
             ModelsDisertasi::find($id)->delete();
             session()->flash('delete','Berhasil Dihapus');
+            $this->emit('saved');
             $this->hideDel();
         }catch(QueryException $e){
+            $this->emit('saved');
             session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
         }
 

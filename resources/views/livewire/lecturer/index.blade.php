@@ -39,21 +39,15 @@
                     @include('livewire.lecturer.delete')
                 @endif
 
-                @if(session()->has('info'))
-                    <div class="py-2 px-6 mt-4" id="alert">
-                        <div>
+                <div style="display:none" x-data="{show: false}" x-show.transition.opacity.out.duration.1500ms="show" x-init="@this.on('saved',() => {show = true; setTimeout(()=>{show=false;},2000)})" class="py-2 px-6 mt-4" id="alert">
+                    <div>
+                        @if(session()->has('info'))
                             <h1 class="text-green-500 text-sm">{{ session('info') }}</h1>
-                        </div>
-                    </div>
-                @endif
-
-                @if(session()->has('delete'))
-                    <div class="py-2 px-6 mt-4" id="alert">
-                        <div>
+                        @elseif(session()->has('delete'))
                             <h1 class="text-red-500 text-sm">{{ session('delete') }}</h1>
-                        </div>
+                        @endif
                     </div>
-                @endif
+                </div>
 
                 <table class="table-fixed w-full mt-6">
                     <thead>

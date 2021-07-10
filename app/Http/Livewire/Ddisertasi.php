@@ -144,12 +144,13 @@ class Ddisertasi extends Component
                 'topic_id' => $this->topic_id,
                 'status' => 1
             ]);
-
+            $this->emit('saved');
             session()->flash('info', $this->disertasiId ? 'Berhasil Diedit' : 'Berhasil Ditambah' );
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
+                $this->emit('saved');
                 session()->flash('delete', 'Kesalahan Input');
             }
         }
@@ -180,11 +181,13 @@ class Ddisertasi extends Component
                 'keterangan' => $this->keterangan
             ]);
 
+            $this->emit('saved');
             session()->flash('info', $this->academicId ? $this->pd->name.'Berhasil Diedit' : $this->pd->name.' Created Successfully' );
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
+                $this->emit('saved');
                 session()->flash('delete', 'Kesalahan Input');
             }
         }
@@ -207,9 +210,11 @@ class Ddisertasi extends Component
             }else{
                 Academic::find($id)->delete();
             }
+            $this->emit('saved');
             session()->flash('delete','Berhasil Dihapus');
             $this->hideDel();
         }catch(QueryException $e){
+            $this->emit('saved');
             session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
         }
     }

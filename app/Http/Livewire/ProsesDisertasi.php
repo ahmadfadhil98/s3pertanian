@@ -61,12 +61,13 @@ class ProsesDisertasi extends Component
                 'upload_lots' => $this->upload_lots,
                 'terms_id' => $this->terms_id
             ]);
-
+            $this->emit('saved');
             session()->flash('info', $this->pdId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
+                $this->emit('saved');
                 session()->flash('delete', 'Kesalahan Input');
             }
         }
@@ -92,9 +93,11 @@ class ProsesDisertasi extends Component
     public function delete($id){
         try{
             ModelsProsesDisertasi::find($id)->delete();
-            session()->flash('delete','Berhasil Dihapu');
+            session()->flash('delete','Berhasil Dihapus');
+            $this->emit('saved');
             $this->hideDel();
         }catch(QueryException $e){
+            $this->emit('saved');
             session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
         }
 

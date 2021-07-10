@@ -78,13 +78,14 @@ class Staff extends Component
                 ]);
             }
 
-
             session()->flash('info', $this->staffId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
+            $this->emit('saved');
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
                 session()->flash('delete', 'Kesalahan Input');
+                $this->emit('saved');
             }
         }
 
@@ -111,8 +112,10 @@ class Staff extends Component
             ModelsStaff::find($id)->delete();
             User::find($id)->delete();
             session()->flash('delete','Berhasil Dihapus');
+            $this->emit('saved');
         }catch(QueryException $e){
             session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
+            $this->emit('saved');
         }
 
     }

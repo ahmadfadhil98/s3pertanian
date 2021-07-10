@@ -55,12 +55,13 @@ class Topic extends Component
                 'name' => $this->name,
             ]);
 
-
+            $this->emit('saved');
             session()->flash('info', $this->topicId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
             if($errorCode == 1062){
+                $this->emit('saved');
                 session()->flash('delete', 'Kesalahan Input');
             }
         }
@@ -82,8 +83,10 @@ class Topic extends Component
         try{
             DisertasiTopic::find($id)->delete();
             session()->flash('delete','Berhasil Dihapus');
+            $this->emit('saved');
             $this->hideDel();
         }catch(QueryException $e){
+            $this->emit('saved');
             session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
         }
 
