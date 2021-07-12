@@ -24,6 +24,7 @@ class CreateDisertasiLecturersTable extends Migration
             $table->foreign('disertasi_id')->references('id')->on('disertasis');
             $table->foreign('lecturer_id')->references('id')->on('lecturers');
             $table->unique(['disertasi_id', 'position']);
+            $table->unique(['disertasi_id', 'lecturer_id']);
         });
     }
 

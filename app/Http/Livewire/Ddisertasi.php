@@ -7,6 +7,7 @@ use App\Models\Disertasi;
 use App\Models\DisertasiLecturer;
 use App\Models\DisertasiTopic;
 use App\Models\Lecturer;
+use App\Models\Marking;
 use App\Models\ProsesDisertasi;
 use App\Models\Student;
 use Illuminate\Support\Facades\Storage;
@@ -29,13 +30,6 @@ class Ddisertasi extends Component
     public $content,$academicId;
     public $isDel,$delId,$idDel,$filup;
 
-    public $readyToLoad = false;
-
-    public function loadPosts()
-    {
-        $this->readyToLoad = true;
-    }
-
     public function mount($id){
 
         $this->disertasiId = $id;
@@ -43,7 +37,6 @@ class Ddisertasi extends Component
 
     public function render()
     {
-        // dd($this->disertasiId);
         $this->user = Auth::user();
         $icons = config('central.icon');
         $disertasis = Disertasi::find($this->disertasiId);
@@ -53,20 +46,19 @@ class Ddisertasi extends Component
         $statuses = config('central.status');
         $colors = config('central.colorIcon');
 
-        $dateac = Academic::orderByDesc('updated_at')->first();
+        $dateac = Academic::where('disertasi_id',$this->disertasiId)->orderByDesc('updated_at')->get();
         $hashtag = 0;
         $proses_disertasis = ProsesDisertasi::all();
         $academics = Academic::where('disertasi_id',$this->disertasiId)->get();
-        $c_academic = DB::table('academics')->where('disertasi_id',$this->disertasiId)->select(DB::raw('count(*) as count, proses_disertasi_id'))->groupBy('proses_disertasi_id')->get();
-
+        $c_academic = DB::table('proses_disertasis')->leftJoin('academics','proses_disertasis.id','=','academics.proses_disertasi_id')->where('disertasi_id',$this->disertasiId)->select(DB::raw('count(proses_disertasi_id) as count, proses_disertasis.id,academics.disertasi_id'))->groupBy('proses_disertasis.id','disertasi_id')->get();
+        // dd($c_academic);
         $ketac = Academic::pluck('keterangan','id');
 
         $lecturers = DisertasiLecturer::where('disertasi_id',$this->disertasiId)->orderBy('position')->get();
         $name = Lecturer::pluck('name','id');
         $approved = DisertasiLecturer::where('disertasi_id',$this->disertasiId)->where('approve',1)->get();
         return view('livewire.disertasi.detail.index',[
-            'disertasis' => $this->readyToLoad
-            ? $disertasis : [],
+            'disertasis' => $disertasis,
             'students' => $students,
             'topics' => $topics,
             'nim' => $nim,
@@ -79,7 +71,6 @@ class Ddisertasi extends Component
             'c_academic' => $c_academic,
             'hashtag' => $hashtag,
             'dateac' => $dateac,
-
             'ketac' => $ketac,
 
             'lecturers' => $lecturers,
