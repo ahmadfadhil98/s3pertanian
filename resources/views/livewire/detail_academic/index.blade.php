@@ -44,27 +44,56 @@
                 </div>
             </div>
         </div>
-                @if($isOpen)
-                    @include('livewire.detail_academic.form')
+        @if($isOpen)
+            @include('livewire.detail_academic.form')
+        @endif
+
+        <div style="display:none" x-data="{show: false}" x-show.transition.opacity.out.duration.1500ms="show" x-init="@this.on('saved',() => {show = true; setTimeout(()=>{show=false;},2000)})" class="py-2 px-6 mt-4" id="alert">
+            <div>
+                @if(session()->has('info'))
+                    <h1 class="text-green-500 text-sm">{{ session('info') }}</h1>
+                @elseif(session()->has('delete'))
+                    <h1 class="text-red-500 text-sm">{{ session('delete') }}</h1>
                 @endif
+            </div>
+        </div>
 
-                <div style="display:none" x-data="{show: false}" x-show.transition.opacity.out.duration.1500ms="show" x-init="@this.on('saved',() => {show = true; setTimeout(()=>{show=false;},2000)})" class="py-2 px-6 mt-4" id="alert">
-                    <div>
-                        @if(session()->has('info'))
-                            <h1 class="text-green-500 text-sm">{{ session('info') }}</h1>
-                        @elseif(session()->has('delete'))
-                            <h1 class="text-red-500 text-sm">{{ session('delete') }}</h1>
-                        @endif
-                    </div>
+        <div class="flex h-full w-full">
+            <div class="flex-1 mt-1 border-4 border-gray-600 rounded-xl shadow-md h-full mr-5">
+                <div class="rounded-xl h-full" id="pdf-viewer">
+                    <span class='text-sm text-gray-400 px-5'>Silahkan refresh terlebih dahulu...</span>
                 </div>
-
-                <div class="mt-1 border-4 border-gray-600 rounded-xl shadow-md h-full">
-                    <div class="rounded-xl h-full" id="pdf-viewer">
-                        <span class='text-sm text-gray-400 px-5'>Silahkan refresh terlebih dahulu...</span>
-                    </div>
+            </div>
+            <div>
+            @if ($academic->keterangan)
+                <div>
+                    <fieldset class="border rounded-xl font-semibold text-gray-500">
+                        <legend class="mx-5">Keterangan</legend>
+                        <p> {{ $academic->keterangan }} </p>
+                    </fieldset>
                 </div>
+            @endif
 
-</div>
+            @if ($marks->count()!=0)
+                <div>
+                    <fieldset class="border rounded-xl font-semibold text-gray-500">
+                        <legend class="mx-5">Penilaian Dosen</legend>
+                        <table>
+                            @foreach ($marks as $mark)
+                                <tr>
+                                    <td> {{ $lecturers[$mark->lecturer_id] }} </td>
+                                    <td> {{ $positions[$mark->lecturer_id] }} </td>
+                                    <td> {{ $mark->score }} </td>
+                                </tr>
+                            @endforeach
+
+                        </table>
+                    </fieldset>
+                </div>
+            @endif
+            </div>
+        </div>
+    </div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.5/pdfobject.min.js" integrity="sha512-K4UtqDEi6MR5oZo0YJieEqqsPMsrWa9rGDWMK2ygySdRQ+DtwmuBXAllehaopjKpbxrmXmeBo77vjA2ylTYhRA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfobject/2.2.5/pdfobject.js" integrity="sha512-eCQjXTTg9blbos6LwHpAHSEZode2HEduXmentxjV8+9pv3q1UwDU1bNu0qc2WpZZhltRMT9zgGl7EzuqnQY5yQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

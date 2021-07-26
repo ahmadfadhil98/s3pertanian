@@ -203,7 +203,7 @@ class Ddisertasi extends Component
             $this->hideDel();
         }catch(QueryException $e){
             $this->emit('saved');
-            session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
+            session()->flash('delete', 'Tidak Bisa Menghapus');
         }
     }
 }

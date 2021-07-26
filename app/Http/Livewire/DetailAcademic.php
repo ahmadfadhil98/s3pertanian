@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Academic;
+use App\Models\DisertasiLecturer;
+use App\Models\Lecturer;
 use App\Models\Marking;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Auth;
@@ -29,9 +31,14 @@ class DetailAcademic extends Component
         $this->user = Auth::user();
         if($this->academicId){
             $academic = Academic::find($this->academicId);
-
+            $marks = Marking::where('academic_id',$this->academicId)->get();
+            $lecturers = Lecturer::pluck('name','id');
+            $positions = DisertasiLecturer::pluck('position','id');
             return view('livewire.detail_academic.index',[
-                'academic' => $academic
+                'academic' => $academic,
+                'marks' => $marks,
+                'lecturers' => $lecturers,
+                'positions' => $positions
             ]);
         }
 
