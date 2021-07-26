@@ -7,7 +7,7 @@
 
     <div class="w-full text-center pt-40">
         <div class="max-w-sm bg-white rounded-xl shadow-md mx-auto px-7 py-5">
-            <div class="pb-5 text-base text-gray-500 font-semibold">Selamat Datang</div>
+            <div class="pb-5 text-base text-gray-500 font-semibold">Halo, Selamat Datang!</div>
             <div class="py-5 rounded-xl shadow-inner bg-gray-50">
                 <div class="grid justify-center text-gray-600">
                     <div class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition duration-150 ease-in-out">
