@@ -143,8 +143,13 @@
 
                     <x-slot name="content">
                         <!-- Account Management -->
-                        <div class="block px-4 py-2 text-xs text-gray-400">
-                            {{ __('Akun') }}
+                        <div class="block flex py-3 px-4 text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-6-3a2 2 0 11-4 0 2 2 0 014 0zm-2 4a5 5 0 00-4.546 2.916A5.986 5.986 0 0010 16a5.986 5.986 0 004.546-2.084A5 5 0 0010 11z" clip-rule="evenodd" />
+                              </svg>
+                            <div class="text-xs text-gray-400 ml-2">
+                                    {{ __('Akun') }}
+                            </div>
                         </div>
 
                         <div class="border-t border-gray-50"></div>

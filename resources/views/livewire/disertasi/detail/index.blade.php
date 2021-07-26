@@ -68,7 +68,7 @@
 
                         @can('student_manage_disertasi')
                         <section class="">
-                            <button style="background-color: #078CAA;" wire:click="editdisertasi()" class="transform hover:scale-95 duration-300 flex rounded-xl text-sm font-bold text-white py-3 px-6 focus:outline-none shadow-md">
+                            <button style="background-color: #078CAA;" wire:click="editdisertasi()" class="transform hover:scale-95 duration-300 flex rounded-xl text-sm text-white py-3 px-6 focus:outline-none shadow-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                     </svg>
@@ -80,7 +80,7 @@
                         @endcan
                         @can('admin_manage')
                             <section class="">
-                                <button style="background-color: #078CAA;" wire:click="editdisertasi()" class="transform hover:scale-95 duration-300 flex rounded-xl text-sm font-bold text-white py-3 px-6 focus:outline-none shadow-md">
+                                <button style="background-color: #078CAA;" wire:click="editdisertasi()" class="transform hover:scale-95 duration-300 flex rounded-xl text-sm text-white py-3 px-6 focus:outline-none shadow-md">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                                     </svg>
@@ -201,8 +201,8 @@
                                     <section class="flex justify-end">
                                         <button style="background-color: #078CAA;" type="button"
                                         wire:click="academic({{$proses_disertasi->id}})"
-                                        class="transform hover:scale-95 duration-300 flex rounded-xl text-sm font-bold text-white py-3 px-6 focus:outline-none shadow-md mr-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        class="transform hover:scale-95 duration-300 flex rounded-xl text-sm text-white py-3 px-6 focus:outline-none shadow-md mr-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                                             </svg>
                                             <div class="flex pl-3">Input File</div>
@@ -214,8 +214,8 @@
                                     <section class="flex justify-end">
                                         <button style="background-color: #078CAA;" type="button"
                                         wire:click="academic({{$proses_disertasi->id}})"
-                                        class="transform hover:scale-95 duration-300 flex rounded-xl text-sm font-bold text-white py-3 px-6 focus:outline-none shadow-md mr-3">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        class="transform hover:scale-95 duration-300 flex rounded-xl text-sm text-white py-3 px-6 focus:outline-none shadow-md mr-3">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
                                         </svg>
                                         <div class="flex pl-3">Input File</div>
@@ -258,7 +258,7 @@
                                             <th class="font-semibold text-gray-600 py-1">{{ $name[$lecturer->lecturer_id] }}
                                             </th>
                                             @if ($approved->count()!=0)
-                                                <th class="pl-2 font-bold text-{{ $colors[$lecturer->approve]}} py-1">
+                                                <th class="pl-3 font-bold text-{{ $colors[$lecturer->approve]}} py-1">
                                                     @php
                                                         echo $icons [$lecturer->approve];
                                                     @endphp
@@ -277,7 +277,7 @@
                     <div class="mt-5">
                         @can('admin_manage')
                     <section class="flex justify-end">
-                        <button style="background-color: #078CAA;" onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '" type="button" class="transform hover:scale-95 duration-300 flex justify-end rounded-xl focus:outline-none py-3 px-6 text-sm font-bold text-white shadow-md">
+                        <button style="background-color: #078CAA;" onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '" type="button" class="transform hover:scale-95 duration-300 flex justify-end rounded-xl focus:outline-none py-3 px-6 text-sm text-white shadow-md">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                             </svg>
@@ -290,7 +290,7 @@
                     @endcan
                     @can('student_manage_disertasi')
                     <section class="flex justify-end">
-                        <button style="background-color: #078CAA;" onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '" type="button" class="transform hover:scale-95 duration-300 flex justify-end rounded-xl focus:outline-none py-3 px-6 text-sm font-bold text-white shadow-md">
+                        <button style="background-color: #078CAA;" onclick="location.href=' {{ route( 'bimbingan',[$this->disertasiId]) }} '" type="button" class="transform hover:scale-95 duration-300 flex justify-end rounded-xl focus:outline-none py-3 px-6 text-sm text-white shadow-md">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                             </svg>
