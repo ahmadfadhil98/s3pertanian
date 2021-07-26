@@ -27,7 +27,7 @@
                         <div class="ml-2.5">Tambah Dosen</div></div>
                     </button>
                 </div>
-                <div class="transform hover:scale-95 duration-300 bg-gray-50 w-full md:w-1/3 flex text-gray-400 pl-5 rounded-xl shadow-inner">
+                <div class="transform hover:scale-95 duration-300 bg-gray-50 w-full md:w-1/3 flex text-gray-400 pl-5 rounded-xl shadow-inner border-2 border-gray-200">
                     @include('search')
                 </div>
             </div>
