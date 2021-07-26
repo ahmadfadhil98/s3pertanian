@@ -131,6 +131,9 @@
                                     <div class="w-full md:w-2/3 text-xl pb-1">
                                         {{ $proses_disertasi->name }}
                                     </div>
+                                        @if ($aca==0)
+                                            Belum ada file yang di upload
+                                        @endif
                                         @foreach ($c_academic as $ca)
                                             @if($ca->id==$proses_disertasi->id)
 

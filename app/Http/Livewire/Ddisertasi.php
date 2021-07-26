@@ -48,6 +48,7 @@ class Ddisertasi extends Component
 
         $dateac = Academic::where('disertasi_id',$this->disertasiId)->orderByDesc('updated_at')->get();
         $hashtag = 0;
+        $aca = Academic::count();
         $proses_disertasis = ProsesDisertasi::all();
         $academics = Academic::where('disertasi_id',$this->disertasiId)->get();
         $c_academic = DB::table('proses_disertasis')->leftJoin('academics','proses_disertasis.id','=','academics.proses_disertasi_id')->where('disertasi_id',$this->disertasiId)->select(DB::raw('count(proses_disertasi_id) as count, proses_disertasis.id,academics.disertasi_id'))->groupBy('proses_disertasis.id','disertasi_id')->get();
@@ -66,6 +67,7 @@ class Ddisertasi extends Component
             'icons' => $icons,
             'colors' => $colors,
 
+            'aca' => $aca,
             'proses_disertasis' => $proses_disertasis,
             'academics' => $academics,
             'c_academic' => $c_academic,
@@ -191,7 +193,7 @@ class Ddisertasi extends Component
         try{
             if($di==1){
                 $file = Academic::find($id);
-                Storage::delete($file->keterangan);
+                Storage::delete($file->path);
                 $file->delete();
             }else{
                 Academic::find($id)->delete();

@@ -53,7 +53,8 @@
                                       </svg>
                                     <div class="ml-3">Judul Disertasi</div>
                                 </div>
-                                <input wire:model="title" name="title" class="w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none mb-2 shadow-md" placeholder="Input judul disertasi">
+                                <textarea rows="4" wire:model="title" name="title" class="w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none mb-2 shadow-md" placeholder="Input judul disertasi">
+                                </textarea>
                                 @error('title') <h1 class="text-red-500">{{$message}}</h1>@enderror
                             </div>
                         </div>
