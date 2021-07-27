@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
 use App\Http\Livewire\Bdisertasi;
 use App\Http\Livewire\Bimbingan;
 use App\Http\Livewire\Ddisertasi;
@@ -25,16 +26,10 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', function () {
-    if(Auth::user()){
-        return view('dashboard');
-    }else{
-        return view('welcome');
-    }
 
-});
+Route::get('/','\App\Http\Controllers\DashboardController@index');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 

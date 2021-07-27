@@ -34,7 +34,6 @@
                 <div class="text-xs text-gray-200 text-center py-3.5">
                     <div class="">Sistem Informasi S3 Pertanian</div>
                     <div class="">Universitas Andalas</div>
-                    </div>
                 </div>
             </footer>
             </main>
