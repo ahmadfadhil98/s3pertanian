@@ -42,7 +42,7 @@
 
             @endif
 
-            <div class="h-full flex items-center justify-center py-8 md:px-4 mx-7">
+            <div class="h-full flex justify-center py-8 md:px-4 mx-7">
                 <div class="xl:w-1/3 flex flex-col 2xl:items-center">
                     <p tabindex="0" class="focus:outline-none text-base md:text-xl font-bold leading-tight text-gray-600 dark:text-gray-400 text-center">Bidang Ilmu: Perhitungan</p>
                     <div class="mx-auto flex flex-col items-center">
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="w-11/12 lg:w-2/3">
-                    <div class="flex flex-col justify-between h-full">
+                    <div class="flex flex-col h-full">
                         <div>
                             <div class="w-full justify-between">
                                 <h3 class="text-gray-600 dark:text-gray-400 leading-5 text-base md:text-xl font-bold mb-3">Jumlah Mahasiswa</h3>
@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                             <div class="flex items-end mt-6">
-                                <h3 class="text-indigo-500 leading-5 text-lg md:text-2xl">20</h3>
+                                <h3 class="text-indigo-500 leading-5 text-lg md:text-2xl">20 orang</h3>
                                 <div class="flex items-center md:ml-4 ml-1 text-green-700">
                                     <p class="text-green-700 text-xs md:text-base">17%</p>
                                     <svg role="img" class="text-green-700" aria-label="increase. upward arrow icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
