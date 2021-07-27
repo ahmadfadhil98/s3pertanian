@@ -87,7 +87,7 @@
                                 </div>
                             </div>
                             <div class="flex items-end mt-6">
-                                <h3 class="text-indigo-500 leading-5 text-lg md:text-2xl">$65,875</h3>
+                                <h3 class="text-indigo-500 leading-5 text-lg md:text-2xl">20</h3>
                                 <div class="flex items-center md:ml-4 ml-1 text-green-700">
                                     <p class="text-green-700 text-xs md:text-base">17%</p>
                                     <svg role="img" class="text-green-700" aria-label="increase. upward arrow icon" xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 12 12" fill="none">
@@ -126,12 +126,12 @@
                 const chart = new Chart(document.getElementById("myChart"), {
                 type: "line",
                 data: {
-                    labels: ["January", "February", "March", "April", "May", "June", "July", "Aug", "Sep", "Nov", "Dec"],
+                    labels: ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"],
                     datasets: [
                         {
                             label: "16 Mar 2018",
                             borderColor: "#4A5568",
-                            data: [600, 400, 620, 300, 200, 600, 230, 300, 200, 200, 100, 1200],
+                            data: [30, 16, 17, 18, 11, 25, 35, 20, 24, 30, 12, 24],
                             fill: false,
                             pointBackgroundColor: "#4A5568",
                             borderWidth: "3",
