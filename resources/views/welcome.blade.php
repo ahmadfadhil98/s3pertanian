@@ -68,7 +68,7 @@
                 <div class="w-11/12 lg:w-2/3">
                     <div class="flex flex-col h-full">
                         <div>
-                            <div class="w-full justify-between">
+                            <div class="flex w-full justify-between">
                                 <h3 class="text-gray-600 dark:text-gray-400 leading-5 text-base md:text-xl font-bold mb-3">Jumlah Mahasiswa</h3>
                                 <div class="flex items-center justify-between lg:justify-start mt-2 md:mt-4 lg:mt-0">
                                     <div class="flex items-center">
