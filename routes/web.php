@@ -12,6 +12,7 @@ use App\Http\Livewire\Staff;
 use App\Http\Livewire\Student;
 use App\Http\Livewire\Topic;
 use App\Models\Academic;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,9 +25,16 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    if(Auth::user()){
+        return view('dashboard');
+    }else{
+        return view('welcome');
+    }
 
+});
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/home', function () {
     return view('dashboard');
 })->name('dashboard');
 
