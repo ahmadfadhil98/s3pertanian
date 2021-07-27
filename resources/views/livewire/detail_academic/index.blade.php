@@ -30,10 +30,10 @@
                 @endcan
             </div>
             <div class="flex w-full md:w-1/3 justify-end text-right h-full">
-                <div class="flex bg-gray-50 shadow-inner rounded-xl">
-                    <div class="text-sm font-semibold text-gray-400 px-5 pt-3 py-2">Nilai</div>
+                <div class="flex bg-gray-50 border-2 border-gray-200 shadow-inner rounded-xl">
+                    <div class="text-sm font-semibold text-gray-400 px-4 pt-2.5">Nilai</div>
                     <div class="flex bg-white px-7 py-1.5 rounded-tr-xl rounded-br-xl shadow-inner">
-                        <div class="text-lg font-semibold text-gray-500 pt-1">
+                        <div class="text-lg font-semibold text-gray-500 pt-0.5">
                             @if ($academic->mark==0)
                                 Belum dinilai
                             @else
@@ -59,38 +59,68 @@
         </div>
 
         <div class="flex h-full w-full">
-            <div class="flex-1 mt-1 border-4 border-gray-600 rounded-xl shadow-md h-full mr-5">
-                <div class="rounded-xl h-full" id="pdf-viewer">
-                    <span class='text-sm text-gray-400 px-5'>Silahkan refresh terlebih dahulu...</span>
-                </div>
-            </div>
             <div>
             @if ($academic->keterangan)
-                <div>
-                    <fieldset class="border rounded-xl font-semibold text-gray-500">
-                        <legend class="mx-5">Keterangan</legend>
-                        <p> {{ $academic->keterangan }} </p>
+                <div class="-mt-2 mb-4">
+                    <fieldset class="pt-3 pb-4 px-6 border-2 border-gray-200 rounded-xl">
+                        <legend class="-mx-1 px-2 text-sm font-semibold text-gray-400">Keterangan</legend>
+                        <button style="background-color: #078CAA;" class="transform hover:scale-95 duration-300 rounded-full text-sm font-bold text-white py-3 px-3 focus:outline-none shadow-md">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                              </svg>
+                        </button>
+                        <textarea class="-ml-11 mb-12 bg-gray-100 text-gray-600 text-base focus:outline-none" cols="45" rows="5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio quis eos reprehenderit repudiandae dignissimos eaque fugit nulla odio earum totam omnis perspiciatis repellat iste, commodi ad nihil laudantium vero consectetur.
+                        </textarea>
                     </fieldset>
                 </div>
             @endif
 
             @if ($marks->count()!=0)
                 <div>
-                    <fieldset class="border rounded-xl font-semibold text-gray-500">
-                        <legend class="mx-5">Penilaian Dosen</legend>
-                        <table>
+                    <fieldset class="pt-3 pb-4 px-6 border-2 border-gray-200 rounded-xl">
+                        <legend class="-mx-1 px-2 text-sm font-semibold text-gray-400">Penilaian Dosen</legend>
+                        <div class="flex ml-0.5 w-96">
+                            @foreach ($marks as $mark)
+                                <div>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 h-5 w-4 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div class="flex-none text-sm text-gray-600 pr-2">
+                                    Pembimbing {{ $positions[$mark->lecturer_id] }}:
+                                </div>
+                                <div class="flex-grow text-sm font-semibold text-gray-600 pr-2">
+                                    {{ $lecturers[$mark->lecturer_id] }}
+                                </div class="text-sm font-semibold text-gray-600 pr-2">
+                                <div class="flex-none text-base text-right font-semibold text-gray-600">
+                                    ( {{ $mark->score }} )
+                                </div>
+                            @endforeach
+                        </div>
+                        {{-- <table class="ml-0.5">
                             @foreach ($marks as $mark)
                                 <tr>
-                                    <td> {{ $lecturers[$mark->lecturer_id] }} </td>
-                                    <td> {{ $positions[$mark->lecturer_id] }} </td>
-                                    <td> {{ $mark->score }} </td>
+                                    <td>
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 h-5 w-4 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    </td>
+                                    <td class="text-sm text-gray-600 pr-2"> Pembimbing {{ $positions[$mark->lecturer_id] }}: </td>
+                                    <td class="text-sm font-semibold text-gray-600 pr-2 w-48"></td>
+                                    <td class="text-base text-right font-semibold text-gray-600">  </td>
                                 </tr>
                             @endforeach
 
-                        </table>
+                        </table> --}}
                     </fieldset>
                 </div>
             @endif
+            </div>
+
+            <div class="flex-1 mt-1 border-4 border-gray-600 rounded-xl shadow-md h-full ml-6">
+                <div class="rounded-xl h-full" id="pdf-viewer">
+                    <span class='text-sm text-gray-400 px-5'>Silahkan refresh terlebih dahulu...</span>
+                </div>
             </div>
         </div>
     </div>
