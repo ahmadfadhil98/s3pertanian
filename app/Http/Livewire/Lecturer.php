@@ -60,7 +60,7 @@ class Lecturer extends Component
 
         try {
             // dd($this->lecturerId);
-            $nipi = $this->nip + 333322113333220000;
+            $nipi = $this->nip;
             $user = User::updateOrCreate(['id' => $this->lecturerId], [
                 'name' => $this->name,
                 'username' => $nipi,

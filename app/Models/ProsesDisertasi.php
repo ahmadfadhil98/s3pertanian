@@ -9,7 +9,7 @@ class ProsesDisertasi extends Model
 {
     use HasFactory;
     protected $table = "proses_disertasis";
-    protected $fillable = ['name','upload_lots','terms_id'];
+    protected $fillable = ['name','link_lots','file_lots','terms_id'];
 
     public function terms(){
         return $this->belongsTo(ProsesDisertasi::class);

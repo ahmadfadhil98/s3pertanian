@@ -33,7 +33,7 @@ class DetailAcademic extends Component
             $academic = Academic::find($this->academicId);
             $marks = Marking::where('academic_id',$this->academicId)->get();
             $lecturers = Lecturer::pluck('name','id');
-            $positions = DisertasiLecturer::pluck('position','id');
+            $positions = DisertasiLecturer::pluck('position','lecturer_id');
             return view('livewire.detail_academic.index',[
                 'academic' => $academic,
                 'marks' => $marks,
