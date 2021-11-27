@@ -2,22 +2,27 @@
 
 namespace App\Http\Livewire;
 
+use App\Imports\StudentImport;
+use App\Imports\UserImport;
 use Livewire\WithPagination;
 use App\Models\Student as ModelsStudent;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Student extends Component
 {
     use WithPagination;
-    public $isOpen,$isDel,$delId,$search;
-    public $studentId,$nim,$name,$email;
+    use WithFileUploads;
+    public $isOpen,$isImport,$isDel,$delId,$search;
+    public $studentId,$nim,$name,$email,$file;
 
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
-        $students = ModelsStudent::where('name','like',$searchParam)->orWhere('nim','like',$searchParam)->paginate(6);
+        $students = ModelsStudent::where('name','like',$searchParam)->orWhere('nim','like',$searchParam)->orderByDesc('id')->paginate(6);
         return view('livewire.student.index',[
             'students' => $students
         ]);
@@ -25,6 +30,15 @@ class Student extends Component
 
     public function showModal() {
         $this->isOpen = true;
+    }
+
+    public function showImport() {
+        $this->isImport = true;
+    }
+
+    public function hideImport() {
+        $this->file = '';
+        $this->isImport = false;
     }
 
     public function hideModal() {
@@ -44,18 +58,30 @@ class Student extends Component
         $this->isDel = false;
     }
 
+    public function import(){
+        $this->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+        // dd($this->file);
+        Excel::import(new UserImport, $this->file);
+
+        Excel::import(new StudentImport, $this->file);
+
+        $this->hideImport();
+    }
+
     public function store(){
+
 
         $this->validate(
             [
                 'name' => 'required',
                 'nim' => 'required',
-                'email' => 'required',
             ]
         );
 
         try {
-            // dd($this->studentId);
+            // dd($this->nim);
             $user = User::updateOrCreate(['id' => $this->studentId], [
                 'name' => $this->name,
                 'username' => $this->nim,
@@ -64,6 +90,7 @@ class Student extends Component
                 'type' => 3,
                 'remember_token' => null,
             ]);
+            // dd($this->nim);
             $user->roles()->sync(3);
 
             if($this->studentId){
@@ -84,6 +111,7 @@ class Student extends Component
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
+            dd($errorCode);
             if($errorCode == 1062){
                 session()->flash('delete', 'Kesalahan Input');
                 $this->emit('saved');

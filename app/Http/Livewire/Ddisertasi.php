@@ -29,6 +29,7 @@ class Ddisertasi extends Component
     public $pd,$keterangan;
     public $content,$academicId;
     public $isDel,$delId,$idDel,$filup;
+    public $type;
 
     public function mount($id){
 
@@ -47,10 +48,11 @@ class Ddisertasi extends Component
         $colors = config('central.colorIcon');
 
         $dateac = Academic::where('disertasi_id',$this->disertasiId)->orderByDesc('updated_at')->get();
-        $hashtag = 0;
+        $tag = 0;
         $aca = Academic::count();
         $proses_disertasis = ProsesDisertasi::all();
-        $academics = Academic::where('disertasi_id',$this->disertasiId)->get();
+        $f_academics = Academic::where('disertasi_id',$this->disertasiId)->where('type','F')->get();
+        $l_academics = Academic::where('disertasi_id',$this->disertasiId)->where('type','L')->get();
         $c_academic = DB::table('proses_disertasis')->leftJoin('academics','proses_disertasis.id','=','academics.proses_disertasi_id')->where('disertasi_id',$this->disertasiId)->select(DB::raw('count(proses_disertasi_id) as count, proses_disertasis.id,academics.disertasi_id'))->groupBy('proses_disertasis.id','disertasi_id')->get();
         // dd($c_academic);
         $ketac = Academic::pluck('keterangan','id');
@@ -69,9 +71,10 @@ class Ddisertasi extends Component
 
             'aca' => $aca,
             'proses_disertasis' => $proses_disertasis,
-            'academics' => $academics,
+            'f_academics' => $f_academics,
+            'l_academics' => $l_academics,
             'c_academic' => $c_academic,
-            'hashtag' => $hashtag,
+            'tag' => $tag,
             'dateac' => $dateac,
             'ketac' => $ketac,
 
@@ -107,8 +110,9 @@ class Ddisertasi extends Component
         $this->showModal();
     }
 
-    public function academic($id){
+    public function academic($id,$type){
         $this->pd = ProsesDisertasi::find($id);
+        $this->type = $type;
         $this->showModal2();
 
     }
@@ -148,23 +152,30 @@ class Ddisertasi extends Component
 
     public function storeacademic(){
 
-        $countprodis = Academic::where('proses_disertasi_id',$this->pd->id)->where('disertasi_id',$this->disertasiId)->count();
+        $countprodis = Academic::where('proses_disertasi_id',$this->pd->id)->where('disertasi_id',$this->disertasiId)->where('type',$this->type)->count();
 
         try {
 
             $this->validate(
                 [
-                    'content' => 'required',
+                    'content' => 'required|url',
                 ]
             );
+            if($this->type=="F"){
+                $file = $this->content->store('files/prodis');
+                $filename = $this->content->getClientOriginalName();
+            }else{
+                $file = $this->content;
+                $filename = $this->content;
+            }
 
-            $file = $this->content->store('files/prodis');
-            $filename = $this->content->getClientOriginalName();
+            // dd($this->keterangan);
             Academic::updateOrCreate(['id' => $this->academicId], [
                 'proses_disertasi_id' => $this->pd->id,
+                'type' => $this->type,
                 'no'   => $countprodis+1,
                 'disertasi_id' => $this->disertasiId,
-                'file' => $filename,
+                'file_link' => $filename,
                 'path' => $file,
                 'keterangan' => $this->keterangan
             ]);

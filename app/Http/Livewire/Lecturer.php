@@ -3,16 +3,21 @@
 namespace App\Http\Livewire;
 
 use Livewire\WithPagination;
+use App\Imports\UserImport;
+use App\Imports\LecturerImport;
 use App\Models\Lecturer as ModelsLecturer;
 use App\Models\User;
 use Illuminate\Database\QueryException;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Maatwebsite\Excel\Facades\Excel;
 
 class Lecturer extends Component
 {
     use WithPagination;
-    public $isOpen,$isDel,$delId,$search;
-    public $lecturerId,$nip,$faculty,$name,$email;
+    use WithFileUploads;
+    public $isOpen,$isImport,$isDel,$delId,$search;
+    public $lecturerId,$nip,$faculty,$name,$email,$file;
 
     public function render()
     {
@@ -27,6 +32,15 @@ class Lecturer extends Component
 
     public function showModal() {
         $this->isOpen = true;
+    }
+
+    public function showImport() {
+        $this->isImport = true;
+    }
+
+    public function hideImport() {
+        $this->file = '';
+        $this->isImport = false;
     }
 
     public function hideModal() {
@@ -45,6 +59,17 @@ class Lecturer extends Component
 
     public function hideDel() {
         $this->isDel = false;
+    }
+
+    public function import(){
+        $this->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+        // dd($this->file);
+        Excel::import(new UserImport, $this->file);
+        Excel::import(new LecturerImport, $this->file);
+
+        $this->hideImport();
     }
 
     public function store(){

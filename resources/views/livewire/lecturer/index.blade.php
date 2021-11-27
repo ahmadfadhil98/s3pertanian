@@ -26,6 +26,13 @@
                               </svg>
                         <div class="ml-2.5">Tambah Dosen</div></div>
                     </button>
+                    <button style="background-color: #078CAA;" wire:click="showImport()" class="transform hover:scale-95 duration-300 rounded-xl focus:outline-none py-2.5 px-7 text-base text-white shadow-md">
+                        <div class="flex">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                              </svg>
+                        <div class="ml-2.5">Import</div></div>
+                    </button>
                 </div>
                 <div class="transform hover:scale-95 duration-300 bg-gray-50 w-full md:w-1/3 flex text-gray-400 pl-5 rounded-xl shadow-inner border-2 border-gray-200">
                     @include('search')
@@ -33,6 +40,10 @@
             </div>
                 @if($isOpen)
                     @include('livewire.lecturer.form')
+                @endif
+
+                @if($isImport)
+                    @include('livewire.student.import')
                 @endif
 
                 @if($isDel)

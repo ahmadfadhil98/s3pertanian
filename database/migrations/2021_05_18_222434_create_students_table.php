@@ -17,6 +17,7 @@ class CreateStudentsTable extends Migration
             $table->unsignedBigInteger('id')->unique();
             $table->string('nim')->unique();
             $table->string('name');
+            $table->string('beasiswa')->nullable();
             $table->timestamps();
 
             $table->foreign('id')->references('id')->on('users');
