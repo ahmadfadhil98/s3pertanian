@@ -11,27 +11,28 @@ use Livewire\Component;
 
 class Bimbingan extends Component
 {
-    public $isOpen,$isDel,$delId;
-    public $lecturerId,$lecturer_id,$position;
+    public $isOpen, $isDel, $delId;
+    public $lecturerId, $lecturer_id, $position;
     public $disertasiId;
 
-    public function mount($id){
+    public function mount($id)
+    {
         $this->disertasiId = $id;
     }
 
     public function render()
     {
-        $lecturers = DisertasiLecturer::where('disertasi_id',$this->disertasiId)->paginate(4);
+        $lecturers = DisertasiLecturer::where('disertasi_id', $this->disertasiId)->paginate(4);
         $disertasi = Disertasi::find($this->disertasiId);
-        $name = Lecturer::pluck('name','id');
-        $student = Student::pluck('name','id');
-        $nim = Student::pluck('nim','id');
-        $faculty = Lecturer::pluck('faculty','id');
+        $name = Lecturer::pluck('name', 'id');
+        $student = Student::pluck('name', 'id');
+        $nim = Student::pluck('nim', 'id');
+        $faculty = Lecturer::pluck('faculty', 'id');
         $faculties = config('central.faculties');
         $positions = config('central.position');
-        $nip = Lecturer::pluck('nip','id');
+        $nip = Lecturer::pluck('nip', 'id');
 
-        return view('livewire.bimbingan.index',[
+        return view('livewire.bimbingan.index', [
             'lecturers' => $lecturers,
             'faculty' => $faculty,
             'faculties' => $faculties,
@@ -44,27 +45,32 @@ class Bimbingan extends Component
         ]);
     }
 
-    public function showModal() {
+    public function showModal()
+    {
         $this->isOpen = true;
     }
 
-    public function hideModal() {
+    public function hideModal()
+    {
         $this->lecturerId = '';
         $this->lecturer_id = '';
         $this->position = '';
         $this->isOpen = false;
     }
 
-    public function showDel($id) {
+    public function showDel($id)
+    {
         $this->delId = $id;
         $this->isDel = true;
     }
 
-    public function hideDel() {
+    public function hideDel()
+    {
         $this->isDel = false;
     }
 
-    public function store(){
+    public function store()
+    {
 
         $this->validate(
             [
@@ -83,11 +89,10 @@ class Bimbingan extends Component
             ]);
 
             $this->emit('saved');
-            session()->flash('info', $this->lecturerId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
-
-        } catch (QueryException $e){
+            session()->flash('info', $this->lecturerId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan');
+        } catch (QueryException $e) {
             $errorCode = $e->errorInfo[1];
-            if($errorCode == 1062){
+            if ($errorCode == 1062) {
                 $this->emit('saved');
                 session()->flash('delete', 'Kesalahan Input');
             }
@@ -100,7 +105,8 @@ class Bimbingan extends Component
         $this->position = '';
     }
 
-    public function edit($id){
+    public function edit($id)
+    {
         $lecturer = DisertasiLecturer::findOrFail($id);
         $this->lecturerId = $id;
         $this->lecturer_id = $lecturer->lecturer_id;
@@ -108,20 +114,21 @@ class Bimbingan extends Component
         $this->showModal();
     }
 
-    public function delete($id){
-        try{
+    public function delete($id)
+    {
+        try {
             DisertasiLecturer::find($id)->delete();
             $this->emit('saved');
-            session()->flash('delete','Berhasil Dihapus');
+            session()->flash('delete', 'Berhasil Dihapus');
             $this->hideDel();
-        }catch(QueryException $e){
+        } catch (QueryException $e) {
             $this->emit('saved');
             session()->flash('delete', 'Tidak Bisa Menghapus, Coba Beberapa Saat Lagi');
         }
-
     }
 
-    public function back(){
-        return redirect()->to('/ddisertasi/'. $this->disertasiId);
+    public function back()
+    {
+        return redirect()->to('/ddisertasi/' . $this->disertasiId);
     }
 }
