@@ -72,8 +72,8 @@
                                 <h3 class="text-gray-600 dark:text-gray-400 leading-5 text-base md:text-xl font-semibold mb-3">Jumlah Mahasiswa</h3>
                                 <div class="flex items-center justify-between lg:justify-start mt-2 md:mt-4 lg:mt-0">
                                     <div class="flex items-center">
-                                        <button class="transform hover:scale-95 duration-300 py-3 px-5 bg-gray-100 dark:bg-gray-700 rounded-xl ease-in duration-150 text-xs text-gray-600 dark:text-gray-400 hover:bg-gray-200">Masuk</button>
-                                        <button style="background-color: #078CAA;" class="transform hover:scale-95 duration-300 py-3 px-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 rounded-xl text-white ease-in duration-150 text-xs hover:bg-indigo-600">Wisuda</button>
+                                        <button wire:click="totalMasuk()" class="transform hover:scale-95 duration-300 py-3 px-5 bg-gray-100 dark:bg-gray-700 rounded-xl ease-in duration-150 text-xs text-gray-600 dark:text-gray-400 hover:bg-gray-200">Masuk</button>
+                                        <button wire:click="totalWisuda()" style="background-color: #078CAA;" class="transform hover:scale-95 duration-300 py-3 px-5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-700 rounded-xl text-white ease-in duration-150 text-xs hover:bg-indigo-600">Wisuda</button>
                                     </div>
                                     {{-- <div class="lg:ml-14">
                                         <div class="bg-gray-100 dark:bg-gray-700 ease-in duration-150 hover:bg-gray-200 pb-2 pt-1 px-3 rounded-sm">
@@ -125,6 +125,9 @@
 
             <script>
                 var obj = <?php echo json_encode($label); ?>;
+                var tahun = <?php echo json_encode($tahun); ?>;
+                var jumlah = <?php echo json_encode($jumlah); ?>;
+                console.log(obj);
                 const myBarChart2 = new Chart(document.getElementById("chartjs-2"), {
                     type: "pie",
                     data: { labels: obj, datasets: [{ data: [60, 12, 12, 25,12, 12, 25], fill: false, backgroundColor: [" #166273", " #377b8a", " #0fb4d9", " #8acede"] }] },
@@ -138,12 +141,12 @@
                 const chart = new Chart(document.getElementById("myChart"), {
                 type: "line",
                 data: {
-                    labels: ["2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018", "2019", "2020"],
+                    labels: tahun,
                     datasets: [
                         {
-                            label: "16 Mar 2018",
+                            label: "Jumlah Mahasiswa",
                             borderColor: "#4A5568",
-                            data: [30, 16, 17, 18, 11, 25, 35, 20, 24, 30, 12, 24],
+                            data: jumlah,
                             fill: false,
                             pointBackgroundColor: "#4A5568",
                             borderWidth: "3",
@@ -173,10 +176,4 @@
 
             </script>
     </body>
-    <footer class="bg-gradient-to-r from-green-600 to-green-900 shadow-inner">
-                <div class="text-xs text-gray-200 text-center py-3.5">
-                    <div class="">Sistem Informasi S3 Pertanian</div>
-                    <div class="">Universitas Andalas</div>
-                </div>
-    </footer>
 </html>

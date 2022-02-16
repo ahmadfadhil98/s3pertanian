@@ -1,10 +1,12 @@
 <?php
 
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DiagramController;
 use App\Http\Livewire\Bdisertasi;
 use App\Http\Livewire\Bimbingan;
 use App\Http\Livewire\Ddisertasi;
 use App\Http\Livewire\DetailAcademic;
+use App\Http\Livewire\Diagram;
 use App\Http\Livewire\Disertasi;
 use App\Http\Livewire\File;
 use App\Http\Livewire\Lecturer;
@@ -28,11 +30,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/','\App\Http\Controllers\DashboardController@index');
-
+// Route::get('/','\App\Http\Controllers\DashboardController@index');
+Route::get('/', Diagram::class)->name('dash');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
+Route::get('json','\App\Http\Controllers\DiagramController@index')->name('json');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('tasks', \App\Http\Controllers\TasksController::class);
