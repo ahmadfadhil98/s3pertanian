@@ -50,6 +50,10 @@
                     @include('livewire.student.delete')
                 @endif
 
+                @if ($isStatus)
+                    @include('livewire.student.status')
+                @endif
+
                 <div style="display:none" x-data="{show: false}" x-show.transition.opacity.out.duration.1500ms="show" x-init="@this.on('saved',() => {show = true; setTimeout(()=>{show=false;},2000)})" class="px-6 py-2 mt-4" id="alert">
                     <div>
                         @if(session()->has('info'))
@@ -72,12 +76,20 @@
                                     <div class="ml-3">Nomor Induk Mahasiswa</div>
                                 </div>
                             </th>
-                            <th style="background-color: #057954;" class="font-normal text-base py-2.5 text-white rounded-tr-xl rounded-br-xl w-auto">
+                            <th style="background-color: #057954;" class="font-normal text-base py-2.5 text-white w-auto">
                                 <div class="flex">
                                     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                     </svg>
                                     <div class="ml-3">Nama Mahasiswa</div>
+                                </div>
+                            </th>
+                            <th style="background-color: #057954;" class="font-normal text-base py-2.5 text-white rounded-tr-xl rounded-br-xl w-auto">
+                                <div class="flex">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                    <div class="ml-3">Status Mahasiswa</div>
                                 </div>
                             </th>
                             <th class="w-48"></th>
@@ -90,7 +102,13 @@
                                 <td class="py-4 text-base text-center text-gray-600">({{ $students->firstitem() + $key }})</td>
                                 <td class="text-base text-left text-gray-600">{{ $student->nim }}</td>
                                 <td class="text-base text-left text-gray-600">{{ $student->name }}</td>
+                                <td class="text-base text-left text-gray-600">{{ $status_mhs[$student->status] }}</td>
                                 <td class="text-right">
+                                    <button style="background-color: #078CAA;" wire:click="showStatus({{ $student->id }})" class="transform hover:scale-95 duration-300 rounded-full text-sm font-bold text-white py-3 px-3 focus:outline-none shadow-md mr-1.5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
+                                    </button>
                                     <button style="background-color: #078CAA;" wire:click="edit({{ $student->id }})" class="transform hover:scale-95 duration-300 rounded-full text-sm font-bold text-white py-3 px-3 focus:outline-none shadow-md mr-1.5">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />

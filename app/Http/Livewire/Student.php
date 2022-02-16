@@ -18,14 +18,36 @@ class Student extends Component
     use WithFileUploads;
     public $isOpen,$isImport,$isDel,$delId,$search;
     public $studentId,$nim,$name,$email,$file;
+    public $isStatus,$statusId;
 
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
-        $students = ModelsStudent::where('name','like',$searchParam)->orWhere('nim','like',$searchParam)->orderByDesc('id')->paginate(6);
+        $status_mhs = config('central.status_mhs');
+        $students = ModelsStudent::where('name','like',$searchParam)->orWhere('nim','like',$searchParam)->orWhere('status','like',$searchParam)->orderByDesc('id')->paginate(6);
         return view('livewire.student.index',[
-            'students' => $students
+            'students' => $students,
+            'status_mhs' => $status_mhs
         ]);
+    }
+
+    public function showStatus($id){
+        $students = ModelsStudent::findOrFail($id);
+        $this->studentId = $id;
+        $this->name = $students->name;
+        $this->nim = $students->nim;
+        $this->isStatus = true;
+    }
+
+    public function hideStatus(){
+        $this->isStatus = false;
+    }
+
+    public function storeStatus(){
+        $students = ModelsStudent::findOrFail($this->studentId);
+        $students->status = $this->statusId;
+        $students->save();
+        $this->hideStatus();
     }
 
     public function showModal() {
@@ -128,11 +150,12 @@ class Student extends Component
 
     public function edit($id){
         $user = User::findOrFail($id);
-        $lecturer = ModelsStudent::findOrFail($id);
+        $students = ModelsStudent::findOrFail($id);
         $this->studentId = $id;
         $this->name = $user->name;
         $this->email = $user->email;
-        $this->nim = $lecturer->nim;
+        $this->nim = $students->nim;
+        $this->status = $students->status;
         $this->showModal();
     }
 

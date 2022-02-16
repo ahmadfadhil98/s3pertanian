@@ -2,25 +2,33 @@
 
 namespace App\Http\Livewire;
 
+use App\Imports\ProsesImport;
+use App\Models\Kurikulum;
 use Livewire\WithPagination;
 use App\Models\ProsesDisertasi as ModelsProsesDisertasi;
 use Illuminate\Database\QueryException;
 use Livewire\Component;
+use Livewire\WithFileUploads;
+use Maatwebsite\Excel\Facades\Excel;
 
 class ProsesDisertasi extends Component
 {
     use WithPagination;
+    use WithFileUploads;
     public $isOpen,$isDel,$delId,$search;
-    public $pdId,$name,$file_lots,$link_lots,$terms_id;
+    public $pdId,$name,$file_lots,$link_lots,$terms_id,$kode;
+    public $isImport,$file,$kurikulum_id;
 
     public function render()
     {
         $searchParam = '%'.$this->search.'%';
         $proses_disertasis = ModelsProsesDisertasi::where('name','like',$searchParam)->paginate(6);
         $pd = ModelsProsesDisertasi::pluck('name','id');
+        $kurikulums = Kurikulum::pluck('name','id');
         return view('livewire.proses_disertasi.index',[
             'proses_disertasis' => $proses_disertasis,
-            'pd' => $pd
+            'pd' => $pd,
+            'kurikulums' => $kurikulums
         ]);
     }
 
@@ -29,6 +37,7 @@ class ProsesDisertasi extends Component
     }
 
     public function hideModal() {
+        $this->kode = null;
         $this->pdId = '';
         $this->name = '';
         $this->file_lots = '';
@@ -46,20 +55,31 @@ class ProsesDisertasi extends Component
         $this->isDel = false;
     }
 
+    public function showImport() {
+        $this->isImport = true;
+    }
+
+    public function hideImport() {
+        $this->file = '';
+        $this->isImport = false;
+    }
+
     public function store(){
 
         $this->validate(
             [
+                'kode' => 'required',
                 'name' => 'required',
-                'file_lots' => 'required',
-                'link_lots' => 'required',
+                'kurikulum_id' => 'required',
             ]
         );
 
         try {
             // dd($this->pdId);
             ModelsProsesDisertasi::updateOrCreate(['id' => $this->pdId], [
+                'kode' => $this->kode,
                 'name' => $this->name,
+                'kurikulum_id' => $this->kurikulum_id,
                 'file_lots' => $this->file_lots,
                 'link_lots' => $this->link_lots,
                 'terms_id' => $this->terms_id
@@ -78,10 +98,22 @@ class ProsesDisertasi extends Component
         $this->hideModal();
     }
 
+    public function import(){
+        $this->validate([
+            'file' => 'required|mimes:xlsx,xls'
+        ]);
+
+        Excel::import(new ProsesImport, $this->file);
+
+        $this->hideImport();
+    }
+
     public function edit($id){
         $proses_disertasi = ModelsProsesDisertasi::findOrFail($id);
         $this->pdId = $id;
+        $this->kode = $proses_disertasi->kode;
         $this->name = $proses_disertasi->name;
+        $this->kurikulum_id = $proses_disertasi->kurikulum_id;
         $this->file_lots = $proses_disertasi->file_lots;
         $this->link_lots = $proses_disertasi->link_lots;
         $this->terms_id = $proses_disertasi->terms_id;

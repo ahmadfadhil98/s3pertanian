@@ -5,7 +5,7 @@
         </div>
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
 
-        <div class="inline-block align-bottom bg-gray-100 rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+        <div class="relative inline-block align-bottom bg-gray-100 rounded-xl text-left overflow-hidden shadow-xl transform transition-all sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
             <form>
                 <div class="sm:py-6 sm:px-6">
                     <div>
@@ -65,6 +65,10 @@
               </div>
 
              </form>
+                <div wire:loading class="absolute inset-0 z-40 h-full">
+                        <div class="absolute inset-0 bg-gray-500 opacity-50"></div>
+                        <img src="{{url('/img/loading.gif')}}" alt="Image" class="mx-auto my-auto"/>
+                </div>
             </div>
 
           </div>

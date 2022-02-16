@@ -30,20 +30,30 @@
                     @endif
                 </span>
                 <ul>
-                    @foreach ($elements as $element)
                     <div class="flex">
+                        @php
+                            $count = 0;
+                        @endphp
+                    @foreach ($elements as $element)
+
                         @if (is_array($element))
                             @foreach ($element as $page => $url)
                                 @if ($page == $paginator->currentPage())
-                                    {{-- {{$url}}    --}}
+                                    {{-- {{$url}} --}}
                                     <li style="background-color: #057954;" class="w-10 mx-1 px-2 py-1 text-center text-sm rounded-lg text-white cursor-pointer shadow-md" wire:click="gotoPage({{$page}})">{{$page}}</li>
                                 @else
                                     <li class="transform hover:scale-95 duration-300 w-10 mx-1 px-2 py-1 text-center text-sm text-gray-400 rounded-lg bg-white cursor-pointer shadow-md" wire:click="gotoPage({{$page}})">{{$page}}</li>
                                 @endif
                             @endforeach
+                            @if ($count==0)
+                                <li class="transform hover:scale-95 duration-300 w-10 mx-1 px-2 py-1 text-center text-sm text-gray-400 rounded-lg bg-white cursor-pointer shadow-md">...</li>
+                            @endif
+                            @php
+                                $count = 1;
+                            @endphp
                         @endif
+                    @endforeach
                     </div>
-                @endforeach
                 </ul>
 
                 <span>

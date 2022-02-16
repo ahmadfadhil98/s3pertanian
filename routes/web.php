@@ -8,6 +8,7 @@ use App\Http\Livewire\DetailAcademic;
 use App\Http\Livewire\Disertasi;
 use App\Http\Livewire\File;
 use App\Http\Livewire\Lecturer;
+use App\Http\Livewire\Progress;
 use App\Http\Livewire\ProsesDisertasi;
 use App\Http\Livewire\Staff;
 use App\Http\Livewire\Student;
@@ -49,6 +50,7 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('dacademic/{di}/{did}/{id}',DetailAcademic::class)->name('dacademic');
     Route::get('topic', Topic::class)->name('topic');
     Route::get('file', File::class)->name('file');
+    Route::get('progress', Progress::class)->name('progress');
 
     Route::get('/show-pdf/{id}', function($id) {
         $file = Academic::find($id);

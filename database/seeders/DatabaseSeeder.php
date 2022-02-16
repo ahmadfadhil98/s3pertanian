@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             RoleUserTableSeeder::class,
             TopikDisertasiTableSeeder::class,
             FileTableSeeder::class,
+            KurikulumTableSeeder::class,
             // ProsesDisertasiTableSeeder::class,
         ]);
     }

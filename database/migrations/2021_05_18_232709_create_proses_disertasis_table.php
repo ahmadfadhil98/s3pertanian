@@ -15,7 +15,9 @@ class CreateProsesDisertasisTable extends Migration
     {
         Schema::create('proses_disertasis', function (Blueprint $table) {
             $table->id();
+            $table->string('kode');
             $table->string('name');
+            $table->foreignId('kurikulum_id')->references('id')->on('kurikulums');
             $table->integer('file_lots')->nullable();
             $table->integer('link_lots')->nullable();
             $table->unsignedBigInteger('terms_id')->nullable();

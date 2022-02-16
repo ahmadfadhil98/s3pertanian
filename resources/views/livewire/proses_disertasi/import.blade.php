@@ -6,7 +6,7 @@
         <span class="hidden sm:inline-block sm:align-middle sm:h-screen"></span>
 
         <div class="relative inline-block overflow-hidden text-left align-bottom transition-all transform bg-gray-100 shadow-xl rounded-xl sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
-            <form >
+            <form>
                 <div class="sm:py-6 sm:px-6">
                     <div>
                         <h1 class="text-sm text-center text-gray-600">Database</h1>
@@ -63,7 +63,6 @@
                         </button>
                     </span>
                 </div>
-
             </form>
             <div wire:loading class="absolute inset-0 z-40 h-full">
                     <div class="absolute inset-0 bg-gray-500 opacity-50"></div>
