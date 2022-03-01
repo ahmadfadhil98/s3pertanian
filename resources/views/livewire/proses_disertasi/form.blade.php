@@ -44,18 +44,6 @@
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                                   </svg>
-                                <div class="ml-3">Kurikulum</div>
-                            </div>
-                            {{ Form::select('kurikulum_id',$kurikulums,null,
-                            ['class' => 'w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none shadow-md','id' => 'kurikulum_id','wire:model'=>'kurikulum_id','placeholder'=>'- Pilih kurikulum-'])}}
-                            @error('kurikulum_id') <h1 class="text-red-500">{{$message}}</h1>@enderror
-                        </div>
-
-                        <div>
-                            <div class="flex text-sm text-gray-600 font-bold mb-2">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                  </svg>
                                 <div class="ml-3">Syarat Proses</div>
                             </div>
                             {{ Form::select('terms_id',$pd,null,
