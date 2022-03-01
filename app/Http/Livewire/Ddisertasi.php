@@ -158,7 +158,7 @@ class Ddisertasi extends Component
 
             $this->validate(
                 [
-                    'content' => 'required|url',
+                    'content' => 'required',
                 ]
             );
             if($this->type=="F"){

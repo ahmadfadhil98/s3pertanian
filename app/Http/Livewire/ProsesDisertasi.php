@@ -35,11 +35,11 @@ class ProsesDisertasi extends Component
 
     public function hideModal() {
         $this->kode = null;
-        $this->pdId = '';
-        $this->name = '';
-        $this->file_lots = '';
-        $this->link_lots = '';
-        $this->terms_id = '';
+        $this->pdId = null;
+        $this->name = null;
+        $this->file_lots = null;
+        $this->link_lots = null;
+        $this->terms_id = null;
         $this->isOpen = false;
     }
 
@@ -81,6 +81,7 @@ class ProsesDisertasi extends Component
             ]);
             $this->emit('saved');
             session()->flash('info', $this->pdId ? 'Berhasil Diedit' : 'Berhasil Ditambahkan' );
+            $this->hideModal();
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
@@ -90,7 +91,7 @@ class ProsesDisertasi extends Component
             }
         }
 
-        $this->hideModal();
+
     }
 
     public function import(){

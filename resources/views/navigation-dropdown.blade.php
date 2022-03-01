@@ -129,11 +129,6 @@
                         </x-jet-nav-link>
                     </div>
                 @endcan
-                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex px-1">
-                    <x-jet-nav-link href="{{ route('progress') }}" :active="request()->routeIs('progress')">
-                        <h1 class="text-base font-bold text-white hover:text-gray-100 font-bold pb-0.5">Progress</h1>
-                    </x-jet-nav-link>
-                </div>
             </div>
 
             <!-- Settings Dropdown -->

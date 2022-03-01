@@ -16,13 +16,13 @@ class LecturerImport implements ToModel,WithHeadingRow
     public function model(array $row)
     {
         $gelar = explode(',', $row['gelar']);
-        $lecturer = Lecturer::updateOrCreate([
+        $lecturer = Lecturer::firstOrNew([
             'id' => $row['nip'],
             'nip' => $row['nip'],
             'faculty' => 11,
             'name' => $gelar[0].$row['nama'].$gelar[1]
-
         ]);
+        $lecturer->save();
 
         return $lecturer;
     }

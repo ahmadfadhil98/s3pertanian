@@ -38,9 +38,9 @@ class Disertasi extends Component
 
 
         if($user->type==1){
-            $disertasis = DB::table('disertasis')->join('students','students.id','=','disertasis.student_id')->select('disertasis.id','student_id','name','nim','topic_id','title','status')->where('name','like',$searchParam)->orWhere('nim','like',$searchParam)->orWhere('title','like',$searchParam)->paginate(5);
+            $disertasis = DB::table('disertasis')->join('students','students.id','=','disertasis.student_id')->select('disertasis.id','student_id','name','nim','topic_id','title','disertasis.status')->where('name','like',$searchParam)->orWhere('nim','like',$searchParam)->orWhere('title','like',$searchParam)->paginate(5);
         }else{
-            $disertasis = DB::table('disertasis')->join('students','students.id','=','disertasis.student_id')->select('disertasis.id','student_id','name','nim','topic_id','title','status')->where('student_id',$user->id)->paginate(5);
+            $disertasis = DB::table('disertasis')->join('students','students.id','=','disertasis.student_id')->select('disertasis.id','student_id','name','nim','topic_id','title','disertasis.status')->where('student_id',$user->id)->paginate(5);
         }
         $students = Student::pluck('name','id');
         $topics = DisertasiTopic::pluck('name','id');
