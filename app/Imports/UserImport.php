@@ -31,6 +31,7 @@ class UserImport implements ToModel, WithHeadingRow
                 'username' => $row['no_bp'],
                 'password' => bcrypt($row['no_bp'])
             ]);
+            $user->roles()->sync(3);
         }else{
             $user = new User([
                 'id' => $row['nip'],
@@ -40,6 +41,7 @@ class UserImport implements ToModel, WithHeadingRow
                 'name' => $row['nama'],
                 'password' => bcrypt($row['nip'])
             ]);
+            $user->roles()->sync(2);
         }
         return $user;
     }
