@@ -138,7 +138,7 @@ let chartData = function(){
         },
         data: null,
         fetch: function(){
-            fetch('http://s3pertanian.test/json')
+            fetch('{{ env('APP_URL') }}json')
                 .then(res => res.json())
                 .then(res => {
                     this.data = res.dates;
