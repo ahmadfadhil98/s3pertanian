@@ -19,6 +19,7 @@
         "postcss-import": "^14.0.2",
         "resolve-url-loader": "^5.0.0",
         "tailwindcss": "^1.8.0",
+        "tailwindcss-text-indent": "^1.0.2",
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {

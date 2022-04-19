@@ -104,9 +104,9 @@
                                 <td class="text-base text-left text-gray-600">{{ $student->name }}</td>
                                 <td class="text-base text-left text-gray-600">{{ $status_mhs[$student->status] }}</td>
                                 <td class="text-right">
-                                    <button style="background-color: #078CAA;" wire:click="showStatus({{ $student->id }})" class="transform hover:scale-95 duration-300 rounded-full text-sm font-bold text-white py-3 px-3 focus:outline-none shadow-md mr-1.5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                    <button style="background-color: #c2bf18;" wire:click="showStatus({{ $student->id }})" class="transform hover:scale-95 duration-300 rounded-full text-sm font-bold text-white py-3 px-3 focus:outline-none shadow-md mr-1.5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                            <path stroke-linecap="round" stroke-linejoin="round" d="M5 11l7-7 7 7M5 19l7-7 7 7" />
                                         </svg>
                                     </button>
                                     <button style="background-color: #078CAA;" wire:click="edit({{ $student->id }})" class="transform hover:scale-95 duration-300 rounded-full text-sm font-bold text-white py-3 px-3 focus:outline-none shadow-md mr-1.5">

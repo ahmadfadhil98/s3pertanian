@@ -19,7 +19,7 @@
 
             <div class="flex mt-6">
                 <div class="w-full md:w-2/3">
-                    <button style="background-color: #078CAA;" wire:click="showModal()" class="transform hover:scale-95 duration-300 rounded-xl focus:outline-none py-2.5 px-7 text-base text-white shadow-md">
+                    <button style="background-color: #078CAA;" onclick="location.href=' {{ route( 'disertasi.create') }} '" class="transform hover:scale-95 duration-300 rounded-xl focus:outline-none py-2.5 px-7 text-base text-white shadow-md">
                         <div class="flex">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
@@ -41,6 +41,14 @@
                 @if($isDel)
                     @include('livewire.disertasi.delete')
                 @endif
+
+                    <div class="mt-5">
+                        @if(session()->has('info'))
+                            <h1 class="text-green-500 text-sm">{{ session('info') }}</h1>
+                        @elseif(session()->has('delete'))
+                            <h1 class="text-red-500 text-sm">{{ session('delete') }}</h1>
+                        @endif
+                    </div>
 
                 <div style="display:none" x-data="{show: false}" x-show.transition.opacity.out.duration.1500ms="show" x-init="@this.on('saved',() => {show = true; setTimeout(()=>{show=false;},2000)})" class="py-2 px-6 mt-4" id="alert">
                     <div>
@@ -86,14 +94,14 @@
                                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                                                 </svg>
-                                            <div class="text-sm text-gray-600 font-semibold ml-2.5">
+                                            <div class="text-sm text-gray-600 font-semibold ml-2.5" onclick="location.href=' {{ route( 'bimbingan',[$disertasi->id]) }} '">
                                                 Tim Pembimbing
                                             </div>
                                         </div>
                                         <div class="px-7 pb-5 pt-7 flex-2 bg-gray-50 rounded-xl text-gray-600 mr-6 shadow-inner">
                                             @foreach ($lecturer as $lectur)
                                             @if($lectur->disertasi_id==$disertasi->id)
-                                                <div class="flex text-sm pb-2">
+                                                <div class="flex text-sm pb-2" onclick="location.href=' {{ route( 'bimbingan',[$disertasi->id]) }} '">
                                                     <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-500 h-5 w-4 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                                                       </svg>

@@ -60,4 +60,10 @@ Route::group(['middleware' => 'auth'], function () {
         return response()->file(storage_path('app/'.$file->path));
     })->name('show-pdf');
 
+
+    Route::get('bimbingan/{id}/add', '\App\Http\Controllers\BimbinganController@create')->name('bimbingan.create');
+    Route::post('bimbingan/{id}', '\App\Http\Controllers\BimbinganController@store')->name('bimbingan.store');
+
+    Route::get('disertasi/add', '\App\Http\Controllers\DisertasiController@create')->name('disertasi.create');
+    Route::post('disertasi/add', '\App\Http\Controllers\DisertasiController@store')->name('disertasi.store');
 });

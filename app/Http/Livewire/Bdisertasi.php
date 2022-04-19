@@ -45,7 +45,7 @@ class Bdisertasi extends Component
     }
 
     public function agree($id){
-        // dd($id);
+        dd($id);
 
         $disertasi = DisertasiLecturer::find($id);
         $disertasi->update([

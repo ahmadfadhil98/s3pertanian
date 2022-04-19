@@ -18,6 +18,7 @@ class Lecturer extends Component
     use WithFileUploads;
     public $isOpen,$isImport,$isDel,$delId,$search;
     public $lecturerId,$nip,$faculty,$name,$email,$file;
+    public $keterangan;
 
     public function render()
     {
@@ -49,6 +50,7 @@ class Lecturer extends Component
         $this->nip = '';
         $this->email = '';
         $this->faculty = '';
+        $this->keterangan = '';
         $this->isOpen = false;
     }
 
@@ -78,18 +80,27 @@ class Lecturer extends Component
             [
                 'name' => 'required',
                 'nip' => 'required',
-                'email' => 'required',
+                // 'email' => 'required',
                 'faculty' => 'required'
             ]
         );
+
+        if($this->keterangan==16){
+            $this->validate(
+                [
+                    'keterangan' => 'required'
+                ]
+            );
+        }
 
         try {
             // dd($this->lecturerId);
             $nipi = $this->nip;
             $user = User::updateOrCreate(['id' => $this->lecturerId], [
+                'id' => $nipi,
                 'name' => $this->name,
                 'username' => $nipi,
-                'email' => $this->email,
+                'email' => $nipi.'@mail.com',
                 'password' => bcrypt($nipi),
                 'type' => 2,
                 'remember_token' => null,
@@ -100,13 +111,15 @@ class Lecturer extends Component
                 $user->lecturer()->update([
                     'name' => $this->name,
                     'nip' => $nipi,
-                    'faculty' => $this->faculty
+                    'faculty' => $this->faculty,
+                    'keterangan' => $this->keterangan
                 ]);
             }else{
                 $user->lecturer()->create([
                     'name' => $this->name,
                     'nip' => $nipi,
-                    'faculty' => $this->faculty
+                    'faculty' => $this->faculty,
+                    'keterangan' => $this->keterangan
                 ]);
             }
 
@@ -132,6 +145,7 @@ class Lecturer extends Component
     }
 
     public function edit($id){
+        // dd($id);
         $user = User::findOrFail($id);
         $lecturer = ModelsLecturer::findOrFail($id);
         $this->lecturerId = $id;
@@ -139,6 +153,7 @@ class Lecturer extends Component
         $this->email = $user->email;
         $this->nip = $lecturer->nip;
         $this->faculty = $lecturer->faculty;
+        $this->keterangan = $lecturer->keterangan;
         $this->showModal();
     }
 

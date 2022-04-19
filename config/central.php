@@ -19,6 +19,7 @@ return [
         13 => 'Fakultas Teknik',
         14 => 'Fakultas Teknologi Informasi',
         15 => 'Fakultas Teknologi Pertanian',
+        16 => 'Instansi Lain',
     ],
 
     'position' => [

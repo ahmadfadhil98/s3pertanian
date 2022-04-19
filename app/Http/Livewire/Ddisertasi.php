@@ -171,13 +171,13 @@ class Ddisertasi extends Component
 
             // dd($this->keterangan);
             Academic::updateOrCreate(['id' => $this->academicId], [
-                'proses_disertasi_id' => $this->pd->id,
-                'type' => $this->type,
-                'no'   => $countprodis+1,
-                'disertasi_id' => $this->disertasiId,
-                'file_link' => $filename,
-                'path' => $file,
-                'keterangan' => $this->keterangan
+                'proses_disertasi_id' => $this->pd->id, //2
+                'type' => $this->type, //F
+                'no'   => $countprodis+1, //1
+                'disertasi_id' => $this->disertasiId, //4
+                'file_link' => $filename, //"Blangko Kolokium.pdf"
+                'path' => $file, //files/prodis/B2dWcK0aGXmmKVgGPcDEYfJB3EYxhbEhIPhzX2f5.pdf
+                'keterangan' => $this->keterangan //
             ]);
 
             $this->emit('saved');

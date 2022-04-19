@@ -6,6 +6,7 @@ use App\Models\Disertasi;
 use App\Models\DisertasiLecturer;
 use App\Models\Lecturer;
 use App\Models\Student;
+use App\Models\User;
 use Illuminate\Database\QueryException;
 use Livewire\Component;
 
@@ -14,6 +15,7 @@ class Bimbingan extends Component
     public $isOpen, $isDel, $delId;
     public $lecturerId, $lecturer_id, $position;
     public $disertasiId;
+    public $nama, $nidn, $fakultas,$keterangan;
 
     public function mount($id)
     {
@@ -31,11 +33,13 @@ class Bimbingan extends Component
         $faculties = config('central.faculties');
         $positions = config('central.position');
         $nip = Lecturer::pluck('nip', 'id');
+        $keterangans = Lecturer::pluck('keterangan', 'id');
 
         return view('livewire.bimbingan.index', [
             'lecturers' => $lecturers,
             'faculty' => $faculty,
             'faculties' => $faculties,
+            'keterangans' => $keterangans,
             'disertasi' => $disertasi,
             'student' => $student,
             'nim' => $nim,
@@ -55,6 +59,9 @@ class Bimbingan extends Component
         $this->lecturerId = '';
         $this->lecturer_id = '';
         $this->position = '';
+        $this->nidn = '';
+        $this->nama = '';
+        $this->fakultas = '';
         $this->isOpen = false;
     }
 
@@ -74,16 +81,52 @@ class Bimbingan extends Component
 
         $this->validate(
             [
-                'lecturer_id' => 'required',
+                'nama' => 'required',
+                'nidn' => 'required|unique:lecturers,nip',
+                'fakultas' => 'required',
                 'position' => 'required',
             ]
         );
 
+        $bimbingan = DisertasiLecturer::select('position')->where('disertasi_id',$this->disertasiId)->where('position', $this->position)->get();
+        if(!$bimbingan->isEmpty()){
+            $this->emit('saved');
+            session()->flash('delete', 'Posisi Sudah ada');
+            $this->hideModal();
+        }
+
+        if($this->keterangan==16){
+            $this->validate(
+                [
+                    'keterangan' => 'required'
+                ]
+            );
+        }
+
         try {
             // dd($this->lecturerId);
+            $nipi = $this->nidn;
+            $user = User::create([
+                'id' => $nipi,
+                'name' => $this->nama,
+                'username' => $nipi,
+                'email' => $nipi.'@mail.com',
+                'password' => bcrypt($nipi),
+                'type' => 2,
+                'remember_token' => null,
+            ]);
+            $user->roles()->sync(2);
+
+            $user->lecturer()->create([
+                'name' => $this->nama,
+                'nip' => $nipi,
+                'faculty' => $this->fakultas,
+                'keterangan' => $this->keterangan,
+            ]);
+
             DisertasiLecturer::updateOrCreate(['id' => $this->lecturerId], [
                 'disertasi_id' => $this->disertasiId,
-                'lecturer_id' => $this->lecturer_id,
+                'lecturer_id' => $user->id,
                 'position' => $this->position,
                 'approve' => 1,
             ]);
@@ -100,9 +143,6 @@ class Bimbingan extends Component
 
         $this->hideModal();
 
-        $this->lecturerId = '';
-        $this->lecturer_id = '';
-        $this->position = '';
     }
 
     public function edit($id)

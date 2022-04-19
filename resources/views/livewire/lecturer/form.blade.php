@@ -59,7 +59,12 @@
                             </div>
                             {{ Form::select('faculty',$faculties,null,
                             ['class' => 'w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none shadow-md','id' => 'faculty','wire:model'=>'faculty','placeholder'=>'- Pilih fakultas -'])}}
+                            @if ($faculty==16)
+                                <input wire:model="keterangan" name="keterangan" class="my-2 w-full py-2.5 px-4 text-sm text-gray-600 rounded-xl focus:outline-none mb-2 shadow-md" placeholder="Input Nama Institusi">
+                            @endif
+
                             @error('faculty') <h1 class="text-red-500">{{$message}}</h1>@enderror
+                            @error('keterangan') <h1 class="text-red-500">{{$message}}</h1>@enderror
                         </div>
                     </div>
 

@@ -9,7 +9,7 @@ class Lecturer extends Model
 {
     use HasFactory;
     protected $table = "lecturers";
-    protected $fillable = ['id','nip','name','faculty'];
+    protected $fillable = ['id','nip','name','faculty','keterangan'];
 
     public function user(){
         return $this->belongsTo(User::class);
