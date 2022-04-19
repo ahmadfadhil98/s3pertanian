@@ -18,7 +18,7 @@ class Lecturer extends Component
     use WithFileUploads;
     public $isOpen,$isImport,$isDel,$delId,$search;
     public $lecturerId,$nip,$faculty,$name,$email,$file;
-    public $keterangan;
+	public $keterangan;
 
     public function render()
     {
@@ -51,7 +51,7 @@ class Lecturer extends Component
         $this->email = '';
         $this->faculty = '';
         $this->keterangan = '';
-        $this->isOpen = false;
+    	$this->isOpen = false;
     }
 
     public function showDel($id) {
@@ -84,8 +84,8 @@ class Lecturer extends Component
                 'faculty' => 'required'
             ]
         );
-
-        if($this->keterangan==16){
+    
+    	if($this->keterangan==16){
             $this->validate(
                 [
                     'keterangan' => 'required'
@@ -97,7 +97,7 @@ class Lecturer extends Component
             // dd($this->lecturerId);
             $nipi = $this->nip;
             $user = User::updateOrCreate(['id' => $this->lecturerId], [
-                'id' => $nipi,
+            	'id' => $nipi,
                 'name' => $this->name,
                 'username' => $nipi,
                 'email' => $nipi.'@mail.com',
@@ -112,14 +112,14 @@ class Lecturer extends Component
                     'name' => $this->name,
                     'nip' => $nipi,
                     'faculty' => $this->faculty,
-                    'keterangan' => $this->keterangan
+               	 	'keterangan'=> $this->keterangan
                 ]);
             }else{
                 $user->lecturer()->create([
                     'name' => $this->name,
                     'nip' => $nipi,
                     'faculty' => $this->faculty,
-                    'keterangan' => $this->keterangan
+                	'keterangan'=> $this->keterangan
                 ]);
             }
 
@@ -145,7 +145,6 @@ class Lecturer extends Component
     }
 
     public function edit($id){
-        // dd($id);
         $user = User::findOrFail($id);
         $lecturer = ModelsLecturer::findOrFail($id);
         $this->lecturerId = $id;
@@ -153,7 +152,7 @@ class Lecturer extends Component
         $this->email = $user->email;
         $this->nip = $lecturer->nip;
         $this->faculty = $lecturer->faculty;
-        $this->keterangan = $lecturer->keterangan;
+    	$this->keterangan = $lecturer->keterangan;
         $this->showModal();
     }
 

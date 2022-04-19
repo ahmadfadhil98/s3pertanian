@@ -18,6 +18,7 @@ class CreateLecturersTable extends Migration
             $table->string('nip')->unique();
             $table->integer('faculty');
             $table->string('name');
+            $table->string('keterangan');
             $table->timestamps();
 
             $table->foreign('id')->references('id')->on('users');

@@ -15,7 +15,7 @@ class Bimbingan extends Component
     public $isOpen, $isDel, $delId;
     public $lecturerId, $lecturer_id, $position;
     public $disertasiId;
-    public $nama, $nidn, $fakultas,$keterangan;
+	public $nama, $nidn, $fakultas,$keterangan;
 
     public function mount($id)
     {
@@ -39,7 +39,7 @@ class Bimbingan extends Component
             'lecturers' => $lecturers,
             'faculty' => $faculty,
             'faculties' => $faculties,
-            'keterangans' => $keterangans,
+        	'keterangans' => $keterangans,
             'disertasi' => $disertasi,
             'student' => $student,
             'nim' => $nim,
@@ -59,7 +59,7 @@ class Bimbingan extends Component
         $this->lecturerId = '';
         $this->lecturer_id = '';
         $this->position = '';
-        $this->nidn = '';
+    	$this->nidn = '';
         $this->nama = '';
         $this->fakultas = '';
         $this->isOpen = false;
@@ -87,20 +87,20 @@ class Bimbingan extends Component
                 'position' => 'required',
             ]
         );
+    
+    	if($this->keterangan==16){
+            $this->validate(
+                [
+                    'keterangan' => 'required'
+                ]
+            );
+        }
 
         $bimbingan = DisertasiLecturer::select('position')->where('disertasi_id',$this->disertasiId)->where('position', $this->position)->get();
         if(!$bimbingan->isEmpty()){
             $this->emit('saved');
             session()->flash('delete', 'Posisi Sudah ada');
             $this->hideModal();
-        }
-
-        if($this->keterangan==16){
-            $this->validate(
-                [
-                    'keterangan' => 'required'
-                ]
-            );
         }
 
         try {
@@ -121,7 +121,7 @@ class Bimbingan extends Component
                 'name' => $this->nama,
                 'nip' => $nipi,
                 'faculty' => $this->fakultas,
-                'keterangan' => $this->keterangan,
+            	'keterangan'=> $this->keterangan
             ]);
 
             DisertasiLecturer::updateOrCreate(['id' => $this->lecturerId], [
@@ -142,7 +142,6 @@ class Bimbingan extends Component
         }
 
         $this->hideModal();
-
     }
 
     public function edit($id)

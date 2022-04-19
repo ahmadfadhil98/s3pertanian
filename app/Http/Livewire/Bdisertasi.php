@@ -20,6 +20,7 @@ class Bdisertasi extends Component
 
     public function render()
     {
+    	
         $this->user = Auth::user();
         $students = DisertasiLecturer::where('lecturer_id',$this->user->id)->select('id','disertasi_id','approve')->distinct()->paginate(4);
         $stu_name = Student::pluck('name','id');
@@ -44,8 +45,9 @@ class Bdisertasi extends Component
         ]);
     }
 
+
     public function agree($id){
-        dd($id);
+        // dd($id);
 
         $disertasi = DisertasiLecturer::find($id);
         $disertasi->update([

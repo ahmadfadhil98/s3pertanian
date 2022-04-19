@@ -32,7 +32,9 @@ class Student extends Component
     }
 
     public function showStatus($id){
-        $students = ModelsStudent::findOrFail($id);
+    	// dd($id);
+        $students = ModelsStudent::find($id);
+    	// dd($students);
         $this->studentId = $id;
         $this->name = $students->name;
         $this->nim = $students->nim;
@@ -105,6 +107,7 @@ class Student extends Component
         try {
             // dd($this->nim);
             $user = User::updateOrCreate(['id' => $this->studentId], [
+            	'id' => $this->nim,
                 'name' => $this->name,
                 'username' => $this->nim,
                 'email' => $this->email,
@@ -133,7 +136,7 @@ class Student extends Component
 
         } catch (QueryException $e){
             $errorCode = $e->errorInfo[1];
-            dd($errorCode);
+            // dd($errorCode);
             if($errorCode == 1062){
                 session()->flash('delete', 'Kesalahan Input');
                 $this->emit('saved');

@@ -1,4 +1,3 @@
-
 <div>
     <div class="max-w-screen-xl mx-auto sm:px-6 lg:px-8">
         <div class="flex mt-7">
@@ -37,7 +36,7 @@
                               </svg>
                         <div class="ml-2.5">Tambah Dosen Tidak Terdaftar</div></div>
                     </button>
-                    <button style="background-color: #c2bf18;" onclick="window.location='{{ route('ddisertasi',$disertasiId) }}'" class="transform hover:scale-95 duration-300 rounded-xl focus:outline-none py-2.5 px-7 text-base text-white shadow-md">
+                    <button style="background-color: #c2bf18;" wire:click="back()" class="transform hover:scale-95 duration-300 rounded-xl focus:outline-none py-2.5 px-7 text-base text-white shadow-md">
                         <div class="flex">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-3m-1 4l-3 3m0 0l-3-3m3 3V4" />
@@ -53,14 +52,14 @@
                 @if($isDel)
                     @include('livewire.bimbingan.delete')
                 @endif
-
-                    <div>
+                    
+                	<div class="mt-5">
                         @if(session()->has('info'))
                             <h1 class="text-green-500 text-sm mt-4">{{ session('info') }}</h1>
                         @elseif(session()->has('delete'))
                             <h1 class="text-red-500 text-sm mt-4">{{ session('delete') }}</h1>
                         @endif
-                    </div>
+                    </div>   
 
                 <table class="table-fixed w-full mt-6">
                     <thead>
@@ -97,7 +96,7 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                       </svg>
-                                    <div class="ml-3">Fakultas / Instansi</div>
+                                    <div class="ml-3">Fakultas Instansi</div>
                                 </div>
                             </th>
                             <th class="w-48"></th>
@@ -116,9 +115,13 @@
                                         {{ $faculties[$faculty[$lecturer->lecturer_id]] }}
                                     @endif
                                 </td>
-
                                 <td class="text-right">
-                                    <button style="background-color: #E42025;"  class="transform hover:scale-95 duration-300 ml-1.5 rounded-full text-sm font-bold text-white py-3 px-3 focus:outline-none shadow-md">
+                    				{{--<button style="background-color: #078CAA;" wire:click="edit({{ $lecturer->id }})"class="transform hover:scale-95 duration-300 rounded-full text-sm font-bold text-white py-3 px-3 focus:outline-none shadow-md">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                                        </svg>
+                                    </button>--}}
+                                    <button style="background-color: #E42025;" wire:click="showDel({{ $lecturer->id }})"class="transform hover:scale-95 duration-300 ml-1.5 rounded-full text-sm font-bold text-white py-3 px-3 focus:outline-none shadow-md">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                         </svg>

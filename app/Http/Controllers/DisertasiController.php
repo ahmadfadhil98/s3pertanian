@@ -52,6 +52,7 @@ class DisertasiController extends Controller
     }
 
     public function store(Request $request){
+    // dd($request);
         $dosens = [$request->lecturer1,$request->lecturer2,$request->lecturer3];
         $no = 1;
         $user = Auth::user();
@@ -132,7 +133,5 @@ class DisertasiController extends Controller
                 }
             }
         }
-
-        return redirect()->route('disertasi')->with('delete', 'Mohon maaf ada kesalahan input, coba beberapa saat lagi');
     }
 }

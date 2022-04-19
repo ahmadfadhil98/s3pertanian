@@ -41,24 +41,14 @@
                 @if($isDel)
                     @include('livewire.disertasi.delete')
                 @endif
-
-                    <div class="mt-5">
+                    
+                	<div class="mt-5">
                         @if(session()->has('info'))
                             <h1 class="text-green-500 text-sm">{{ session('info') }}</h1>
                         @elseif(session()->has('delete'))
                             <h1 class="text-red-500 text-sm">{{ session('delete') }}</h1>
                         @endif
                     </div>
-
-                <div style="display:none" x-data="{show: false}" x-show.transition.opacity.out.duration.1500ms="show" x-init="@this.on('saved',() => {show = true; setTimeout(()=>{show=false;},2000)})" class="py-2 px-6 mt-4" id="alert">
-                    <div>
-                        @if(session()->has('info'))
-                            <h1 class="text-green-500 text-sm">{{ session('info') }}</h1>
-                        @elseif(session()->has('delete'))
-                            <h1 class="text-red-500 text-sm">{{ session('delete') }}</h1>
-                        @endif
-                    </div>
-                </div>
 
                 <div class="mt-6">
                 @foreach ($disertasis as $key=>$disertasi)

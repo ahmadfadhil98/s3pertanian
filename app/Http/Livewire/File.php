@@ -19,7 +19,7 @@ class File extends Component
     {
         $searchParam = '%'.$this->search.'%';
         $files = ModelsFile::where('name','like',$searchParam)->paginate(6);
-        return view('select_searchable',[
+        return view('livewire.file.index',[
             'files' => $files
         ]);
     }
